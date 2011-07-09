@@ -34,7 +34,49 @@ class Sighting(models.Model):
     contactable = models.BooleanField(default=True)
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
-    #photo = models.ImageFileField()  # Martin says this won't work 'yet'.
+    photo = models.ForeignKey(Photo, related_name="sightings")
 
 
-class 
+class Photo(models.Model):
+    """An model to hold all the blobstore stuff."""
+    photo = models.FileField()
+    blob_key = models.CharField(max_length=256)
+    url = models.CharField(max_length=256)
+
+    def save(self, *args, **kwargs):
+        if self.blob_key:
+            blob_info = blobstore.BlobInfo.get(self.blob_key)
+            blob_file_size = blob_info.size
+            blob_type = blob_info.content_type
+
+            blob_data = ''
+            current = 0
+            end = blobstore.MAX_BLOB_FETCH_SIZE - 1
+            step = blobstore.MAX_BLOB_FETCH_SIZE - 1
+
+            while current < blob_file_size:
+                blob_data = ''.join([blob_data, blobstore.fetch_data(
+                    self.blob_key, current, end)
+                current = end + 1
+                end += step
+
+            img_obj = images_api.Image(image_data=blob_data)
+
+            img_obj.rotate(360)
+            img_obj.execute_transforms()
+            self.url = images_api.get_serving_url(self.blob_key)
+        super(Photo, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        if self.blob_key:
+            blobstore.delete(self.blob_key)
+        super(Image, self).delete(*args, **kwargs)
+    
+    def get_absolute_url(self, size=0, crop=False):
+        if size:
+            url = ''.join([self.url, '=s', str(size)])
+            if crop:
+                url = '-'.join([url, 'c'])
+            return url
+        else:
+            return self.url
