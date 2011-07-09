@@ -4,4 +4,4 @@
     {{ field.label_tag }} {{ field }} {{ field.errors }}
 </div> 
 {% endfor %}
-{{ form.hidden_fields }}
+{% if form.hidden_fields %}{{ form.hidden_fields }}{% endif %}
