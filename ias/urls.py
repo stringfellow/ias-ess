@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 
+
 urlpatterns = patterns('',
     ('^sighting/$',
      'ias.views.sighting',
@@ -9,4 +10,7 @@ urlpatterns = patterns('',
         {'template': 'ias/sighting_done.html'},
         name="ias-sighting-thanks",
     ),
+    ('^taxon/register/$',
+        'views.register_taxon',
+        name="register_species")
 )
