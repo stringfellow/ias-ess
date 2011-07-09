@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.js"></script>
+        <title>IAS-ESS</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
     </head>
     <body>
-        <h1>Sighting</h1>
-        {{ form.as_p }}
+        <div data-role="page" data-theme="b">
+            <div data-role="header" data-theme="b">
+                <h1>Sighting</h1>
+            </div>
+            <div data-role="content">
+                <form method="post" id="sighting-form" action=".">
+                    {% include "ias/form_snippet.html" %}
+                </form>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h1>&copy; ias-ess.org</h1>
+            </div>
+        </div>
     </body>
 </html>
