@@ -1,0 +1,25 @@
+application: ias-ess
+version: 1
+runtime: python
+api_version: 1
+
+builtins:
+- remote_api: on
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /_ah/queue/deferred
+  script: djangoappengine/deferred/handler.py
+
+- url: /media/admin
+  static_dir: django/contrib/admin/media
+  expiration: '0'
+
+- url: /static
+  static_dir: /static
+  expiration: 0
+
+- url: /.*
+  script: djangoappengine/main/main.py
