@@ -1,8 +1,9 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    ('^sighting/$',
-     'ias.views.sighting',
+    url('^sighting/$',
+        'ias.views.sighting',
+        name="ias-sighting",
      ),
     url('^sighting/done/$',
         'django.views.generic.simple.direct_to_template',

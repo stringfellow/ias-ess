@@ -15,5 +15,10 @@ def sighting(request):
         form = SightingForm()
     return render_to_response(
         'ias/sighting.html',
-        {'form': form}
+        {'form': form,
+         # action="." does not work with jQuery mobile as it does not
+         # call the URL with a slash on the end which then causes a
+         # Django error
+         'action': reverse('ias-sighting')
+         }
     )
