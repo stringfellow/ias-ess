@@ -35,3 +35,6 @@ class Sighting(models.Model):
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
     #photo = models.ImageFileField()  # Martin says this won't work 'yet'.
+
+
+class 
