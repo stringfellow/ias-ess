@@ -28,7 +28,7 @@ class Sighting(models.Model):
     email = models.EmailField(null=True, blank=True, help_text="You may add an "
         "email address if you wish...")
     contactable = models.BooleanField(default=True)
-    lat = models.DecimalField()
-    lon = models.DecimalField()
+    lat = models.DecimalField(decimal_places=8, max_digits=11)
+    lon = models.DecimalField(decimal_places=8, max_digits=11)
     #photo = models.ImageFileField()  # Martin says this won't work 'yet'.
     answer_row = models.PositiveIntegerField()
