@@ -10,7 +10,7 @@ urlpatterns = patterns('',
         {'template': 'ias/sighting_done.html'},
         name="ias-sighting-thanks",
     ),
-    ('^taxon/register/$',
+    url('^taxon/register/$',
         'views.register_taxon',
         name="register_species")
 )
