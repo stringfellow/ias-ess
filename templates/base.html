@@ -1,4 +1,4 @@
-<!DOCTYPE html 
+<!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -6,7 +6,7 @@
     xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
   <head>
-    <title>{% block title %}{% endblock %} - Nonrel-testapp</title>
+    <title>{% block title %}{% endblock %}</title>
 
     {% block css %}
     {% endblock %}
@@ -19,7 +19,7 @@
 
   <body>
     <div id="header">
-      <a id="logo" href="/">Nonrel-testapp</a>
+      <a id="logo" href="/"></a>
     </div>
 
     <div class="columns">
@@ -44,7 +44,7 @@
     </div>
 
     <div id="footer">
-      <p>Powered by <a href="http://www.allbuttonspressed.com/projects/django-nonrel">Django-nonrel</a></p>
+
     </div>
 
     {% block js %}

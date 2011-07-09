@@ -6,6 +6,7 @@ from ias.forms import SightingForm
 
 
 def sighting(request):
+    """A user sees a thing, record it."""
     if request.method == 'POST':
         form = SightingForm(request.POST)
         if form.is_valid():
@@ -17,3 +18,9 @@ def sighting(request):
         'ias/sighting.html',
         {'form': form}
     )
+
+
+def register_species(request):
+    """The start of flow for registering a new taxon."""
+    pass
+

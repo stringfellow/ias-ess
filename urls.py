@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     ('^$', 'django.views.generic.simple.direct_to_template',
      {'template': 'home.html'}),
     ('^ias/', include('ias.urls')),
-    ('^admin/', admin.site.urls),                  
+    ('^admin/', admin.site.urls),
+    ('^accounts/', include('registration.urls')),
 )
