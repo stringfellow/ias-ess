@@ -22,13 +22,16 @@ class Taxon(models.Model):
     questionnaire = models.URLField(help_text="Where is the Google"
         " Questionnaire to which users should fully answer their sighting.")
 
+    def __unicode__(self):
+        return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
+
 
 class Sighting(models.Model):
     """An instance of some user seeing some thing."""
+    taxon = models.ForeignKey(Taxon, related_name="sightings")
     email = models.EmailField(null=True, blank=True, help_text="You may add an "
         "email address if you wish...")
     contactable = models.BooleanField(default=True)
     lat = models.DecimalField()
     lon = models.DecimalField()
     #photo = models.ImageFileField()  # Martin says this won't work 'yet'.
-    answer_row = models.PositiveIntegerField()

@@ -1,7 +1,8 @@
 from django import forms
 
-from ias.models import Taxon
+from ias.models import Sighting
 
 
-class SightingForm(forms.Form):
-    taxon = forms.ModelChoiceField(Taxon.objects.all())
+class SightingForm(forms.ModelForm):
+    class Meta:
+        model = Sighting
