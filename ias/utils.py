@@ -1,7 +1,7 @@
 from BeautifulSoup import BeautifulSoup
 import urllib2
 
-GOOGLE_QA_URL = "https://spreadsheets.google.com/spreadsheet/viewform?formkey="
+GOOGLE_QA_URL = "https://spreadsheets.google.com/spreadsheet/embeddedform?formkey="
 
 def tweak_google_form(questionnaire_id, sighting_pk):
     url = GOOGLE_QA_URL + questionnaire_id
@@ -24,5 +24,10 @@ def tweak_google_form(questionnaire_id, sighting_pk):
         sibs.append(sib)
 
     [s.extract() for s in sibs]
+
+    # prepare form for our hackety redirect
+    # see: http://www.morningcopy.com.au/tutorials/how-to-style-google-forms/
+    form['target'] = "hidden_iframe"
+    form['onsubmit'] = "submitted=true;"
 
     return form.prettify()
