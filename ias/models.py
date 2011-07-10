@@ -50,7 +50,6 @@ class Photo(models.Model):
     photo = models.FileField(upload_to="photo")
     blob_key = models.CharField(max_length=256)
     url = models.CharField(max_length=256)
-    taxon = models.ForeignKey(Taxon, related_name="photos")
     verified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
