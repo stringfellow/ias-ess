@@ -1,5 +1,8 @@
 """Models for IAS app - Species and Sightings."""
 from django.db import models
+from google.appengine.api import images as images_api
+from google.appengine.api import files
+from google.appengine.ext import blobstore
 
 
 TAXA_CHOICES = (
@@ -26,6 +29,35 @@ class Taxon(models.Model):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
 
 
+class Photo(models.Model):
+    """An model to hold all the blobstore stuff."""
+    photo = models.FileField()
+    blob_key = models.CharField(max_length=256)
+    url = models.CharField(max_length=256)
+
+    def save(self, *args, **kwargs):
+        if self.blob_key:
+            self.url = images_api.get_serving_url(self.blob_key)
+        super(Photo, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        if self.blob_key:
+            blobstore.delete(self.blob_key)
+        super(Photo, self).delete(*args, **kwargs)
+    
+    def get_absolute_url(self, size=0, crop=False):
+        if size:
+            url = ''.join([self.url, '=s', str(size)])
+            if crop:
+                url = '-'.join([url, 'c'])
+            return url
+        else:
+            return self.url
+
+    def __unicode__(self):
+        return self.get_absolute_url()
+
+
 class Sighting(models.Model):
     """An instance of some user seeing some thing."""
     taxon = models.ForeignKey(Taxon, related_name="sightings")
@@ -34,4 +66,6 @@ class Sighting(models.Model):
     contactable = models.BooleanField(default=True)
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
-    #photo = models.ImageFileField()  # Martin says this won't work 'yet'.
+    photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
+
+
