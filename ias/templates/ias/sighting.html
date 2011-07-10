@@ -1,6 +1,6 @@
 {% extends "ias/base.html" %}
 {% block content %}
-<form method="post" id="sighting-form" action=".">
+<form method="post" id="sighting-form" action="." enctype="multipart/form-data">
     {% include "ias/form_snippet.html" %}
     <input type="submit" name="submit" value="submit" />
 </form>
