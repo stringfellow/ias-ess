@@ -25,7 +25,7 @@ def sighting(request):
     )
 
 
-def register_species(request):
+def register_taxon(request):
     """The start of flow for registering a new taxon."""
     pass
 
