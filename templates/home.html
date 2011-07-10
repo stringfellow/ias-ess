@@ -11,17 +11,20 @@
 
 {% block content %}
 
-<div id="intro">
-<p>
-IAS-ESS is a unified Invasive Alien Species logging database.
-{% if user.is_authenticated %}
-You're registered as an <b>expert</b>, so you can register taxa to track, and
-view results.
-{% else %}
-To track a taxa that is not listed here, please <a href="{% url registration_register %}">
-register</a> as an <b>expert</b> and you can then begin tracking.
-{% endif %}
-</p>
-</div>
+    <div id="intro">
+        <p>
+            IAS-ESS is a unified Invasive Alien Species logging database.
+            {% if user.is_authenticated %}
+            You're registered as an <strong>expert</strong>, so you can register taxa to track, and
+            view results.
+            {% else %}
+            To track a taxa that is not listed here, please <a href="{% url registration_register %}">
+            register</a> as an <strong>expert</strong> and you can then begin tracking.
+            {% endif %}
+        </p>
+        <p>
+            <a href="{% url ias-add-sighting %}">Add a sighting</a>
+        </p>
+    </div>
 
 {% endblock %}

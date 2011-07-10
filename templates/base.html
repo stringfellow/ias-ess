@@ -2,7 +2,7 @@
 <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
     <head>
-        <title>{% block title %}IAS-ESS{% endblock %}</title>
+        <title>IAS-ESS | {% block title %}{% endblock %}</title>
 
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
         {% block css %}
@@ -20,6 +20,8 @@
         </header>
 
         <div data-role="page" data-them="b" id="content">
+            {% block auth %}
+            {% endblock %}
             {% block content %}
             {% endblock %}
         </div>
