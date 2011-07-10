@@ -31,9 +31,10 @@ class Taxon(models.Model):
 
 class Photo(models.Model):
     """An model to hold all the blobstore stuff."""
-    photo = models.FileField()
+    photo = models.FileField(upload_to="photo")
     blob_key = models.CharField(max_length=256)
     url = models.CharField(max_length=256)
+    #taxon = models.ForeignKey(Taxon, related_name="photos")
 
     def save(self, *args, **kwargs):
         if self.blob_key:
