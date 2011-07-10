@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     ),
     url('^taxon/register/$',
         'ias.views.register_taxon',
-        name="register_species")
+        name="register_taxon")
 )
