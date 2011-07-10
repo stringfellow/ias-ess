@@ -2,17 +2,12 @@
 {% block content %}
     <h2>Sighting details</h2>
     <ul>
-        <li>Taxon: {{ sighting.photo.taxon }}</li>
+        <li>Taxon: {{ sighting.taxon }}</li>
         {% if sighting.contactable %}
             <li>Reported by: {{ sighting.email }}</li>
         {% endif %}
         <li>Spotted at around: {{ sighting.lat }}, {{ sighting.lon }}</li>
-        <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /><li>
+        <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /></li>
     </ul>
-    <h2>Now please complete the extra data:</h2>
-    <div id="google-form">
-    {{ google-form-block }}
-    </div>
-
 {% endblock %}
 
