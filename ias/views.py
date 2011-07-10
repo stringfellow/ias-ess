@@ -61,12 +61,9 @@ def register_taxon(request):
         'ias/register_taxon.html',
         {
             'all_taxa': Taxon.objects.all(),
-            'my_taxa': TaxonExpert.objects.filter(export=request.user),
+            'my_taxa': TaxonExpert.objects.filter(expert=request.user),
         },
         context_instance=RequestContext(request))
-
-
-
 
 def sighting_detail(request, pk):
     if pk:
