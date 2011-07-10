@@ -1,5 +1,8 @@
 """Models for IAS app - Species and Sightings."""
 from django.db import models
+from google.appengine.api import images as images_api
+from google.appengine.api import files
+from google.appengine.ext import blobstore
 
 
 TAXA_CHOICES = (
@@ -26,17 +29,6 @@ class Taxon(models.Model):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
 
 
-class Sighting(models.Model):
-    """An instance of some user seeing some thing."""
-    taxon = models.ForeignKey(Taxon, related_name="sightings")
-    email = models.EmailField(null=True, blank=True, help_text="You may add an "
-        "email address if you wish...")
-    contactable = models.BooleanField(default=True)
-    lat = models.DecimalField(decimal_places=8, max_digits=11)
-    lon = models.DecimalField(decimal_places=8, max_digits=11)
-    photo = models.ForeignKey(Photo, related_name="sightings")
-
-
 class Photo(models.Model):
     """An model to hold all the blobstore stuff."""
     photo = models.FileField()
@@ -45,32 +37,13 @@ class Photo(models.Model):
 
     def save(self, *args, **kwargs):
         if self.blob_key:
-            blob_info = blobstore.BlobInfo.get(self.blob_key)
-            blob_file_size = blob_info.size
-            blob_type = blob_info.content_type
-
-            blob_data = ''
-            current = 0
-            end = blobstore.MAX_BLOB_FETCH_SIZE - 1
-            step = blobstore.MAX_BLOB_FETCH_SIZE - 1
-
-            while current < blob_file_size:
-                blob_data = ''.join([blob_data, blobstore.fetch_data(
-                    self.blob_key, current, end)
-                current = end + 1
-                end += step
-
-            img_obj = images_api.Image(image_data=blob_data)
-
-            img_obj.rotate(360)
-            img_obj.execute_transforms()
             self.url = images_api.get_serving_url(self.blob_key)
         super(Photo, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         if self.blob_key:
             blobstore.delete(self.blob_key)
-        super(Image, self).delete(*args, **kwargs)
+        super(Photo, self).delete(*args, **kwargs)
     
     def get_absolute_url(self, size=0, crop=False):
         if size:
@@ -80,3 +53,19 @@ class Photo(models.Model):
             return url
         else:
             return self.url
+
+    def __unicode__(self):
+        return self.get_absolute_url()
+
+
+class Sighting(models.Model):
+    """An instance of some user seeing some thing."""
+    taxon = models.ForeignKey(Taxon, related_name="sightings")
+    email = models.EmailField(null=True, blank=True, help_text="You may add an "
+        "email address if you wish...")
+    contactable = models.BooleanField(default=True)
+    lat = models.DecimalField(decimal_places=8, max_digits=11)
+    lon = models.DecimalField(decimal_places=8, max_digits=11)
+    photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
+
+
