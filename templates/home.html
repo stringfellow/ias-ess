@@ -15,7 +15,8 @@
         <p>
             IAS-ESS is a unified Invasive Alien Species logging database.
             {% if user.is_authenticated %}
-            You're registered as an <strong>expert</strong>, so you can register taxa to track, and
+            You're registered as an <strong>expert</strong>, so you can 
+            <a href="{% url ias-taxon-add %}">register</a> taxa to track, and
             view results.
             {% else %}
             To track a taxa that is not listed here, please <a href="{% url registration_register %}">
@@ -23,7 +24,11 @@
             {% endif %}
         </p>
         <p>
-            <a href="{% url ias-sighting-add %}">Add a sighting</a>
+            Seen a plant or animal you think is an IAS? Add a sighting
+            <a href="{% url ias-sighting-add %}">here</a>. You can see
+            a gallery of existing sightings <a href="{% url ias-sighting-list %}">here</a>
+            or see a list of taxa available for sighting
+            <a href="{% url ias-taxon-list %}">here</a>.
         </p>
     </div>
 
