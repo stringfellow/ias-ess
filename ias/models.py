@@ -24,8 +24,12 @@ class Taxon(models.Model):
     rank = models.CharField(choices=TAXA_CHOICES, max_length=50)
     key_text = models.TextField(help_text="A helpful description so that users"
         " can identify this taxon easily.")
-    questionnaire = models.URLField(help_text="Where is the Google"
-        " Questionnaire to which users should fully answer their sighting.")
+    questionnaire = models.CharField(
+        max_length=100,
+        help_text="Where is the Google Questionnaire to which users should "
+        "fully answer their sighting."
+    )
+    active = models.BooleanField(default=False, help_text="Has this been OK'd?")
 
     def __unicode__(self):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)

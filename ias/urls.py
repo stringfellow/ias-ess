@@ -7,8 +7,12 @@ urlpatterns = patterns('',
         name="ias-add-sighting",
      ),
     url('^taxon/register/$',
-        'ias.views.register_taxon',
-        name="ias-register-taxon"
+        'ias.views.taxon_register',
+        name="ias-taxon-register"
+    ),
+    url('^taxon/registered/(?P<taxon_pk>\d+)/$',
+        'ias.views.taxon_registered',
+        name="ias-taxon-registered"
     ),
     url('^sighting/(\d+)$',
         'ias.views.sighting_detail',

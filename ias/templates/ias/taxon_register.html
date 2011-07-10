@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} - Register IAS{% endblock %}
+
+{% block content %}
+<h1>Register a new taxon for investigation</h1>
+
+<div>
+<p>In order to register a new taxon for tracking, you will need to complete the
+following steps:<p>
+<ol>
+    <li>Create a Google Form Questionnaire</li>
+    <li>Register the basic details</li>
+</ol>
+</div>
+
+<div id="step1">
+<p>Below, you will see a Google Form template. Click 'Use this template' to
+create your own IAS questionnaire. This allows you to expand on the basic
+information available through ias-ass and will record all the data to a
+spreadsheet automatically.</p>
+<p>After creating this template, you can register the taxon. You will see a link
+at the bottom of the Google Form creation form like this, from which you should
+copy the form 'key' (everything after the equals sign):</p>
+<img src="{{ STATIC_URL }}img/examples/google-form.png" alt="Google Form" />
+<iframe
+    width="620"
+    height="170"
+    frameborder="0"
+    scrolling="no"
+    marginheight="0"
+    marginwidth="0"
+    src="https://docs.google.com/embeddedtemplate?id=0AsUqypM_TuShdGMzdnRUZG5VdThad2ZoTUNSV2JMemc">
+</iframe>
+</div>
+
+
+<div id="step2">
+<form id="basic-details" action="." method="POST">
+{% include "form_snippet.html" %}
+<input type="submit" value="Register taxon" />
+</form>
+</div>
+
+
+{% endblock %}
