@@ -15,6 +15,8 @@ SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 SITE_ID = 46
 ACCOUNT_ACTIVATION_DAYS = 7
 DEFAULT_FROM_EMAIL = "website@ias-ess.org"
+OWNER_MAIL = "no-reply@ias-ess.appspotmail.com"
+
 
 INSTALLED_APPS = (
     'django.contrib.admin',

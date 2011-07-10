@@ -5,7 +5,7 @@
     {% if user.is_authenticated %}
         Hi, {{ user }} [<a href="{% url auth_logout %}">logout</a>]
     {% else %}
-        {% url auth_login %}
+        <a href="{% url auth_login %}">login</a>
     {% endif %}
 {% endblock %}
 

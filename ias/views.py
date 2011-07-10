@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from ias.forms import SightingForm
@@ -25,7 +26,10 @@ def sighting(request):
     )
 
 
+@login_required
 def register_taxon(request):
     """The start of flow for registering a new taxon."""
     pass
+
+
 
