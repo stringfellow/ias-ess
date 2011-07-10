@@ -85,6 +85,7 @@ class Sighting(models.Model):
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
+    has_completed_questionnaire = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('ias-sighting-detail', args=[self.pk])

@@ -9,5 +9,17 @@
         <li>Spotted at around: {{ sighting.lat }}, {{ sighting.lon }}</li>
         <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /></li>
     </ul>
+    {% if google_form %}
+    {# This little JS/iframe hack allows us to redirect here #}
+    <script type="text/javascript">var submitted=false;</script>
+    <iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display:none;"
+    onload="if (submitted)
+            {window.location='{% url ias-sighting-detail sighting.pk %}';}">
+    </iframe>
+    {{ google_form|safe }}
+    {% endif %}
 {% endblock %}
 

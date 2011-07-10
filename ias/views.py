@@ -12,6 +12,7 @@ from google.appengine.ext import blobstore
 
 from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm
+from ias.utils import tweak_google_form
 
 
 def sighting_add(request):
@@ -62,10 +63,19 @@ def sighting_add(request):
 
 def sighting_detail(request, pk):
     sighting = get_object_or_404(Sighting, pk=pk)
+    if not sighting.has_completed_questionnaire:
+        google_form = tweak_google_form(sighting.taxon.questionnaire, pk)
+        # set this to true now because this should be completed by sighter
+        # and no one else. tough shit if they miss it first time...
+        sighting.has_completed_questionnaire = True
+        sighting.save()
+    else:
+        google_form = None
     return render_to_response(
         'ias/sighting_detail.html',
         {
-            'sighting': sighting
+            'google_form': google_form,
+            'sighting': sighting,
         },
         context_instance=RequestContext(request)
         )

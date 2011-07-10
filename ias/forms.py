@@ -8,7 +8,7 @@ class SightingForm(forms.ModelForm):
 
     class Meta:
         model = Sighting
-        exclude = ('photo',)
+        exclude = ('photo', 'has_completed_questionnaire')
 
 
 class RegisterTaxonForm(forms.ModelForm):
