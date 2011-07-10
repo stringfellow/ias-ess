@@ -34,7 +34,8 @@ class Photo(models.Model):
     photo = models.FileField(upload_to="photo")
     blob_key = models.CharField(max_length=256)
     url = models.CharField(max_length=256)
-    #taxon = models.ForeignKey(Taxon, related_name="photos")
+    taxon = models.ForeignKey(Taxon, related_name="photos")
+    verified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.blob_key:
@@ -68,5 +69,3 @@ class Sighting(models.Model):
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
-
-
