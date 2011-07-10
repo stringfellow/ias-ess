@@ -55,8 +55,9 @@ def sighting(request):
          # call the URL with a slash on the end which then causes a
          # Django error
          'action': reverse('ias-add-sighting')
-         }
-    )
+        },
+        context_instance=RequestContext(request)
+        )
 
 @login_required
 def taxon_register(request):
@@ -82,7 +83,6 @@ def taxon_register(request):
         },
         context_instance=RequestContext(request))
 
-
 def taxon_registered(request, taxon_pk):
     """Show taxa..."""
 
@@ -98,13 +98,11 @@ def taxon_registered(request, taxon_pk):
         },
         context_instance=RequestContext(request))
 
-
 def sighting_detail(request, pk):
-    if pk:
-        sighting = Sighting.objects.get(pk=pk)
+        sighting = get_object_or_404(Sighting, pk=pk)
         return render_to_response(
             'ias/sighting_detail.html',
-            {'sighting': sighting}
-            )
-    return HttpResponseRedirect(reverse('ias-add-sighting'))
-
+            {
+                'sighting': sighting
+            },
+            context_instance=RequestContext(request))
