@@ -9,5 +9,10 @@
         <li>Spotted at around: {{ sighting.lat }}, {{ sighting.lon }}</li>
         <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /><li>
     </ul>
+    <h2>Now please complete the extra data:</h2>
+    <div id="google-form">
+    {{ google-form-block }}
+    </div>
+
 {% endblock %}
 
