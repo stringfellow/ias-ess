@@ -2,6 +2,6 @@
 {% for field in form.visible_fields %}
 <div data-role="fieldcontain">
     {{ field.label_tag }} {{ field }} {{ field.errors }}
-</div> 
+</div>
 {% endfor %}
 {% if form.hidden_fields %}{{ form.hidden_fields }}{% endif %}
