@@ -1,6 +1,8 @@
 """Models for IAS app - Species and Sightings."""
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
@@ -76,3 +78,9 @@ class Sighting(models.Model):
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('ias-sighting-detail', args=[self.pk])
+
+    def __unicode__(self):
+        return self.taxon.__unicode__()
