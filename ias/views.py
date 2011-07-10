@@ -3,10 +3,13 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from ias.models import Photo, Sighting
+from django.template import RequestContext
+
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
+
+from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm
 
 
@@ -53,7 +56,17 @@ def sighting(request):
 @login_required
 def register_taxon(request):
     """The start of flow for registering a new taxon."""
-    pass
+
+    return render_to_response(
+        'ias/register_taxon.html',
+        {
+            'all_taxa': Taxon.objects.all(),
+            'my_taxa': TaxonExpert.objects.filter(export=request.user),
+        },
+        context_instance=RequestContext(request))
+
+
+
 
 def sighting_detail(request, pk):
     if pk:

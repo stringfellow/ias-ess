@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>IAS-ESS</title>
+    {% block title %}
+        IAS-ESS
+    {% endblock %}
+    {% block css %}
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
-	{% comment %}<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>{% endcomment %}
+    {% endblock %}
+    {% block preload-js %}
+    	{% comment %}<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>{% endcomment %}
+    {% endblock %}
     </head>
     <body>
         <div data-role="header" data-theme="b">
             <h1>{% block header %}IAS-ESS{% endblock %}</h1>
         </div>
-        <div data-role="page" data-theme="b">
-            <div data-role="content">
-                {% block content %}{% endblock %}
+        {% block content %}
+            <div data-role="page" data-theme="b">
+                <div data-role="content">
+                    {% block content %}{% endblock %}
+                </div>
             </div>
-        </div>
+        {% endblock %}
+
+
         <div data-role="footer" data-position="fixed">
             <h1>&copy; ias-ess.org</h1>
         </div>

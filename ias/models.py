@@ -1,5 +1,6 @@
 """Models for IAS app - Species and Sightings."""
 from django.db import models
+from django.contrib.auth.models import User
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
@@ -16,6 +17,7 @@ TAXA_CHOICES = (
     ('DOMAIN', 'Domain'),
 )
 
+
 class Taxon(models.Model):
     """A thing to sight, could be a group or a single species."""
     scientific_name = models.CharField(max_length=200)
@@ -27,6 +29,11 @@ class Taxon(models.Model):
 
     def __unicode__(self):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
+
+
+class TaxonExpert(models.Model):
+    expert = models.ForeignKey(User)
+    taxon = models.ForeignKey(Taxon)
 
 
 class Photo(models.Model):
@@ -46,7 +53,7 @@ class Photo(models.Model):
         if self.blob_key:
             blobstore.delete(self.blob_key)
         super(Photo, self).delete(*args, **kwargs)
-    
+
     def get_absolute_url(self, size=0, crop=False):
         if size:
             url = ''.join([self.url, '=s', str(size)])

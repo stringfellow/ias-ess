@@ -1,8 +1,8 @@
-{% extends "ias/base.html" %}
+{% extends "base.html" %}
 {% block content %}
     <h2>Sighting details</h2>
     <ul>
-        <li>Taxon: {{ sighting.taxon }}</li>
+        <li>Taxon: {{ sighting.photo.taxon }}</li>
         {% if sighting.contactable %}
             <li>Reported by: {{ sighting.email }}</li>
         {% endif %}
