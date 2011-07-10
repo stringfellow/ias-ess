@@ -14,7 +14,7 @@ from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm
 
 
-def sighting(request):
+def sighting_add(request):
     """A user sees a thing, record it."""
     if request.method == 'POST':
         form = SightingForm(request.POST, request.FILES)
@@ -50,17 +50,28 @@ def sighting(request):
         form = SightingForm()
     return render_to_response(
         'ias/sighting.html',
-        {'form': form,
-         # action="." does not work with jQuery mobile as it does not
-         # call the URL with a slash on the end which then causes a
-         # Django error
-         'action': reverse('ias-add-sighting')
+        {
+            'form': form,
+            # action="." does not work with jQuery mobile as it does not
+            # call the URL with a slash on the end which then causes a
+            # Django error
+            'action': reverse('ias-sighting-add')
+        },
+        context_instance=RequestContext(request)
+        )
+
+def sighting_detail(request, pk):
+    sighting = get_object_or_404(Sighting, pk=pk)
+    return render_to_response(
+        'ias/sighting_detail.html',
+        {
+            'sighting': sighting
         },
         context_instance=RequestContext(request)
         )
 
 @login_required
-def taxon_register(request):
+def taxon_add(request):
     """The start of flow for registering a new taxon."""
     if request.method == 'POST':
         form = RegisterTaxonForm(request.POST)
@@ -68,7 +79,7 @@ def taxon_register(request):
             taxon = form.save()
             TaxonExpert.objects.create(expert=request.user, taxon=taxon)
             return HttpResponseRedirect(reverse(
-                'ias-taxon-registered',
+                'ias-taxon-detail',
                 args=[taxon.pk])
             )
     else:
@@ -83,10 +94,10 @@ def taxon_register(request):
         },
         context_instance=RequestContext(request))
 
-def taxon_registered(request, taxon_pk):
+def taxon_detail(request, pk):
     """Show taxa..."""
 
-    taxon = get_object_or_404(Taxon, pk=taxon_pk)
+    taxon = get_object_or_404(Taxon, pk=pk)
     taxon_experts = TaxonExpert.objects.filter(taxon=taxon)
     experts = User.objects.filter(pk__in=taxon_experts)
 
@@ -96,13 +107,5 @@ def taxon_registered(request, taxon_pk):
             'taxon': taxon,
             'experts': experts,
         },
-        context_instance=RequestContext(request))
-
-def sighting_detail(request, pk):
-        sighting = get_object_or_404(Sighting, pk=pk)
-        return render_to_response(
-            'ias/sighting_detail.html',
-            {
-                'sighting': sighting
-            },
-            context_instance=RequestContext(request))
+        context_instance=RequestContext(request)
+        )
