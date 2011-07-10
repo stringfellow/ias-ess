@@ -1,1 +1,1 @@
-activation_email_subject
+{% load i18n %}{% trans "Account activation on" %} {{ site.name }}
