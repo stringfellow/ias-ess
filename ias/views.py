@@ -7,7 +7,6 @@ from ias.models import Photo, Sighting
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
-
 from ias.forms import SightingForm
 
 
@@ -33,6 +32,8 @@ def sighting(request):
             photo_obj = Photo()
             photo_obj.photo = None
             photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
+            photo_obj.taxon = sighting.taxon
+            photo_obj.verified = False
             photo_obj.save()
             sighting.photo = photo_obj
             sighting.save()
