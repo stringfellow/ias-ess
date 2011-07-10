@@ -2,7 +2,7 @@
 <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
     <head>
-        <title>IAS-ESS | {% block title %}{% endblock %}</title>
+        <title>IAS-ESS | {% block title %}Home{% endblock %}</title>
 
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
         {% block css %}
