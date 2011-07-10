@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
     {% endblock %}
 
     {% block preload_js %}
@@ -19,7 +20,13 @@
 
   <body>
     <div id="header">
-      <a id="logo" href="/"></a>
+        <div id="logo">
+            <h1><a id="logo-link" href="/">IAS-ESS</a></h1>
+        </div>
+        <div id="auth">
+        {% block auth %}
+        {% endblock %}
+      </div>
     </div>
 
     <div class="columns">

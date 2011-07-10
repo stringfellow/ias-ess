@@ -12,11 +12,16 @@ AUTOLOAD_SITECONF = 'indexes'
 
 SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 
+SITE_ID = 46
+ACCOUNT_ACTIVATION_DAYS = 7
+DEFAULT_FROM_EMAIL = "website@ias-ess.org"
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'djangotoolbox',
     'autoload',
     'dbindexer',
@@ -27,6 +32,8 @@ INSTALLED_APPS = (
 
     'ias',
 )
+
+STATIC_URL = "/static/"
 
 MIDDLEWARE_CLASSES = (
     # This loads the index definitions, so it has to come first
@@ -41,6 +48,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
+    'context_processors.static_media',
 )
 
 # This test runner captures stdout and associates tracebacks with their

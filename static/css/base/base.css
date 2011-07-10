@@ -1,0 +1,15 @@
+
+div#header {
+    width: 100%;
+    border: solid 1px black;
+    height: 150px;
+}
+
+div#auth {
+    float: right;
+}
+
+div#logo {
+    float: left;
+}
+
