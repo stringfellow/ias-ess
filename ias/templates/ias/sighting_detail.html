@@ -9,5 +9,8 @@
         <li>Spotted at around: {{ sighting.lat }}, {{ sighting.lon }}</li>
         <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /></li>
     </ul>
+    {% if google_form %}
+    {{ google_form|safe }}
+    {% endif %}
 {% endblock %}
 
