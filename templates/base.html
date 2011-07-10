@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" 
+<html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
     <head>
         <title>{% block title %}IAS-ESS{% endblock %}</title>
@@ -24,7 +24,7 @@
             {% endblock %}
         </div>
 
-        <footer data-role="footer" data-position="fixed>
+        <footer data-role="footer" data-position="fixed">
             {% block footer %}
             {% endblock %}
             <small>&copy; ias-ess.org</small>
