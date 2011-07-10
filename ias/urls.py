@@ -2,15 +2,15 @@ from django.conf.urls.defaults import *
 
 
 urlpatterns = patterns('',
-    ('^sighting/$',
+    url('^sighting/$',
      'ias.views.sighting',
-     ),
-    url('^sighting/done/$',
-        'django.views.generic.simple.direct_to_template',
-        {'template': 'ias/sighting_done.html'},
-        name="ias-sighting-thanks",
+     name='ias-add-sighting'
     ),
-    url('^taxon/register/$',
-        'views.register_taxon',
-        name="register_species")
+    url('^sighting/(\d+)$',
+        'ias.views.sighting_detail',
+        name='ias-sighting-detail'
+    ),
+    #url('^taxon/register/$',
+    #    'ias.views.register_taxon',
+    #    name="register_species")
 )
