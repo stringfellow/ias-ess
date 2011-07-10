@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% load ias_tags %}
 
 {% block content %}
-    <h2>List of something</h2>
+    <h2>List of sightings</h2>
 
     <ul>
         {% for sighting in object_list %}
-            <li><img src="{{ sighting.photo }}" alt="" /></li>
+            <li>
+                <a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a>
+                {% if sighting.contactable %}- {{ sighting.email }}{% endif %}</li>
+                <img src="{{ sighting.photo|size:200 }}" alt="" />
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
