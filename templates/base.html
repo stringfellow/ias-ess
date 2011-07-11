@@ -14,7 +14,7 @@
         {% block extra-head %}{% endblock %}
     </head>
 
-    <body>
+    <body onload="{% block body-onload %}{% endblock %}">
         <header data-role="header" data-them="b">
             <h1><a href="/">IAS-ESS</a></h1>
         </header>
