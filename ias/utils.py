@@ -20,7 +20,10 @@ def tweak_google_form(questionnaire_id, sighting_pk):
         return ""
     form = ET.fromstring(match.group(0))
     # find the input 0 - HOPE this is the ref...
-    
+    ref_div = form.find(".//div")
+    # brute force hide the div with the labels in it
+    ref_div.set('style', 'display: none;')
+    # and set the input to hidden...
     ref = form.find(".//input")
     ref.set('type', 'hidden')
     ref.set('value', str(sighting_pk))
