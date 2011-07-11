@@ -36,6 +36,9 @@ class Taxon(models.Model):
     def __unicode__(self):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
 
+    def get_absolute_url(self):
+        return reverse('ias-taxon-detail', args=[self.pk])
+
 
 class TaxonExpert(models.Model):
     expert = models.ForeignKey(User)
@@ -47,7 +50,6 @@ class Photo(models.Model):
     photo = models.FileField(upload_to="photo")
     blob_key = models.CharField(max_length=256)
     url = models.CharField(max_length=256)
-    taxon = models.ForeignKey(Taxon, related_name="photos")
     verified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

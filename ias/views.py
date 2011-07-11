@@ -38,7 +38,6 @@ def sighting_add(request):
             photo_obj = Photo()
             photo_obj.photo = None
             photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
-            photo_obj.taxon = sighting.taxon
             photo_obj.verified = False
             photo_obj.save()
             sighting.photo = photo_obj

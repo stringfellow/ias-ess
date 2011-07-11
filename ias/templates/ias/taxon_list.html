@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load ias_tags %}
+
+{% block content %}
+    <h2>List of taxa</h2>
+
+    <ul>
+        {% for taxon in object_list %}
+            <li>
+                <a href="{{ taxon.get_absolute_url }}">{{ taxon }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
