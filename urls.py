@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     ('^ias/', include('ias.urls')),
     ('^admin/', admin.site.urls),
     ('^accounts/', include('registration.urls')),
+    ('^importer/', include('importer.urls')),                   
 )
