@@ -70,11 +70,16 @@ def sighting_detail(request, pk):
         sighting.save()
     else:
         google_form = None
+
+    others = Sighting.objects.filter(taxon=sighting.taxon).exclude(
+        pk=sighting.pk)
+
     return render_to_response(
         'ias/sighting_detail.html',
         {
             'google_form': google_form,
             'sighting': sighting,
+            'others': others,
         },
         context_instance=RequestContext(request)
         )
