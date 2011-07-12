@@ -44,6 +44,11 @@ class TaxonExpert(models.Model):
     expert = models.ForeignKey(User)
     taxon = models.ForeignKey(Taxon)
 
+    def __unicode__(self):
+        return "%s for %s" % (
+            self.taxon,
+            self.expert)
+
 
 class Photo(models.Model):
     """An model to hold all the blobstore stuff."""
@@ -81,6 +86,7 @@ class Sighting(models.Model):
     email = models.EmailField(null=True, blank=True, help_text="You may add an "
         "email address if you wish...")
     contactable = models.BooleanField(default=True)
+    datetime = models.DateTimeField(auto_now_add=True, default="06/07/2011 10:00:00")
     lat = models.DecimalField(decimal_places=8, max_digits=11)
     lon = models.DecimalField(decimal_places=8, max_digits=11)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)

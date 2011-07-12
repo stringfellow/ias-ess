@@ -1,16 +1,49 @@
 {% extends 'base.html' %}
 {% load ias_tags %}
 
+{% block preload-js %}
+{{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.min.js"></script>
+{% endblock %}
+
 {% block content %}
     <h2>List of sightings</h2>
 
-    <ul>
+    <table id="sightings">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Taxon</th>
+                <th>Sighter</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for sighting in object_list %}
-            <li>
-                <a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a>
-                {% if sighting.contactable %}- {{ sighting.email }}{% endif %}</li>
-                <img src="{{ sighting.photo|size:200 }}" alt="" />
-            </li>
+            <tr>
+                <td>
+                    {{ sighting.datetime }}
+                </td>
+                <td>
+                    <a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a>
+                </td>
+                <td>
+                {% if sighting.contactable and user|is_expert_for:sighting %}
+                <a href="mailto:{{ sighting.email }}">{{ sighting.email }}</a>
+                {% endif %}
+                </td>
+                <td>
+                    <img src="{{ sighting.photo|size:150 }}" alt="" />
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 {% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $('#sightings').tablesorter();
+</script>
+{% endblock %}
+
