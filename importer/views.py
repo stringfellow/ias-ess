@@ -21,7 +21,7 @@ SCOPES = ['https://spreadsheets.google.com/feeds/',
 REQUEST_TOKEN = 'RequestToken'
 ACCESS_TOKEN = 'AccessToken'
 
-#client = gdata.spreadsheets.client.SpreadsheetsClient()
+sheet_client = gdata.spreadsheets.client.SpreadsheetsClient()
 client = gdata.docs.client.DocsClient()
 
 
@@ -70,20 +70,20 @@ def get_access_token(request):
 
   return HttpResponseRedirect('/importer/')
 
-def setup_token():
+def setup_token(client_obj):
   access_token = gdata.gauth.AeLoad(ACCESS_TOKEN)
-  client.auth_token = gdata.gauth.OAuthHmacToken(
+  client_obj.auth_token = gdata.gauth.OAuthHmacToken(
       CONSUMER_KEY, CONSUMER_SECRET,
       access_token.token, access_token.token_secret,
       gdata.gauth.ACCESS_TOKEN,
       next=None, verifier=None)
-  client.auth_token = access_token
+  client_obj.auth_token = access_token
 
 def import_spreadsheet(request):
   import re
   import models
 
-  setup_token()
+  setup_token(client)
 
   # Figure out what spreadsheet to import
   spreadsheet = request.GET.get('spreadsheet', '0Ar7e9bY7dwnBdEIzUk5kSk5CZ0kyYXVrempkWW80Snc')
@@ -115,13 +115,36 @@ def import_spreadsheet(request):
   return HttpResponse(sheet)
 
 def copy_spreadsheet(request):
-  setup_token()
-  
-  doc_feed = 'https://docs.google.com/feeds/default/private/full/'
-  feed = client.get_feed(doc_feed, desired_class=gdata.docs.data.DocList)
-  
-  docs = []
-  for doc in feed.entry:
-    docs.append(doc.title.text)
+    setup_token(client)
 
-  return HttpResponse('\n'.join(docs), mimetype="text/plain")
+    doc_feed = 'https://docs.google.com/feeds/default/private/full/'
+    feed = client.get_feed(doc_feed, desired_class=gdata.docs.data.DocList)
+
+    docs = []
+    for doc in feed.entry:
+        docs.append("%s = %s" % (doc.id.text, doc.title.text))
+
+    return HttpResponse('\n'.join(docs), mimetype="text/plain")
+
+
+def get_data_from_sheet(request, key, sheet=None):
+    setup_token(sheet_client)
+   
+    if not sheet:
+        wksht_sht_list = 'https://spreadsheets.google.com/feeds/worksheets/%s/private/full'
+        url = wksht_sht_list % (key)
+        feed = sheet_client.get_feed(url, desired_class=gdata.spreadsheets.data.WorksheetsFeed)
+
+        sheets = []
+        for sht in feed.entry:
+            sheets.append(sht.id.text)
+        sheet = sheets[0].split('/')[-1]
+
+    sht_rows = 'https://spreadsheets.google.com/feeds/list/%s/%s/private/values' % (key, sheet)
+    feed = sheet_client.get_feed(sht_rows, desired_class=gdata.spreadsheets.data.ListsFeed)
+
+    data = ''
+    for row in feed.entry:
+        data += unicode(row)
+    logging.debug(len(data))
+    return HttpResponse(data, mimetype="text/plain")
