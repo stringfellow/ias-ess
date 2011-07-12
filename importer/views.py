@@ -29,7 +29,7 @@ def main_page(request):
   if not users.get_current_user():
     return HttpResponseRedirect(users.create_login_url(request.build_absolute_uri()))
 
-  access_token = gdata.gauth.AeLoad(ACCESS_TOKEN)
+  access_token = gdata.gauth.AeLoad(users.get_current_user().user_id())
   if not isinstance(access_token, gdata.gauth.OAuthHmacToken):
     return HttpResponseRedirect('/importer/get_oauth_token')
 
@@ -47,7 +47,7 @@ def get_oauth_token(request):
 
     # When using HMAC, persist the token secret in order to re-create an
     # OAuthToken object coming back from the approval page.
-    gdata.gauth.AeSave(request_token, REQUEST_TOKEN)
+    gdata.gauth.AeSave(request_token, users.get_current_user().user_id())
 
     # Generate the URL to redirect the user to.
     authorization_url = request_token.generate_authorization_url()
@@ -60,18 +60,21 @@ def get_access_token(request):
   redirecting the user to the approval page.  When the user grants access, they
   will be redirected back to this GET handler and their authorized request token
   will be exchanged for a long-lived access token."""
-  saved_request_token = gdata.gauth.AeLoad(REQUEST_TOKEN)
+  user_id = users.get_current_user().user_id() 
+  saved_request_token = gdata.gauth.AeLoad(user_id)
   request_token = gdata.gauth.AuthorizeRequestToken(saved_request_token,
-                                                      request.build_absolute_uri())
+                                                    request.build_absolute_uri())
 
   # 3.) Exchange the authorized request token for an access token
   access_token = client.GetAccessToken(request_token)
-  gdata.gauth.AeSave(access_token, ACCESS_TOKEN)
+  # mallison think it's ok to overwrite the token as, once we have the
+  # access token we no longer need the request one
+  gdata.gauth.AeSave(access_token, user_id)
 
   return HttpResponseRedirect('/importer/')
 
 def setup_token(client_obj):
-  access_token = gdata.gauth.AeLoad(ACCESS_TOKEN)
+  access_token = gdata.gauth.AeLoad(users.get_current_user().user_id())
   client_obj.auth_token = gdata.gauth.OAuthHmacToken(
       CONSUMER_KEY, CONSUMER_SECRET,
       access_token.token, access_token.token_secret,
