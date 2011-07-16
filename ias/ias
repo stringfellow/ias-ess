@@ -1,0 +1,311 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+imap <D-BS> 
+imap <M-BS> 
+imap <M-Down> }
+inoremap <D-Down> <C-End>
+imap <M-Up> {
+inoremap <D-Up> <C-Home>
+noremap! <M-Right> <C-Right>
+noremap! <D-Right> <End>
+noremap! <M-Left> <C-Left>
+noremap! <D-Left> <Home>
+inoremap <silent> <S-Tab> =BackwardsSnippet()
+imap <silent> <Plug>IMAP_JumpBack =IMAP_Jumpfunc('b', 0)
+imap <silent> <Plug>IMAP_JumpForward =IMAP_Jumpfunc('', 0)
+map! <D-v> *
+map  :ls 
+map  :bn 
+map  :bp 
+map  :echo system("wc -w ".expand("%")." | awk '{print \"total words in ".expand("%").": \" $1}'")
+snoremap <silent> 	 i<Right>=TriggerSnippet()
+vmap <NL> <Plug>IMAP_JumpForward
+nmap <NL> <Plug>IMAP_JumpForward
+map  :marks 
+map  :Matrix 
+map  :set invnumber 
+map  :set wrapmargin=80 
+nmap  :tabnew 
+map  :WMToggle
+map  :BottomExplorerWindoW
+map  :FirstExplorerWindoW
+snoremap  b<BS>
+snoremap % b<BS>%
+snoremap ' b<BS>'
+map + +
+map ,d :s/^\([/(]\*\|<!--\) \(.*\) \(\*[/)]\|-->\)$/\2/:nohlsearch
+map ,< :s/^\(.*\)$/<!-- \1 -->/:nohlsearch
+map ,( :s/^\(.*\)$/\(\* \1 \*\)/:nohlsearch
+map ,* :s/^\(.*\)$/\/\* \1 \*\//:nohlsearch
+map ,c :s/^\/\/\|^--\|^> \|^[#"%!;]//:nohlsearch
+map ,- :s/^/--/:nohlsearch
+map ,; :s/^/;/:nohlsearch
+map ,! :s/^/!/:nohlsearch
+map ,% :s/^/%/:nohlsearch
+map ," :s/^/\"/:nohlsearch
+map ,> :s/^/> /:nohlsearch
+map ,/ :s/^/\/\//:nohlsearch
+map ,# :s/^/#/:nohlsearch
+map ,s :source ~/.vimrc 
+map ,t :set textwidth=80 
+map ,n :noh
+map ,m :match none 
+map ,,c :FufChangeList
+map ,,q :FufQuickfix
+map ,,F :FufCoverageFile
+map ,,f :FufFile
+map - -
+map Q gq
+snoremap U b<BS>U
+vmap [% [%m'gv``
+snoremap \ b<BS>\
+map \b :!php -l % 
+map \c :!php -l % 
+map \g :!opera -newpage "http://www.google.co.uk/search?hl=en&q=".<cWORD>."" 
+map \G :!links2 "http://www.google.co.uk/search?hl=en&q=".<cWORD>."" 
+map \p :!opera -newpage "http://uk2.php.net/<cWORD>"
+map \P :!links2 "http://uk2.php.net/<cWORD>"
+map \d :!dict <cWORD>
+map \s :source /etc/vim/vimrc 
+map \V :set virtualedit=
+map \v :set virtualedit=all
+nmap \caL <Plug>CalendarH
+nmap \cal <Plug>CalendarV
+map <silent> \bv :VSBufExplorer
+map <silent> \bs :SBufExplorer
+map <silent> \be :BufExplorer
+map \dk <Plug>DirDiffPrev
+map \dj <Plug>DirDiffNext
+map \dp <Plug>DirDiffPut
+map \dg <Plug>DirDiffGet
+vmap ]% ]%m'gv``
+snoremap ^ b<BS>^
+snoremap ` b<BS>`
+vmap a% [%v]%
+map f :call ShowFuncName() 
+nmap gx <Plug>NetrwBrowseX
+map <M-Down> }
+noremap <D-Down> <C-End>
+map <M-Up> {
+noremap <D-Up> <C-Home>
+noremap <M-Right> <C-Right>
+noremap <D-Right> <End>
+noremap <M-Left> <C-Left>
+noremap <D-Left> <Home>
+snoremap <Left> bi
+snoremap <Right> a
+snoremap <BS> b<BS>
+snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+map <F6> :Tlist
+map <F8> :ls 
+map <F12> :call InvertPasteNMouse()
+map <F10> :bn 
+map <F2> :!make
+nmap <S-Tab> :tabnext 
+xmap <S-Tab> :tabnext 
+omap <S-Tab> :tabnext 
+vmap <silent> <Plug>IMAP_JumpBack `<i=IMAP_Jumpfunc('b', 0)
+vmap <silent> <Plug>IMAP_JumpForward i=IMAP_Jumpfunc('', 0)
+vmap <silent> <Plug>IMAP_DeleteAndJumpBack "_<Del>i=IMAP_Jumpfunc('b', 0)
+vmap <silent> <Plug>IMAP_DeleteAndJumpForward "_<Del>i=IMAP_Jumpfunc('', 0)
+nmap <silent> <Plug>IMAP_JumpBack i=IMAP_Jumpfunc('b', 0)
+nmap <silent> <Plug>IMAP_JumpForward i=IMAP_Jumpfunc('', 0)
+nmap <silent> <Plug>CalendarH :cal Calendar(1)
+nmap <silent> <Plug>CalendarV :cal Calendar(0)
+map <F9> :bp 
+map <F5> :Run
+xmap <BS> "-d
+vmap <D-x> "*d
+vmap <D-c> "*y
+vmap <D-v> "-d"*P
+nmap <D-v> "*P
+inoremap <silent> 	 =TriggerSnippet()
+imap <NL> <Plug>IMAP_JumpForward
+inoremap <silent> 	 =ShowAvailableSnips()
+imap  :tabnew
+map! =tb import sys, tracebacktraceback.print_exc(file=sys.stdout)
+map! =dbg log.debug('%s' % (,))2hi
+map! =lg import logginglog = logging.getLogger(__name__)log.setLevel(logging.DEBUG)log.debug('%s' % (,))2hi
+map! =pdb import pdb; pdb.set_trace()
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set autoread
+set background=dark
+set backspace=2
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1,default
+set formatoptions=tcqron
+set grepprg=grep\ -nH\ $
+set guifont=Menlo\ Regular:h10
+set guitablabel=%M%t
+set helplang=en
+set history=50
+set hlsearch
+set incsearch
+set langmenu=none
+set makeprg=javac\ %
+set mouse=n
+set nrformats=alpha,hex
+set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
+set ruler
+set shellpipe=>\ %s\ 2>&1
+set shiftwidth=4
+set smartindent
+set softtabstop=4
+set splitright
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.info,.aux,.log,.dvi,.bbl,.out
+set tabstop=4
+set termencoding=utf-8
+set title
+set ttyscroll=0
+set viminfo='20,\"500
+set wildignore=*.pyc
+set wildmenu
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/Documents/Projects/ias-ess/ias
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +0 models.py
+args models.py
+edit models.py
+set splitbelow splitright
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:XCOMM,n:>,fb:-
+setlocal commentstring=#%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+set cursorcolumn
+setlocal cursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'python'
+setlocal filetype=python
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcqron
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=s*\\(from\\|import\\)
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetPythonIndent(v:lnum)
+setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal nomacmeta
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=alpha,hex
+set number
+setlocal number
+set numberwidth=3
+setlocal numberwidth=3
+setlocal omnifunc=pythoncomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal smartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.py
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'python'
+setlocal syntax=python
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 49 - ((48 * winheight(0) + 36) / 73)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+49
+normal! 04l
+lcd ~/Documents/Projects/ias-ess/ias
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

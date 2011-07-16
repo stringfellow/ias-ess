@@ -123,3 +123,14 @@ def taxon_detail(request, pk):
         },
         context_instance=RequestContext(request)
         )
+
+
+def map(request):
+    taxa = Taxon.objects.all()
+    return render_to_response(
+        'ias/map.html',
+        {
+            'taxa': taxa,
+        },
+        context_instance=RequestContext(request)
+    )
