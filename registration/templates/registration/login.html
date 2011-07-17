@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
 {% block content %}
+<section class="generic-inner">
+<h1>Log in</h1>
 <form method="post" action=".">
     {% csrf_token %}
     {% include "form_snippet.html" %}
@@ -10,6 +14,9 @@
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
+
 <p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a>!</p>
 <p>{% trans "Not member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a>!</p>
+
+</section>
 {% endblock %}
