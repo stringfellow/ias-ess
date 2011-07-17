@@ -1,35 +1,68 @@
 {% extends 'base.html' %}
 
-
-{% block auth %}
-    {% if user.is_authenticated %}
-        Hi, {{ user }} [<a href="{% url auth_logout %}">logout</a>]
-    {% else %}
-        <a href="{% url auth_login %}">login</a>
-    {% endif %}
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/home.css" />
 {% endblock %}
+
+{% block page-name %}home-page{% endblock %}
+
 
 {% block content %}
-
+<div id="intro-wrapper">
     <div id="intro">
-        <p>
-            IAS-ESS is a unified Invasive Alien Species logging database.
-            {% if user.is_authenticated %}
-            You're registered as an <strong>expert</strong>, so you can 
-            <a href="{% url ias-taxon-add %}">register</a> taxa to track, and
-            view results.
-            {% else %}
-            To track a taxa that is not listed here, please <a href="{% url registration_register %}">
-            register</a> as an <strong>expert</strong> and you can then begin tracking.
-            {% endif %}
-        </p>
-        <p>
-            Seen a plant or animal you think is an IAS? Add a sighting
-            <a href="{% url ias-sighting-add %}">here</a>. You can see
-            a gallery of existing sightings <a href="{% url ias-sighting-list %}">here</a>
-            or see a list of taxa available for sighting
-            <a href="{% url ias-taxon-list %}">here</a>.
-        </p>
-    </div>
+        <h2> IAS-ESS is a unified Invasive Alien Species logging database. </h2>
+        <p><a href="{% url ias-sighting-list %}" >View a gallery of exisiting sightings >></a></p>
+        <p><a href="{% url ias-taxon-list %}" >View a list of taxa available for sighting >></a></p>   
+    </div> <!--/intro-->
+    
+    <div id="call-to-action">
+        <a class="action-btn action-add-sighting" href="{% url ias-sighting-add %}">
+           <span class="btn-intro">Seen a plant or animal you think is an IAS?</span> <span class="btn-action">Add a sighting now</span>
+        </a>
+        
+        <a class="action-btn action-view-map" href="#">
+           <span class="btn-intro">IAS map enables you to visualize the database</span> <span class="btn-action">Explore the map now</span>
+        </a>
+    </div>   <!--/call to action-->  
+</div> <!--/intro-wrapper-->
 
-{% endblock %}
+<div id="login-box"> 
+    {% if user.is_authenticated %}
+    You're registered as an <strong>expert</strong>, so you can <a href="{% url ias-taxon-add %}">register</a> taxa to track, and view results.
+    {% else %}
+    <h2><span class="reg-desc"> To track a taxa that is not listed</span> <br />
+        Register as an expert</h2>
+    {# TODO: Form is hardcoded - please fix #}
+    <form method="post" action=".">
+        <div class="form-row" data-role="fieldcontain">
+            <label for="id_username">Username:</label>
+            <input id="id_username" type="text" class="required" name="username" maxlength="30">
+        </div>
+        <div class="form-row" data-role="fieldcontain">
+            <label for="id_email">Email:</label>
+            <input id="id_email" type="text" class="required" name="email" maxlength="75">
+        </div>
+        <div class="form-row" data-role="fieldcontain">
+            <label for="id_password1">Password:</label>
+            <input id="id_password1" type="password" class="required" name="password1">
+        </div>
+        <input id="user-reg-btn" type="submit" value="Register">
+    </form>
+    {% endif %} 
+</div><!--/login-box -->
+
+
+<div id="sighting-box">
+    <h2>Latest sightings</h2>
+</div>
+
+
+<div id="taxa-box">
+    <h2>Taxa</h2>
+</div>
+
+
+
+
+
+{% endblock %} 

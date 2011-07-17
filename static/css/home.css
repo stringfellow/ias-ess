@@ -1,0 +1,404 @@
+/*		Default Layout: 992px. 
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+body{
+ 	background: #e8e8e8 url(../img/main-bg.jpg) repeat-x left top;   
+}
+
+#content {
+    position: relative;
+    width: 896px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0px 48px; 
+    padding-top: 24px;
+    background: url(../img/home-banner.jpg) no-repeat center top;  
+    overflow: hidden;
+}
+
+#intro-wrapper {
+    position: relative;    
+}
+
+#intro {    
+    background-color: #d36165;
+    padding: 12px 24px;
+    color: #fff;
+    width: 480px;
+    line-height: 1.4;
+}
+
+#intro h2 {
+    margin-bottom: 6px; 
+}
+
+#intro p {
+    font-size: 14px;
+}
+
+#intro a {
+    color: #fff;  
+    text-decoration: none;
+    margin-bottom: 6px;
+}
+
+#intro a:hover {
+    text-decoration: underline;    
+}
+
+#call-to-action {
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+a.action-btn {
+    display: inline-block;
+    float: left;
+    width: 202px;
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    height: 58px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;    
+    margin-bottom: 0; 
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.action-btn:hover {
+     border: 1px solid #fff;    
+}
+
+a.action-add-sighting {
+    background: url(../img/action-btn-bg-blue.jpg) repeat left top; 
+    margin-right: 24px;
+}
+
+a.action-view-map {
+    background: url(../img/action-btn-bg-green.jpg) repeat left top;    
+}
+
+.btn-intro {
+    display: block;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+a.action-add-sighting .btn-intro {
+     color: #ffb9bb;   
+}
+
+a.action-view-map  .btn-intro {
+     color: #485c1d;   
+}
+
+.btn-action {
+    font-weight: bold;  
+    display: block;
+    padding-right: 24px;
+}
+
+.action-btn .btn-action {
+    background: url(../img/btn-arrow.png) no-repeat right center;
+}
+
+
+#login-box {
+    position: absolute;
+    right: 48px;
+    top: 24px;
+    text-align: left;
+    width: 296px;
+    height: 228px;    
+    padding: 12px 24px; 
+    background-color: rgba(256, 256, 256, 0.8);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;    
+}
+
+#login-box h2 {
+    line-height: 1.2; 
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.reg-desc {
+    font-size: 14px;
+    color: #d36165;
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+}
+
+#login-box form {
+    overflow: hidden;
+}
+
+#login-box  label {
+     display: inline-block; 
+     float: left;
+     line-height: 1.5;
+     width: 90px;
+}
+
+#login-box .form-row  input {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #ccc;
+    padding-top: 2px;
+    padding-left: 2px;
+    height: 22px;
+    line-height: 1.5;
+}
+
+#login-box .form-row {
+    margin-bottom: 12px;   
+}
+
+#user-reg-btn {
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    float: right;    
+    background-color: #d36165;  
+    color: #fff;
+    padding: 6px;
+    font-size: 16px; 
+    line-height: 1.5;
+    margin-top: 12px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px; 
+}
+
+#user-reg-btn:hover {
+    background-color: #0f3b5f;    
+}
+
+#sighting-box {
+    width:  480px;
+    height: 300px;
+    margin-top: 48px;
+    margin-bottom: 24px;
+    padding: 12px 24px;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;     
+}
+
+#sighting-box  h2 {
+    font-size: 18px;
+}
+
+#taxa-box {
+    position: absolute;
+    right: 48px;
+    top: 324px;
+    width: 296px;
+    height: 300px;
+    padding: 12px 24px;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#taxa-box  h2 {
+    font-size: 18px;   
+}
+
+
+/*		Tablet Layout: 768px.
+		Gutters: 24px.
+		Outer margins: 28px.
+		Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	
+	#content {
+		width: 796px;
+        padding: 0 28px;
+        padding-top: 24px;
+	} 
+    
+    #call-to-action {
+        margin-top: 24px;   
+    }
+    
+    #intro a {
+        text-decoration: underline;
+        line-height: 1.2;
+    }
+    
+    #login-box {
+        position: static;
+        margin-top: 54px;
+        width: 480px;
+        height: auto;
+        left: 28px;
+    }
+    
+    #user-reg-btn {
+        margin-top: 0;  
+        float: none;
+    }
+    
+    #sighting-box {
+        margin-top: 24px;    
+    }
+    
+    #taxa-box {
+        position: static;
+        width: 480px;
+        margin-bottom: 24px;
+    }
+    
+    
+}
+
+
+
+/*		Mobile Layout: 320px.
+		Gutters: 24px.
+		Outer margins: 34px.
+		Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+    
+    #content {
+		width: 332px;
+        padding: 0 34px;
+        padding-top: 24px;
+        height: auto;
+	}
+	
+	#intro {
+        width: 204px;        
+    }
+    
+    #call-to-action {
+         margin-top: 12px; 
+    }
+    
+    #intro a {
+         text-decoration: underline; 
+         line-height: 1.2;
+    }
+    
+    a.action-add-sighting {
+         margin-bottom: 12px;   
+    }
+    
+    #login-box {
+        position: static;
+    	width: 204px; 
+        right: auto;
+        height: auto;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }    
+     
+    #login-box .form-row  input  {
+        width:  198px;    
+    }
+    
+    #user-reg-btn {
+        margin-top: 0;  
+        float: none;
+    }
+    
+    #sighting-box {
+        margin-top: 24px; 
+        width: 204px;
+    }
+    
+    #taxa-box {
+        position: static;
+        width: 204px;
+        margin-bottom: 24px;
+    }
+	
+	
+}
+
+
+
+/*		Wide Mobile Layout: 480px.
+		Gutters: 24px.
+		Outer margins: 22px.
+		Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	#content {
+		width: 492px;
+        padding: 0 22px;
+        padding-top: 24px;
+	}
+    
+    #intro {
+        width: 388px;        
+    }
+    
+    #call-to-action {
+         margin-top: 12px; 
+    }
+    
+    #intro a {
+         text-decoration: underline; 
+         line-height: 1.2;
+    }
+    
+    a.action-add-sighting {
+         margin-bottom: 12px;  
+    }
+    
+    #login-box {
+        position: static;
+    	width: 388px; 
+        right: auto;
+        height: auto;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }    
+     
+    #login-box .form-row  input  {
+        width:  198px;    
+    }
+    
+    #user-reg-btn {
+        margin-top: 0;  
+        float: none;
+    }
+    
+    #sighting-box {
+        margin-top: 24px; 
+        width: 388px;
+    }
+    
+    #taxa-box {
+        position: static;
+        width: 388px;
+        margin-bottom: 24px;
+    }
+   
+}
+

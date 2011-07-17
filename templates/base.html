@@ -1,10 +1,20 @@
 <!DOCTYPE html>
+<!doctype html>
 <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
     <head>
         <title>IAS-ESS | {% block title %}Home{% endblock %}</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
+        <!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
         {% block css %}
         {% endblock %}
 
@@ -15,22 +25,48 @@
         {% block extra-head %}{% endblock %}
     </head>
 
-    <body onload="{% block body-onload %}{% endblock %}">
-        <header data-role="header" data-them="b">
-            <h1><a href="/">IAS-ESS</a></h1>
+    <body onLoad="{% block body-onload %}{% endblock %}" id="{% block page-name %} {% endblock %}">
+        <header id="masthead">
+                <h1><a href="/">Invasive Alien Species</a></h1>
+                <p>Exotic Specimen Sightings</p>
+      
+            
+            
+            {% block auth %}
+            <div id="login-status">            
+                {% if user.is_authenticated %}
+                    Welcome, {{ user }} | <a href="{% url auth_logout %}">logout</a>
+                {% else %}
+                    <a href="{% url auth_login %}">Login</a> | <a href="{% url registration_register %}">Register</a>
+                {% endif %}
+            </div>
+            {% endblock %}
+            
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                    <li><a href="{% url ias-sighting-list %}">Sightings</a></li>
+                    <li><a href="{% url ias-taxon-list %}">Taxa</a></li>
+                    <li><a href="#">Map</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            
         </header>
 
-        <div data-role="page" data-them="b" id="content">
-            {% block auth %}
-            {% endblock %}
+        <div id="content">
+          
             {% block content %}
             {% endblock %}
         </div>
 
-        <footer data-role="footer" data-position="fixed">
+        <footer>
+            <div id="footer-inner">
             {% block footer %}
             {% endblock %}
-            <small>&copy; ias-ess.org</small>
+            <small>&copy; ias-ess.org </small>
+            <small id="footer-links"><a href="#">Terms and conditions</a> | <a href="#"> Privacy policy</a></small> 
+            </div>
         </footer>
 
         {% block js %}
