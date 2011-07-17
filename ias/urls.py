@@ -29,4 +29,8 @@ urlpatterns = patterns('',
         'ias.views.taxon_detail',
         name="ias-taxon-detail"
     ),
+    url('^map/$',
+        'ias.views.map',
+        name="ias-map"
+    ),
 )

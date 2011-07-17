@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+import tagging
+
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
@@ -32,12 +34,15 @@ class Taxon(models.Model):
         "fully answer their sighting."
     )
     active = models.BooleanField(default=False, help_text="Has this been OK'd?")
+    style_name = models.CharField(max_length=30, null=True, blank=True)
+    style_json = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
 
     def get_absolute_url(self):
         return reverse('ias-taxon-detail', args=[self.pk])
+tagging.register(Taxon)
 
 
 class TaxonExpert(models.Model):
