@@ -26,10 +26,13 @@
     </div>   <!--/call to action-->  
 </div> <!--/intro-wrapper-->
 
-<div id="login-box"> 
     {% if user.is_authenticated %}
-    You're registered as an <strong>expert</strong>, so you can <a href="{% url ias-taxon-add %}">register</a> taxa to track, and view results.
+    <div class="login-box logged-in"> 
+    <h2>Hi, {{user}}</h2>
+    <p>You're registered as an <strong>expert</strong>, so you can <a class="reg-taxa" href="{% url ias-taxon-add %}">register taxa </a> to track, and view results.</p>
+    </div>
     {% else %}
+    <div class="login-box logged-out"> 
     <h2><span class="reg-desc"> To track a taxa that is not listed</span> <br />
         Register as an expert</h2>
     {# TODO: Form is hardcoded - please fix #}
@@ -48,8 +51,9 @@
         </div>
         <input id="user-reg-btn" type="submit" value="Register">
     </form>
+    </div><!--/login-box -->
     {% endif %} 
-</div><!--/login-box -->
+
 
 
 <div id="sighting-box">
