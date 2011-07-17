@@ -15,4 +15,4 @@ class RegisterTaxonForm(forms.ModelForm):
 
     class Meta:
         model = Taxon
-        exclude = ('active',)
+        exclude = ('active', 'style_name', 'style_json')

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load utils %}
 
 {% block extra-head %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -10,29 +11,78 @@
 </script>
 <script type="text/javascript">
 
-var styles = [[{
-        url:'{{ STATIC_URL }}img/icons/harlequin35.png',
+var defaultStyle = [{
+        url:'{{ STATIC_URL }}img/icons/biohaz25.png',
+        height: 25,
+        width: 25,
+        anchor: [0, 0],
+        textColor: '#000000',
+        textSize: 11
+    }, {
+        url: '{{ STATIC_URL }}img/icons/biohaz35.png',
+        height: 35,
+        width: 35,
+        anchor: [0, 0],
+        textColor: '#000000',
+        textSize: 12
+    }, {
+        url: '{{ STATIC_URL }}img/icons/biohaz45.png',
+        height: 45,
+        width: 45,
+        anchor: [0, 0],
+        textColor: '#000000',
+        textSize: 16
+    }
+];
+    
+
+
+var styles = {
+    'harlequin': [{
+        url:'{{ STATIC_URL }}img/icons/harlequin25.png',
+        height: 19,
+        width: 25,
+        anchor: [0, 0],
+        textColor: '#ffffff',
+        textSize: 11
+      }, {
+        url: '{{ STATIC_URL }}img/icons/harlequin35.png',
         height: 27,
         width: 35,
         anchor: [0, 0],
         textColor: '#ffffff',
-        textSize: 11
+        textSize: 12
       }, {
         url: '{{ STATIC_URL }}img/icons/harlequin45.png',
         height: 35,
         width: 45,
         anchor: [0, 0],
         textColor: '#ffffff',
-        textSize: 12
-      }, {
-        url: '{{ STATIC_URL }}img/icons/harlequin55.png',
-        height: 43,
-        width: 55,
-        anchor: [0, 0],
-        textColor: '#ffffff',
         textSize: 16
       }],
-];
+    'fallopia': [{
+        url:'{{ STATIC_URL }}img/icons/fallopia25.png',
+        height: 25,
+        width: 14,
+        anchor: [0, 0],
+        textColor: '#000',
+        textSize: 11
+      }, {
+        url: '{{ STATIC_URL }}img/icons/fallopia35.png',
+        height: 35,
+        width: 20,
+        anchor: [0, 0],
+        textColor: '#000',
+        textSize: 12
+      }, {
+        url: '{{ STATIC_URL }}img/icons/fallopia45.png',
+        height: 45,
+        width: 26,
+        anchor: [0, 0],
+        textColor: '#000',
+        textSize: 16
+      }]
+};
 
 var taxaClusters = {};
 var map, hiddenMap;
@@ -66,7 +116,11 @@ function initialize() {
         cluster{{ taxon.pk }});
     {% endfor %}
     var markerCluster{{ taxon.pk }} = new MarkerClusterer(map, cluster{{ taxon.pk }}, {
-        styles: styles[0]
+        {% if taxon.style_name %}
+        styles: styles['{{ taxon.style_name }}']
+        {% else %}
+        styles: defaultStyle
+        {% endif %}
     });
     taxaClusters[{{ taxon.pk }}] = markerCluster{{ taxon.pk }};
     {% endfor %}
@@ -88,7 +142,9 @@ function toggle(cluster) {
 
 {% block content %}
     <h2>Sighting details</h2>
-    <div id="map_canvas" style="width:500px; height:300px"></div>
+    <div id="map_container" style="-webkit-box-shadow: rgba(64, 64, 64, 0.496094) 0px 2px 5px; border-color: #CCC #CCC #999; border-style: solid; border-width: 1px; padding: 6px; width: 500px;">
+        <div id="map_canvas" style="width:500px; height:300px"></div>
+    </div>
     <div id="map_hidden_canvas" style="display: none"></div>
     {% for taxon in taxa %}
     <input type="checkbox" id="chk{{ taxon.pk }}" onclick="toggle(taxaClusters[{{ taxon.pk }}]);" checked />{{ taxon }}

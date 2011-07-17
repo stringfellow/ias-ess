@@ -32,6 +32,8 @@ class Taxon(models.Model):
         "fully answer their sighting."
     )
     active = models.BooleanField(default=False, help_text="Has this been OK'd?")
+    style_name = models.CharField(max_length=30, null=True, blank=True)
+    style_json = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
