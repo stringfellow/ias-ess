@@ -1,0 +1,130 @@
+/*		Default Layout: 992px. 
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+body{
+ 	background: #e8e8e8 url(../img/main-bg.jpg) repeat-x left 24px;   
+}
+
+#content {
+    position: relative;
+    background: url(../img/home-banner.jpg) no-repeat center -100px; 
+    text-align: left;
+    padding: 0px 48px; 
+    padding-top: 24px;
+}
+
+#sightings {
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+#sightings th {
+   font-size: 18px;
+   border-bottom: 4px solid #d36165;
+   line-height: 1.5; 
+   padding-bottom: 6px;
+}
+
+#sightings td  {
+    fonts-size: 14px;
+    line-height: 1.2;  
+    padding: 12px 0;    
+}
+
+.image-cell  img {
+    border: 1px solid #ccc; 
+    padding: 4px;
+    background-color: #fafcf6;
+}
+
+.taxon-cell a{
+    display: inline-block;
+    background-color: #d36165;
+    color: #fff;
+    text-decoration: none;
+    padding: 4px 6px;
+    line-height: 1.5;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.taxon-cell a:hover {
+    background-color: #0f3b5f;   
+}
+
+
+/*		Tablet Layout: 768px.
+		Gutters: 24px.
+		Outer margins: 28px.
+		Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	    #content {
+            padding: 0 28px;
+          }
+	
+    
+    
+    
+}
+
+/*		Mobile Layout: 320px.
+		Gutters: 24px.
+		Outer margins: 34px.
+		Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
+        #content {
+                padding: 0 34px;
+        }
+              
+        .image-cell  img {
+            width: 40px;
+            height: 40px;
+            padding: 1px;
+         }
+         
+         #sightings td, #sightings th {
+            font-size: 12px;
+         }
+         
+         .time-cell {
+            width: 80px;    
+         }
+         
+         .time-cell, .taxon-cell {
+             word-wrap: break-word;
+             line-height: 1.5;
+         }
+  
+	
+}
+
+/*		Wide Mobile Layout: 480px.
+		Gutters: 24px.
+		Outer margins: 22px.
+		Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	    #content {
+                padding: 0 22px;
+              }
+	
+   
+}
+

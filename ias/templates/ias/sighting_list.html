@@ -3,42 +3,46 @@
 
 {% block preload-js %}
 {{ block.super }}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sightings.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.min.js"></script>
 {% endblock %}
 
 {% block content %}
-    <h2>List of sightings</h2>
-
-    <table id="sightings">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Taxon</th>
-                <th>Sighter</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sighting in object_list %}
-            <tr>
-                <td>
-                    {{ sighting.datetime }}
-                </td>
-                <td>
-                    <a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a>
-                </td>
-                <td>
-                {% if sighting.contactable and user|is_expert_for:sighting %}
-                <a href="mailto:{{ sighting.email }}">{{ sighting.email }}</a>
-                {% endif %}
-                </td>
-                <td>
-                    <img src="{{ sighting.photo|size:150 }}" alt="" />
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section class="generic-inner">
+        <h1>List of sightings</h1>
+        <table id="sightings">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Taxon</th>
+                    <th>Sighter</th>                
+                </tr>
+            </thead>
+            <tbody>
+            {% for sighting in object_list %}
+                <tr>
+                    <td class="image-cell">
+                        <img src="{{ sighting.photo|size:150 }}" alt="" />
+                    </td>
+                    
+                    <td class="time-cell">
+                        {{ sighting.datetime }}
+                    </td>
+                    <td class="taxon-cell">
+                        <a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a>
+                    </td>
+                    <td>
+                    {% if sighting.contactable and user|is_expert_for:sighting %}
+                    <a href="mailto:{{ sighting.email }}">{{ sighting.email }}</a>
+                    {% endif %}
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}
 
 {% block js %}

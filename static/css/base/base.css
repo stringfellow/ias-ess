@@ -35,7 +35,7 @@ body {
 	font: 16px/24px 'Droid Sans', Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, th{
     font-family: 'Droid Serif', Georgia, Times, serif; 
     line-height: 1.5;
 }
@@ -99,7 +99,6 @@ body {
 }
 
 footer {
-     width: 100%;
      bottom: 0;
      background-color: #3c3c3c;
      padding: 12px;
@@ -237,6 +236,24 @@ footer {
 }
 
 
+.generic-inner {
+    width: 848px;
+    margin: 0 auto; 
+    background-color: #fff;
+    padding: 12px 24px;
+    min-height: 300px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.generic-inner h1 {
+    margin-bottom: 12px;    
+}
+
+
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
 		Outer margins: 28px.
@@ -283,7 +300,12 @@ px      68    160    252    344    436    528    620    712    */
     
     #footer-inner {
         padding-left: 28px;    
+    }    
+   
+    .generic-inner {
+         width: 664px; 
     }
+
 
 }
 
@@ -348,6 +370,11 @@ px      68    160    252    */
         display: block;
         margin-left: 0;
     }
+    
+    .generic-inner {
+         width: 228px; 
+         padding: 12px;
+    }
 	
 }
 
@@ -396,5 +423,10 @@ px      68    160    252    344    436    */
     #footer-inner {
         padding-left: 22px;    
     }
+    
+    .generic-inner {
+         width: 388px; 
+    }
+
 	
 }
