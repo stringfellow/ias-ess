@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     ('^admin/', admin.site.urls),
     ('^accounts/', include('registration.urls')),
     ('^importer/', include('importer.urls')),
+    ('^api/', include('api.urls')),
 )
