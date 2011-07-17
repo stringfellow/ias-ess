@@ -3,6 +3,10 @@
 {% block css %}
 <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
 {% endblock %}
+
+{% block page-name %}login-page{% endblock %}
+
+
 {% block content %}
 <section class="generic-inner">
 <h1>Log in</h1>
@@ -15,8 +19,8 @@
 </form>
 
 
-<p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a>!</p>
+<p>{% trans "Forgot password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %} !</a> </p>
+<p>{% trans "Not member" %}? <a href="{% url registration_register %}">{% trans "Register" %} !</a> </p>
 
 </section>
 {% endblock %}

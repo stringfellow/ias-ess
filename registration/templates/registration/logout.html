@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
+
 {% block content %}
-<p>{% trans "Logged out" %}</p>
+<section class="generic-inner">
+<h1>{% trans "Logged out" %}</h1>
+</section>
 {% endblock %}

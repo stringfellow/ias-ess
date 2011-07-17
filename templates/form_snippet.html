@@ -1,6 +1,6 @@
 {{ form.non_field_errors }}
 {% for field in form.visible_fields %}
-<div data-role="fieldcontain">
+<div class="form-row">
     {{ field.label_tag }} {{ field }} {{ field.errors }}
 </div>
 {% endfor %}

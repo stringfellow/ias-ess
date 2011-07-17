@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
+
 {% block content %}
+<section class="generic-inner">
+<h1>Register as an expert</h1>
 <form method="post" action=".">
     {% csrf_token %}
     {% include "form_snippet.html" %}
 
     <input type="submit" value="{% trans 'Submit' %}" />
 </form>
+</section>
 {% endblock %}
