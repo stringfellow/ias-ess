@@ -47,10 +47,17 @@
                     <li class="current"><a href="/">Home</a></li>
                     <li><a href="{% url ias-sighting-list %}">Sightings</a></li>
                     <li><a href="{% url ias-taxon-list %}">Taxa</a></li>
-                    <li><a href="#">Map</a></li>
+                    <li><a href="{% url ias-map %}">Map</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
             </nav>
+            
+            <div id="search-box">
+            <form class="site-search">
+                <input class="search-field" type="text" value="Search the database..." onfocus="if (this.value == 'Search the database...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search the database...';}">
+                <input class="search-btn" type="button" value="Go">
+            </form>
+            </div>
             
         </header>
 
