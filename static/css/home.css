@@ -7,7 +7,7 @@ cols    1     2      3      4      5      6      7      8      9      10
 px      68    160    252    344    436    528    620    712    804    896    */
 
 body{
- 	background: #e8e8e8 url(../img/main-bg.jpg) repeat-x left top;   
+ 	background: #e8e8e8 url(../img/main-bg.jpg) repeat-x left 24px;   
 }
 
 #content {
@@ -184,7 +184,6 @@ a.action-view-map  .btn-intro {
 
 /* Logged in - login-box */
 
-
 .logged-in a {
     display: inline-block;
     padding: 2px 6px;
@@ -233,7 +232,6 @@ a.action-view-map  .btn-intro {
 #taxa-box  h2 {
     font-size: 18px;   
 }
-
 
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
@@ -285,8 +283,6 @@ px      68    160    252    344    436    528    620    712    */
     
     
 }
-
-
 
 /*		Mobile Layout: 320px.
 		Gutters: 24px.
@@ -349,12 +345,9 @@ px      68    160    252    */
         position: static;
         width: 204px;
         margin-bottom: 24px;
-    }
-	
+    }	
 	
 }
-
-
 
 /*		Wide Mobile Layout: 480px.
 		Gutters: 24px.
