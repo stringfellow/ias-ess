@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+import tagging
+
 from google.appengine.api import images as images_api
 from google.appengine.api import files
 from google.appengine.ext import blobstore
@@ -40,6 +42,7 @@ class Taxon(models.Model):
 
     def get_absolute_url(self):
         return reverse('ias-taxon-detail', args=[self.pk])
+tagging.register(Taxon)
 
 
 class TaxonExpert(models.Model):
