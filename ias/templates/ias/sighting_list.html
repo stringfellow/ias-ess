@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load ias_tags %}
 
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sightings.css" />
+{% endblock %}
+
 {% block preload-js %}
 {{ block.super }}
-<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sightings.css" />
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.min.js"></script>
 {% endblock %}
 
