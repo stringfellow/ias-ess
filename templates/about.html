@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
 {% endblock %}
 
 {% block page-name %}about-page{% endblock %}
 
 
 {% block content %}
+<article class="generic-inner">
+
 
 <h1>About IAS-ESS</h1>
 
@@ -18,35 +21,48 @@ IAS-ESS was conceived to provide a central repository for Invasive Alien Species
 To get started, <a href="#">register</a> as an expert. You can then add a species for tracking. If the species you wish to track is already listed, you may wish to contact the expert who is currently monitoring it, and join forces!
 </p>
 
+
 <h2>Team</h2>
 
 <p>IAS-ESS was thrown together in a weekend and a straggling few days by...</p>
 
-<ul>
+<ul id="people">
     <li>
-        <img src="{{ STATIC_URL }}img/team/steve.jpg" />
-        <b>Steve Pike</b>
-        <span class="role">Conception, coding, iOSness and motivation (?!)</span>
+        <img src="{{ STATIC_URL }}img/team/steve.jpg" alt="Steve Pike" />
+        <span class="person-desc">
+            <span class="person-name">Steve Pike</span>
+            <span class="person-role">Conception, coding, iOSness and motivation (?!)</span>
+        </span>
     </li>
     <li>
-        <img src="{{ STATIC_URL }}img/team/martin.jpg" />
-        <b>Martin Allison</b>
-        <span class="role">Coding, AppEnginess and comedy.</span>
+        <img src="{{ STATIC_URL }}img/team/martin.jpg" alt="Martin Allison" />
+        <span class="person-desc">
+            <span class="person-name">Martin Allison</span>
+            <span class="person-role">Coding, AppEnginess and comedy.</span>
+        </span>
     </li>
     <li>
-        <img src="{{ STATIC_URL }}img/team/mark.jpg" />
-        <b>Mark Allison</b>
-        <span class="role">Coding, Androidness and wisdom.</span>
+        <img src="{{ STATIC_URL }}img/team/mark.jpg" alt="Mark Allison" />
+        <span class="person-desc">
+            <span class="person-name">Mark Allison</span>
+            <span class="person-role">Coding, Androidness and wisdom.</span>
+        </span>
     </li>
     <li>
-        <img src="{{ STATIC_URL }}img/team/xiaoying.jpg" />
-        <b>Xiaoying Riley</b>
-        <span class="role">Design, loveliness and tea.</span>
+        <img src="{{ STATIC_URL }}img/team/xiaoying.jpg" alt="Xiaoying Riley" />
+        <span class="person-desc">
+            <span class="person-name">Xiaoying Riley</span>
+            <span class="person-role">Design, loveliness and tea.</span>
+        </span>
     </li>
     <li>
-        <img src="{{ STATIC_URL }}img/team/dan.jpg" />
-        <b>Dan Jones</b>
-        <span class="role">Expertise, ruthlessness and eyebrow.</span>
+        <img src="{{ STATIC_URL }}img/team/dan.jpg" alt="Dan Jones" />
+        <span class="person-desc">
+            <span class="person-name">Dan Jones</span>
+            <span class="person-role">Expertise, ruthlessness and eyebrow.</span>
+        </span>
     </li>
 </ul>
+
+</article>
 {% endblock %}

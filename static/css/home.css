@@ -185,19 +185,11 @@ a.action-view-map  .btn-intro {
 /* Logged in - login-box */
 
 .logged-in a {
-    display: inline-block;
-    padding: 2px 6px;
-    color: #fff;
-    background-color: #d36165; 
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    text-decoration: none;
-    line-height: 1.4;
+    color: #d36165;
 }
 
 .logged-in a:hover {
-    background-color: #0f3b5f;     
+    color: #0f3b5f;     
 }
 
 #sighting-box {
