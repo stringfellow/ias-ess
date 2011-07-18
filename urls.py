@@ -7,6 +7,8 @@ handler500 = 'djangotoolbox.errorviews.server_error'
 
 urlpatterns = patterns('',
     ('^_ah/warmup$', 'djangoappengine.views.warmup'),
+    url('^about$', 'django.views.generic.simple.direct_to_template',
+     {'template': 'about.html'}, name="about"),
     ('^$', 'django.views.generic.simple.direct_to_template',
      {'template': 'home.html'}),
     ('^ias/', include('ias.urls')),

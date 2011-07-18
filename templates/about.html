@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block page-name %}about-page{% endblock %}
+
+
+{% block content %}
+
+<h1>About IAS-ESS</h1>
+
+<p> 
+IAS-ESS was conceived to provide a central repository for Invasive Alien Species monitoring. The main benefit is that it is generalised to allow any expert to track their area of concern, whilst allowing the data gathered to be specific enough to that particular organism.
+</p>
+
+<p>
+To get started, <a href="#">register</a> as an expert. You can then add a species for tracking. If the species you wish to track is already listed, you may wish to contact the expert who is currently monitoring it, and join forces!
+</p>
+
+<h2>Team</h2>
+
+<p>IAS-ESS was thrown together in a weekend and a straggling few days by...</p>
+
+<ul>
+    <li>
+        <img src="{{ STATIC_URL }}img/team/steve.jpg" />
+        <b>Steve Pike</b>
+        <span class="role">Conception, coding, iOSness and motivation (?!)</span>
+    </li>
+    <li>
+        <img src="{{ STATIC_URL }}img/team/martin.jpg" />
+        <b>Martin Allison</b>
+        <span class="role">Coding, AppEnginess and comedy.</span>
+    </li>
+    <li>
+        <img src="{{ STATIC_URL }}img/team/mark.jpg" />
+        <b>Mark Allison</b>
+        <span class="role">Coding, Androidness and wisdom.</span>
+    </li>
+    <li>
+        <img src="{{ STATIC_URL }}img/team/xiaoying.jpg" />
+        <b>Xiaoying Riley</b>
+        <span class="role">Design, loveliness and tea.</span>
+    </li>
+    <li>
+        <img src="{{ STATIC_URL }}img/team/dan.jpg" />
+        <b>Dan Jones</b>
+        <span class="role">Expertise, ruthlessness and eyebrow.</span>
+    </li>
+</ul>
+{% endblock %}
