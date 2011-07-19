@@ -148,9 +148,14 @@ a.action-view-map  .btn-intro {
      width: 90px;
 }
 
-.login-box .form-row  input {
+.login-box .form-row {
+     overflow: hidden;    
+}
+
+.login-box .form-row input {
     display: inline-block;
-    width: 200px;
+    float: left;
+    width: 198px;
     border: 1px solid #ccc;
     padding-top: 2px;
     padding-left: 2px;
@@ -236,7 +241,7 @@ px      68    160    252    344    436    528    620    712    */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	
 	#content {
-		width: 796px;
+		width: 712px;
         padding: 0 28px;
         padding-top: 24px;
 	} 
@@ -287,7 +292,7 @@ px      68    160    252    */
 @media only screen and (max-width: 767px) {
     
     #content {
-		width: 332px;
+		width: 256px;
         padding: 0 34px;
         padding-top: 24px;
         height: auto;
@@ -352,7 +357,7 @@ px      68    160    252    344    436    */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
 	
 	#content {
-		width: 492px;
+		width: 436px;
         padding: 0 22px;
         padding-top: 24px;
 	}

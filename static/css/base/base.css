@@ -202,16 +202,20 @@ footer {
 .site-search {
 	display: block;
 	background: transparent;
+    overflow: hidden;
 }
 
 .site-search .search-field {
+    -webkit-appearance: none;
+    float: left;
+    display: block;
 	background: #fff;
     color: #555;
     font-size: 14px;
     line-height: 1.5;
     font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
 	padding: 6px 4px 4px 6px;
-	width: 296px;
+	width: 294px;
     height: 18px;
 	border: solid 1px #bcbbbb;
 	outline: none; 
@@ -221,7 +225,11 @@ footer {
 }
 
 .site-search .search-btn {
-    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    -webkit-appearance: none;
+    float: left;
+    margin-left: 2px;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
 	color: #fff;
     font-weight: bold;
     line-height: 1.5;
@@ -264,11 +272,12 @@ px      68    160    252    344    436    528    620    712    */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     body {
-        background-position: left 32px;        
+        background-position: left 32px;   
+  	
     }
 	
 	#masthead {
-		width: 100%;
+		width: 712px;
         padding: 0 28px;
         padding-top: 12px;
         height: 148px;
@@ -320,7 +329,8 @@ px      68    160    252    */
 
 @media only screen and (max-width: 767px) {
     body {
-        background-position: left 132px;        
+        background-position: left 132px; 
+        
     }
     
     #login-status {
@@ -329,7 +339,7 @@ px      68    160    252    */
     }
 	
 	#masthead {
-		width: 100%;
+		width: 252px;
         height: 236px;
         padding: 0 34px;
         padding-top: 12px;
@@ -359,7 +369,7 @@ px      68    160    252    */
     }
     
     .site-search .search-field {
-       width: 208px;    
+       width: 206px;    
     }
     
     #footer-inner {
@@ -391,7 +401,8 @@ px      68    160    252    344    436    */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     
     body {
-        background-position: left 132px;        
+        background-position: left 132px;  
+       
     }
     
     #login-status {
@@ -400,7 +411,7 @@ px      68    160    252    344    436    */
     }
 	
 	#masthead {
-		width: 100%;
+		width: 436px;
         height: 236px;
         padding: 0 22px;
         padding-top: 12px;
