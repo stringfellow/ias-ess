@@ -137,54 +137,13 @@ a.action-view-map  .btn-intro {
     line-height: 1.2;
 }
 
-.login-box form {
-    overflow: hidden;
-}
 
 .login-box  label {
-     display: inline-block; 
-     float: left;
-     line-height: 1.5;
      width: 90px;
 }
 
-.login-box .form-row {
-     overflow: hidden;    
-}
-
 .login-box .form-row input {
-    display: inline-block;
-    float: left;
     width: 198px;
-    border: 1px solid #ccc;
-    padding-top: 2px;
-    padding-left: 2px;
-    height: 22px;
-    line-height: 1.5;
-}
-
-.login-box .form-row {
-    margin-bottom: 12px;   
-}
-
-#user-reg-btn {
-    border: none;
-    display: inline-block;
-    cursor: pointer;
-    float: right;    
-    background-color: #d36165;  
-    color: #fff;
-    padding: 6px;
-    font-size: 16px; 
-    line-height: 1.5;
-    margin-top: 12px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px; 
-}
-
-#user-reg-btn:hover {
-    background-color: #0f3b5f;    
 }
 
 /* Logged in - login-box */

@@ -6,6 +6,9 @@
         <title>IAS-ESS | {% block title %}Home{% endblock %}</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="ie.css" />
+        <![endif]-->
         <!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -54,8 +57,8 @@
             
             <div id="search-box">
             <form class="site-search">
-                <input class="search-field" type="text" value="Search the database..." onfocus="if (this.value == 'Search the database...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search the database...';}">
-                <input class="search-btn" type="button" value="Go">
+                <input class="search-field" type="text" value="Search the database..." onFocus="if (this.value == 'Search the database...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Search the database...';}">
+                <input class="input-button search-btn" type="button" value="Go">
             </form>
             </div>
             

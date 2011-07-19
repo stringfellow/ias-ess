@@ -14,7 +14,7 @@
     {% csrf_token %}
     {% include "form_snippet.html" %}
 
-    <input type="submit" value="{% trans 'Log in' %}" />
+    <input class="input-submit login-btn" type="submit" value="{% trans 'Log in' %}" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
