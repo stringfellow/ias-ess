@@ -1,1 +1,1 @@
-[{% for taxon in object_list %} "{{ taxon }}"{% if not forloop.last %},{% endif %} {% endfor %}] 
+[{% for taxon in object_list %}[{{ taxon.pk }}, "{{ taxon }}"]{% if not forloop.last %},{% endif %} {% endfor %}] 
