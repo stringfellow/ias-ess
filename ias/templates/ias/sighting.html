@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <form method="post" id="sighting-form" action="{{ action }}" enctype="multipart/form-data">
+    {% csrf_token %}
     {% include "form_snippet.html" %}
     <input type="submit" name="submit" value="submit" />
 </form>

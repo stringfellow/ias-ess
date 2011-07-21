@@ -16,4 +16,8 @@ urlpatterns = patterns('',
             template_name="api/taxon_list.html"),
         name='api-taxa-list'
     ),
+    url('^sighting$',
+        'api.views.sighting',
+        name='api-sighting'
+    ),
 )
