@@ -111,6 +111,10 @@ input {
     line-height: 1.5;
 }
 
+input[type=checkbox] {
+    width: auto;    
+}
+
 input.input-submit, input.input-button {
     -webkit-appearance: none;
     font-family: Helvetica, Arial, sans-serif;
