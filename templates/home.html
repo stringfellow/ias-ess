@@ -48,6 +48,9 @@
 
 <div id="sighting-box">
     <h2>Latest sightings</h2>
+    {% for sighting in latest_sightings %}
+        {{ sighting }}
+    {% endfor %}
 </div>
 
 
