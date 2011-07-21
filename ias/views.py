@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.views import login as login_view
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
@@ -11,8 +12,32 @@ from google.appengine.api import files
 from google.appengine.ext import blobstore
 
 from ias.models import Photo, Sighting, Taxon, TaxonExpert
-from ias.forms import SightingForm, RegisterTaxonForm
+from ias.forms import SightingForm, RegisterTaxonForm, AuthenticationRegisterForm
 from ias.utils import tweak_google_form
+
+
+def home(request):
+    if request.method == 'POST':
+        form = AuthenticationRegisterForm(request.POST)
+        if form.is_valid():
+            register = form.data.get('register', None)
+            login = form.data.get('login', None)
+            if register:
+                return HttpResponseRedirect(reverse('registration_register'))
+            if login:
+                return login_view(request)
+    else:
+        form = AuthenticationRegisterForm()
+    return render_to_response(
+        'home.html',
+        {
+            'form': form,
+            'next': request.uri,
+            'action': reverse('home')
+        },
+        context_instance=RequestContext(request)
+    )
+            
 
 
 def sighting_add(request):
