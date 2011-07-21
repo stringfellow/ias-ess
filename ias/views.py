@@ -28,7 +28,11 @@ def home(request):
                 return login_view(request)
     else:
         form = AuthenticationRegisterForm()
-        latest_sightings = Sighting.objects.order_by('-datetime')[5:]
+        
+        latest_sightings = Sighting.objects.all()
+        if Sighting.objects.count() > 5:
+            latest_sightings = latest_sightings[:5]
+
     return render_to_response(
         'home.html',
         {
