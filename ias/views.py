@@ -28,11 +28,12 @@ def home(request):
                 return login_view(request)
     else:
         form = AuthenticationRegisterForm()
+        latest_sightings = Sighting.objects.order_by('-datetime')[5:]
     return render_to_response(
         'home.html',
         {
             'form': form,
-            'next': request.uri,
+            'latest_sightings': latest_sightings,
             'action': reverse('home')
         },
         context_instance=RequestContext(request)
