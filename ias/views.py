@@ -32,12 +32,17 @@ def home(request):
         latest_sightings = Sighting.objects.all()
         if Sighting.objects.count() > 5:
             latest_sightings = latest_sightings[:5]
+        
+        latest_taxa = Taxon.objects.all()
+        if Taxon.objects.count() > 5:
+            latest_tax = latest_taxa[:5]
 
     return render_to_response(
         'home.html',
         {
             'form': form,
             'latest_sightings': latest_sightings,
+            'latest_taxa': latest_taxa,
             'action': reverse('home')
         },
         context_instance=RequestContext(request)
