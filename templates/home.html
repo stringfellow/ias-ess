@@ -5,6 +5,25 @@
 <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/home.css" />
 {% endblock %}
 
+{% block extra-head %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.innerfade.js"></script>
+
+<script type="text/javascript">
+	   $(document).ready(function(){
+									
+					$('ul#slider').innerfade({
+						speed: 1000,
+						timeout: 5000,
+						type: 'sequence',
+						containerheight: '295px'
+					});
+					
+					
+			});
+  	</script>
+ 
+{% endblock %}
+
 {% block page %}home-page{% endblock %}
 {% block navclass %}home-nav{% endblock %}
 
@@ -40,18 +59,24 @@
     {# TODO: Form is hardcoded - please fix #}
     <form method="post" action="{{ action }}">{% csrf_token %}
         {% include "form_snippet.html" %}
-        <input class="input-submit" type="submit" name="login" value="Login">
-        <input class="input-submit" type="submit" name="register" value="Register">
+        <input class="input-submit login-btn" type="submit" name="login" value="Login">
+        <input class="input-submit register-btn" type="submit" name="register" value="Register">
     </form>
     </div><!--/login-box -->
     {% endif %} 
 
 <div id="sighting-box">
-    <h2>Latest sightings</h2>    
-    {% for sighting in latest_sightings %}        
-         <img src="{{ sighting.photo|size:150 }}" alt="{{ sighting }}" />
-        <div>{{ sighting }} </div>   
+    <h2>Latest sightings</h2>   
+    
+    <div class="slider-wrapper">
+     <ul id="slider" class="innerfade">    
+    {% for sighting in latest_sightings %}   
+      
+         <li><a href="#"><img src="{{ sighting.photo }}" alt="{{ sighting }}" /><span>{{ sighting }} - {{ sighting.datetime }}</span></a></li>
+     
     {% endfor %}
+    </ul>   
+    </div>
 </div>
 
 

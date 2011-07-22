@@ -40,6 +40,10 @@ body{
     border: 1px solid #ccc; 
     padding: 4px;
     background-color: #fafcf6;
+    -moz-box-shadow: 0px 0px 8px #c0c0c0;
+    -webkit-box-shadow: 0px 0px 8px #c0c0c0;
+    box-shadow: 0px 0px 8px #c0c0c0;
+   
 }
 
 .taxon-cell a{
@@ -135,9 +139,9 @@ article h2 {
    float: left;
    padding: 6px;
    border: 1px solid #ccc;
-   -moz-box-shadow: 4px 4px 4px #ccc;
-   -webkit-box-shadow: 4px 4px 4px #ccc;
-   box-shadow: 4px 4px 4px #ccc;
+   -moz-box-shadow: 0px 0px 8px #c0c0c0;
+   -webkit-box-shadow: 0px 0px 8px #c0c0c0;
+   box-shadow: 0px 0px 8px #c0c0c0;
    
    background-image: -moz-linear-gradient(top, 
 							#ffffff, 
