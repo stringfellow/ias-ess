@@ -248,7 +248,11 @@ footer {
     margin-left: 24px;
 }
 
-#masthead nav li.current a {
+#masthead nav.home-nav li.nav-home a,  
+#masthead nav.sightings-nav li.nav-sightings a,
+#masthead nav.taxa-nav li.nav-taxa a,
+#masthead nav.map-nav li.nav-map a,
+#masthead nav.about-nav li.nav-about a {
     color: #d36165;    
 }
 

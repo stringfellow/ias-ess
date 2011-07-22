@@ -28,7 +28,7 @@
         {% block extra-head %}{% endblock %}
     </head>
 
-    <body onLoad="{% block body-onload %}{% endblock %}" id="{% block page-name %} {% endblock %}">
+    <body onLoad="{% block body-onload %}{% endblock %}" id="{% block page %}{% endblock %}">
         <header id="masthead">
                 <h1><a href="/">Invasive Alien Species</a></h1>
                 <p>Exotic Specimen Sightings</p>
@@ -45,13 +45,13 @@
             </div>
             {% endblock %}
             
-            <nav>
+            <nav class="{% block navclass %}{% endblock %}">
                 <ul>
-                    <li class="current"><a href="/">Home</a></li>
-                    <li><a href="{% url ias-sighting-list %}">Sightings</a></li>
-                    <li><a href="{% url ias-taxon-list %}">Taxa</a></li>
-                    <li><a href="{% url ias-map %}">Map</a></li>
-                    <li><a href="{% url about %}">About</a></li>
+                    <li class="nav-home"><a href="/">Home</a></li>
+                    <li class="nav-sightings"><a href="{% url ias-sighting-list %}">Sightings</a></li>
+                    <li class="nav-taxa"><a href="{% url ias-taxon-list %}">Taxa</a></li>
+                    <li class="nav-map"><a href="{% url ias-map %}">Map</a></li>
+                    <li class="nav-about"><a href="{% url about %}">About</a></li>
                 </ul>
             </nav>
             
@@ -64,8 +64,7 @@
             
         </header>
 
-        <div id="content">
-          
+        <div id="content">          
             {% block content %}
             {% endblock %}
         </div>

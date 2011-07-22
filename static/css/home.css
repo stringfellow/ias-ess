@@ -170,6 +170,7 @@ a.action-view-map  .btn-intro {
 
 #sighting-box  h2 {
     font-size: 18px;
+    margin-bottom: 12px;
 }
 
 #taxa-box {
@@ -186,7 +187,32 @@ a.action-view-map  .btn-intro {
 }
 
 #taxa-box  h2 {
-    font-size: 18px;   
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+#taxa-list li {
+    list-style:none;
+    float: left;
+    margin: 0 8px 10px 0;
+}
+
+#taxa-list li a {
+    display: inline;
+    padding: 4px 6px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #d36165;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;  
+}
+
+
+#taxa-list li a:hover {
+    background-color: #0f3b5f;   
 }
 
 /*		Tablet Layout: 768px.
