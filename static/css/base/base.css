@@ -113,6 +113,7 @@ input {
 
 input[type=checkbox] {
     width: auto;    
+    float: none;
 }
 
 input.input-submit, input.input-button {
