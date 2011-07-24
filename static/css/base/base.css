@@ -116,7 +116,16 @@ input[type=checkbox] {
     float: none;
 }
 
-input.input-submit, input.input-button {
+input[type=file] {
+    float: none; 
+    width: auto;
+    height: auto;
+    padding: 2px;
+    padding-bottom: 4px;
+    line-height: 1.5;
+}
+
+input[type=submit], input.input-submit, input[type=button],input.input-button {
     -webkit-appearance: none;
     font-family: Helvetica, Arial, sans-serif;
     height: auto;

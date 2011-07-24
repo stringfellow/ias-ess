@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
 
+{% block navclass %}sightings-nav{% endblock %}
 
 {% block extra-head %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -56,16 +60,22 @@ function initialize() {
 {% block body-onload %}initialize();{% endblock %}
 
 {% block content %}
-    <h2>Sighting details</h2>
+<section class="generic-inner">
+    <h1>Sighting details</h1>
+    
+    <div class="detail-wrapper">
+    <div class="pic-holder"><img src='{{ sighting.photo }}' alt='photo' /></div>  
 
-    <ul>
-        <li>Taxon: {{ sighting.taxon }}</li>
+    <ul class="detail-list">
+        <li><strong>Taxon:</strong><br /> {{ sighting.taxon }}</li>
         {% if sighting.contactable %}
-            <li>Reported by: {{ sighting.email }}</li>
+            <li><strong>Reported by: <br /></strong> {{ sighting.email }}</li>
         {% endif %}
-        <li>Spotted at around: {{ sighting.lat }}, {{ sighting.lon }}</li>
-        <li>Photo: <img src='{{ sighting.photo }}' alt='photo' /></li>
+        <li><strong>Spotted at around: <br /></strong>{{ sighting.lat }}, {{ sighting.lon }}</li>
+        
     </ul>
+    
+    </div>
     {% if google_form %}
     {# This little JS/iframe hack allows us to redirect here #}
     <script type="text/javascript">var submitted=false;</script>
@@ -78,6 +88,8 @@ function initialize() {
     </iframe>
     {{ google_form|safe }}
     {% endif %}
-    <div id="map_canvas" style="width:500px; height:300px"></div>
+    <div id="map_container" >
+        <div id="map_canvas" ></div>
+    </div>
 {% endblock %}
 

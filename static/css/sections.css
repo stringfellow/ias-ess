@@ -86,6 +86,45 @@ body{
     background-color: #0f3b5f;   
 }
 
+/* Sighting details*/
+
+#map_canvas {
+    width: 600px;
+    height: 500px;
+}
+
+.detail-wrapper {
+   overflow: hidden;
+   clear: both;
+   margin-bottom: 12px;
+}
+
+.pic-holder {
+    float: left;    
+}
+
+.pic-holder img{
+    border: 1px solid #ccc;
+    padding: 4px;  
+    max-width: 520px;
+}
+
+.detail-list {
+   list-style: none;
+   float: left;
+   width: 200px;
+   margin-left: 12px;   
+}
+
+.detail-list  li {
+   margin-bottom: 12px;
+   line-height: 1.5;
+}
+
+#ss-form {
+   margin-bottom: 12px;    
+}
+
 /* Sighting Maps */
 #map_container {
     -webkit-box-shadow: rgba(64, 64, 64, 0.496094) 0px 2px 5px; 
