@@ -183,7 +183,6 @@ px      68    160    252    344    436    528    620    712    804    896    */
 
 body {
     text-align: center;
-    overflow-x: hidden; 
     border-top: 30px solid #3c3c3c;
 	color: #555;
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
@@ -224,7 +223,6 @@ footer {
 #masthead h1 a {
     display: block;
     text-indent: -9999px;
-    overflow: hidden;
     height: 52px;
     background: url(../../img/ias-logo.jpg) no-repeat left bottom;  
     outline: none;
@@ -506,9 +504,7 @@ cols    1     2      3      4      5
 px      68    160    252    344    436    */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-    html {
-       overflow-x: hidden;    
-    }
+
     
     body {
         background-position: left 132px; 
