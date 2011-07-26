@@ -33,7 +33,11 @@ body{
 #sightings td  {
     fonts-size: 14px;
     line-height: 1.2;  
-    padding: 12px 0;    
+    padding: 12px 4px;    
+}
+
+#sightings td.time-cell   {
+    padding: 12px 2px;   
 }
 
 .image-cell  img {
@@ -244,7 +248,7 @@ px      68    160    252    344    436    528    620    712    */
         #map_container {
             width: 652px; 
         }
-	
+        
     
     
     
@@ -289,7 +293,12 @@ px      68    160    252    */
          #people img {
              margin-bottom: 12px;    
          }
-  
+         
+         .pic-holder img {
+            width: 214px;    
+        }
+         
+          
 	
 }
 
@@ -312,6 +321,10 @@ px      68    160    252    344    436    */
          
         #people img {
             margin-bottom: 12px;    
+        }
+        
+        .pic-holder img {
+            width: 402px;    
         }
 	
    

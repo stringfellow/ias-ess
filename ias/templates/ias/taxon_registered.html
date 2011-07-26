@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
+
 {% block title %}- Taxon details{% endblock %}
+{% block navclass %}taxa-nav{% endblock %}
 
 {% block content %}
+<section class="generic-inner">
 <h1>{{ taxon }}</h1>
 <div>
     {{ taxon.scientific_name }}
 </div>
+</section>
 {% endblock %}

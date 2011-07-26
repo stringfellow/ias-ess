@@ -77,15 +77,16 @@ small {
 
 /* Selection colours (easy to forget) */
 
-::selection 	 	{background: #0F3B5F; color: #fff;}
-::-moz-selection 	{background: #0F3B5F; color: #fff;}
+::selection 	 	{background: #57A2C7; color: #fff;}
+::-moz-selection 	{background: #57A2C7; color: #fff;}
 img::selection 		{background: transparent;}
 img::-moz-selection	{background: transparent;}
 body {-webkit-tap-highlight-color: rgb(255,255,158); color: #fff;}
 
 /* Forms */
 form {
-    overflow: hidden;    
+    overflow: hidden;
+    margin-bottom: 10px;    
 }
 
 label {
@@ -98,9 +99,26 @@ label {
 .form-row {
     margin-bottom: 12px; 
     overflow: hidden;
+    position: relative;
 }
 
-input {
+ul.errorlist {
+   font-size: 12px;
+   clear: both;
+   margin-left: 120px;
+   
+}
+
+.errorlist li {
+    display: inline-block;
+    background-color: #d36165;
+    color: #fff;
+    padding: 2px 4px;
+    line-height: 1.2;
+    margin-top: 5px;
+}
+
+input[type=text], input[type=password], input[type=file] {
     display: inline-block;
     float: left;
     width: 280px;
@@ -148,7 +166,6 @@ input[type=submit], input.input-submit, input[type=button],input.input-button {
 input.input-submit:hover {
     background-color: #0f3b5f;    
 }
-
 
 input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus
 textarea:focus {
@@ -207,6 +224,7 @@ footer {
 #masthead h1 a {
     display: block;
     text-indent: -9999px;
+    overflow: hidden;
     height: 52px;
     background: url(../../img/ias-logo.jpg) no-repeat left bottom;  
     outline: none;
@@ -331,6 +349,14 @@ input.search-btn {
     margin-bottom: 12px;    
 }
 
+.generic-inner p a {
+    color: #d36165;    
+}
+
+.generic-inner p a:hover {
+    color: #0f3b5f;    
+}
+
 
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
@@ -398,6 +424,9 @@ cols    1     2      3
 px      68    160    252    */
 
 @media only screen and (max-width: 767px) {
+    html {
+       overflow-x: hidden;    
+    }
 
     body {
         background-position: left 132px; 
@@ -454,6 +483,14 @@ px      68    160    252    */
     .generic-inner {
          width: 228px; 
          padding: 12px;
+    }    
+    
+    input[type=text], input[type=file], input[type=password], select {
+            width:  198px;    
+    }
+    
+    ul.errorlist {
+        margin-left: 0;    
     }
 	
 }
@@ -469,6 +506,9 @@ cols    1     2      3      4      5
 px      68    160    252    344    436    */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
+    html {
+       overflow-x: hidden;    
+    }
     
     body {
         background-position: left 132px; 
@@ -508,6 +548,11 @@ px      68    160    252    344    436    */
          width: 412px; 
          padding:12px;
     }
+    
+    input[type=text], input[type=file], input[type=password], select{
+            width:  198px;    
+    }
+    
 
 	
 }

@@ -151,10 +151,6 @@ a.action-view-map  .btn-intro {
    margin-left: 90px;
 }
 
-.login-box .register-btn {
-      
-}
-
 /* Logged in - login-box */
 
 .logged-in a {
@@ -367,6 +363,12 @@ px      68    160    252    */
         width:  198px;    
     }
     
+    .login-box .register-btn,  .login-box .login-btn{
+        float: none;  
+        margin: 0;
+        
+    }
+    
     #user-reg-btn {
         margin-top: 0;  
         float: none;
@@ -377,11 +379,28 @@ px      68    160    252    */
         width: 204px;
     }
     
+    .slider-wrapper {
+        width: 178px;
+        height: 240px;
+    }
+    
+    #slider li img {
+       width: 178px; 
+       height: 178px;
+    }
+    
+    #slider li span {
+        width: 178px;   
+        top: auto;
+        bottom: 0;
+        text-align: left;
+    }
+	    
     #taxa-box {
         position: static;
         width: 204px;
         margin-bottom: 24px;
-    }	
+    }
 	
 }
 
@@ -431,6 +450,11 @@ px      68    160    252    344    436    */
         width:  198px;    
     }
     
+    .login-box .register-btn,  .login-box .login-btn{
+        float: none;  
+        margin: 0 ;
+    }
+    
     #user-reg-btn {
         margin-top: 0;  
         float: none;
@@ -439,6 +463,22 @@ px      68    160    252    344    436    */
     #sighting-box {
         margin-top: 24px; 
         width: 388px;
+    }
+    
+    .slider-wrapper {
+        width: 362px;
+    }
+    
+    #slider li img {
+       width: 362px; 
+       height: 260px;
+    }
+    
+    #slider li span {
+        width: 362px; 
+        top: auto;
+        bottom: 0;
+        text-align: left;
     }
     
     #taxa-box {
