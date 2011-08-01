@@ -17,6 +17,8 @@ from ias.utils import tweak_google_form
 
 
 def home(request):
+    latest_sightings = []
+    latest_taxa = []
     if request.method == 'POST':
         form = AuthenticationRegisterForm(request.POST)
         if form.is_valid():
