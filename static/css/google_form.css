@@ -1,0 +1,33 @@
+.ss-item.ss-radio {
+display: block;
+float: none;
+}
+
+.ss-item ul {
+    list-style: none;
+}
+
+.ss-q-title {
+width: 100%;
+font-weight: bolder;
+}
+
+.ss-q-help {
+width: 100%;
+font-size: 75%;
+}
+
+.ss-choice-item {
+float: none;
+width: 100%;
+clear: both;
+}
+
+.ss-choice-label {
+width: 100%;
+}
+
+.ss-q-radio {
+float: left;
+}
+
