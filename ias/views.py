@@ -1,4 +1,8 @@
 from __future__ import with_statement
+
+from decimal import Decimal
+from StringIO import StringIO
+
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -14,6 +18,8 @@ from google.appengine.ext import blobstore
 from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm, AuthenticationRegisterForm
 from ias.utils import tweak_google_form
+
+from EXIF import process_file
 
 
 def home(request):
@@ -49,8 +55,71 @@ def home(request):
         },
         context_instance=RequestContext(request)
     )
-            
 
+
+def _save_photo(image):
+    photo_file = image
+    photo_size = photo_file.size
+    photo_type = photo_file.content_type
+    photo_store = files.blobstore.create(
+        mime_type=photo_type,
+        _blobinfo_uploaded_filename=photo_file.name)
+
+    with files.open(photo_store, 'a') as f:
+        data = photo_file.read(blobstore.MAX_BLOB_FETCH_SIZE)
+        while data:
+            f.write(data)
+            data = photo_file.read(blobstore.MAX_BLOB_FETCH_SIZE)
+
+    files.finalize(photo_store)
+    photo_obj = Photo()
+    photo_obj.photo = None
+    photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
+    photo_obj.verified = False
+    photo_obj.save()
+    return photo_obj
+
+	
+def _convert_to_degress(value):
+    """Helper function to convert the GPS coordinates stored in the EXIF to degress in float format"""
+    values = value.values
+
+    d0 = values[0].num
+    d1 = values[0].den
+    d = float(d0) / float(d1)
+    
+    m0 = values[1].num
+    m1 = values[1].den
+    m = float(m0) / float(m1)
+
+    s0 = values[2].num
+    s1 = values[2].den
+    s = float(s0) / float(s1)
+
+    return d + (m / 60.0) + (s / 3600.0)
+
+
+def get_lat_lon(exif):
+    """Returns the latitude and longitude, if available, from the provided exif_data (obtained through get_exif_data above)"""
+    lat = None
+    lon = None
+
+    if len(filter(lambda k: str(k).startswith('GPS'), exif.keys())):
+        gps_latitude = exif["GPS GPSLatitude"]
+        gps_latitude_ref = exif["GPS GPSLatitudeRef"]
+        gps_longitude = exif["GPS GPSLongitude"]
+        gps_longitude_ref = exif["GPS GPSLongitudeRef"]
+
+        if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
+            lat = _convert_to_degress(gps_latitude)
+            if gps_latitude_ref.values != "N":
+                lat = 0 - lat
+
+            lon = _convert_to_degress(gps_longitude)
+            if gps_longitude_ref.values != "E":
+                lon = 0 - lon
+
+    return lat, lon
 
 def sighting_add(request):
     """A user sees a thing, record it."""
@@ -58,26 +127,15 @@ def sighting_add(request):
         form = SightingForm(request.POST, request.FILES)
         if form.is_valid():
             sighting = form.save(commit=False)
-            photo_file = request.FILES['photo']
-            photo_size = photo_file.size
-            photo_type = photo_file.content_type
-            photo_store = files.blobstore.create(
-                mime_type=photo_type,
-                _blobinfo_uploaded_filename=photo_file.name)
-
-            with files.open(photo_store, 'a') as f:
-                data = photo_file.read(blobstore.MAX_BLOB_FETCH_SIZE)
-                while data:
-                    f.write(data)
-                    data = photo_file.read(blobstore.MAX_BLOB_FETCH_SIZE)
-
-            files.finalize(photo_store)
-            photo_obj = Photo()
-            photo_obj.photo = None
-            photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
-            photo_obj.verified = False
-            photo_obj.save()
+            photo_obj = _save_photo(request.FILES['image'])
             sighting.photo = photo_obj
+            if form.cleaned_data['get_coords_from_photo']:
+                f = request.FILES['image'].file
+                f.seek(0)
+                exif = process_file(f)
+                lat, lon = get_lat_lon(exif)
+                sighting.lat = Decimal(str(lat))
+                sighting.lon = Decimal(str(lon))
             sighting.save()
             return HttpResponseRedirect(reverse(
                 'ias-sighting-detail',
