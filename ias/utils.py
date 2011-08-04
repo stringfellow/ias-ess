@@ -2,7 +2,7 @@ import re
 import logging
 from xml.etree import ElementTree as ET 
 import urllib2
-from set_trace import set_trace
+#from set_trace import set_trace
 
 GOOGLE_QA_URL = "https://spreadsheets.google.com/spreadsheet/embeddedform?formkey="
 
