@@ -37,6 +37,7 @@ copy the form 'key' (everything after the equals sign):</p>
 
 <div id="step2">
 <form id="basic-details" action="." method="POST">
+    {% csrf_token %}
 {% include "form_snippet.html" %}
 <input type="submit" value="Register taxon" />
 </form>

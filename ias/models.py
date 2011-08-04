@@ -25,6 +25,7 @@ TAXA_CHOICES = (
 class Taxon(models.Model):
     """A thing to sight, could be a group or a single species."""
     scientific_name = models.CharField(max_length=200)
+    common_name = models.CharField(max_length=200)
     rank = models.CharField(choices=TAXA_CHOICES, max_length=50)
     key_text = models.TextField(help_text="A helpful description so that users"
         " can identify this taxon easily.")
@@ -57,9 +58,9 @@ class TaxonExpert(models.Model):
 
 class Photo(models.Model):
     """An model to hold all the blobstore stuff."""
-    photo = models.FileField(upload_to="photo")
-    blob_key = models.CharField(max_length=256)
-    url = models.CharField(max_length=256)
+    photo = models.FileField(upload_to="photo", null=True)
+    blob_key = models.CharField(max_length=256, null=True)
+    url = models.CharField(max_length=256, null=True)
     verified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

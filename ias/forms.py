@@ -5,11 +5,22 @@ from ias.models import Sighting, Taxon
 
 
 class SightingForm(forms.ModelForm):
-    photo = forms.FileField()
+    image = forms.FileField()
+    get_coords_from_photo = forms.BooleanField(
+        required=False,
+        initial=True)
+    lat = forms.DecimalField(
+        max_digits=11,
+        required=False)
+    lon = forms.DecimalField(
+        max_digits=11,
+        required=False)
 
     class Meta:
         model = Sighting
         exclude = ('photo', 'has_completed_questionnaire')
+        fields = ('taxon', 'email', 'contactable', 'image',
+                  'get_coords_from_photo', 'lat', 'lon')
 
 
 class RegisterTaxonForm(forms.ModelForm):

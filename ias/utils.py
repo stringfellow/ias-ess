@@ -2,6 +2,7 @@ import re
 import logging
 from xml.etree import ElementTree as ET 
 import urllib2
+from set_trace import set_trace
 
 GOOGLE_QA_URL = "https://spreadsheets.google.com/spreadsheet/embeddedform?formkey="
 
@@ -12,13 +13,18 @@ def tweak_google_form(questionnaire_id, sighting_pk):
     data = data.replace('>', '>\n')  # why? Who knows!
     data = re.sub(r'<br>', r'<br/>', data)
     data = re.sub(r'<input(.*?)>', r'<input\1/>', data)
+    data = re.sub(r'<input(.*?) checked (.*?)>', r'<input\1 \2>', data)
     pat = re.compile(r'(<form.*?\/form>)', re.DOTALL)
     match = re.search(pat, data)
     if not match:
         logging.warn("Form failed to match regex for key %s" % (
             questionnaire_id))
         return ""
-    form = ET.fromstring(match.group(0))
+    lines = filter(lambda(x): len(x), match.group(0).split('\n'))
+    html = '\n'.join(lines)
+    # set_trace()
+    form = ET.fromstring(html)
+    
     # find the input 0 - HOPE this is the ref...
     ref_div = form.find(".//div")
     # brute force hide the div with the labels in it

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block css %}
 <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/google_form.css" />
 {% endblock %}
 
 {% block navclass %}sightings-nav{% endblock %}
@@ -8,11 +9,26 @@
 {% block content %}
 
 <section class="generic-inner">
-    <h1>List of sightings</h1>
+    <h1>Add a sightings</h1>
 <form method="post" id="sighting-form" action="{{ action }}" enctype="multipart/form-data">
     {% csrf_token %}
     {% include "form_snippet.html" %}
     <input class="input-submit"type="submit" name="submit" value="submit" />
 </form>
 </section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    {% if user.is_authenticated %}
+    $('#id_email').val('{{ user.email }}');
+    {% endif %}
+
+    $('#id_lat').parent().toggle();
+    $('#id_lon').parent().toggle();
+    $('#id_get_coords_from_photo').bind('change', function() {
+        $('#id_lat').parent().toggle();
+        $('#id_lon').parent().toggle();
+    });
+</script>
 {% endblock %}
