@@ -90,6 +90,19 @@ body{
     background-color: #0f3b5f;   
 }
 
+h2.step {
+    border-bottom: 4px solid #D36165;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+    margin-top: 20px;
+}
+
+h2.step span {
+   color: #d36165;     
+   display: inline-block;
+   padding-right: 4px;
+}
+
 /* Sighting details*/
 
 #map_canvas {

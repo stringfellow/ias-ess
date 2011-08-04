@@ -75,6 +75,15 @@ small {
 	line-height: 1.5;
 }
 
+ul, ol {
+    list-style-position: inside;
+    margin-bottom: 10px;
+}
+
+li {
+   margin-bottom: 5px;    
+}
+
 /* Selection colours (easy to forget) */
 
 ::selection 	 	{background: #57A2C7; color: #fff;}
@@ -345,6 +354,15 @@ input.search-btn {
 
 .generic-inner h1 {
     margin-bottom: 12px;    
+}
+
+.generic-inner h2 {
+   font-size: 20px;  
+   margin-bottom: 10px;  
+}
+
+.generic-inner p {
+    margin-bottom: 10px;    
 }
 
 .generic-inner p a {
