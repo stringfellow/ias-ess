@@ -7,22 +7,37 @@ from django.contrib.admin import widgets
 
 from ias.models import Sighting, Taxon
 from ias.exif_utils import get_lat_lon, get_datetime
+from ias import widgets as ias_widgets
 
 from EXIF import process_file
 
 class SightingForm(forms.ModelForm):
     image = forms.FileField()
+
     get_coords_from_photo = forms.BooleanField(
         required=False,
         initial=True,
         label="Get GPS from photo",
         help_text="Only available if your camera supports GPS.")
     lat = forms.DecimalField(
-        max_digits=11,
-        required=False)
+        max_digits=20,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'maxlength':20,
+        }))
     lon = forms.DecimalField(
-        max_digits=11,
-        required=False)
+        max_digits=20,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'maxlength':20,
+        }))
+    map_picker = forms.CharField(
+        widget=ias_widgets.GoogleLatLon(
+            lat_name='lat', lon_name='lon'),
+        required=False,
+        help_text="Click on the map to choose a point",
+        label="Click a point")
+
     get_datetime_from_photo = forms.BooleanField(
         required=False,
         initial=True,
@@ -37,7 +52,7 @@ class SightingForm(forms.ModelForm):
         exclude = ('photo', 'has_completed_questionnaire', 'datetime')
         fields = (
             'taxon', 'email', 'contactable', 'image',
-            'get_coords_from_photo', 'lat', 'lon',
+            'get_coords_from_photo', 'lat', 'lon', 'map_picker',
             'get_datetime_from_photo', 'date_time'
         )
 
@@ -48,9 +63,6 @@ class SightingForm(forms.ModelForm):
         'get_coords_from_photo': True, 'get_datetime_from_photo': True,
         'email': u'steve@synfinity.net'}"""
         c_data = self.cleaned_data
-        import logging
-        logging.debug(c_data)
-        logging.debug(self._errors)
         if c_data.get('contactable', False) and \
             not c_data.get('email', ''):
             msg = "Please add email address if you want to be contacted!"
@@ -66,21 +78,25 @@ class SightingForm(forms.ModelForm):
             exif = None
 
         if c_data.get('get_coords_from_photo') and exif:
+# User thinks there is GPS data in EXIF, and we have EXIF
             lat, lon = get_lat_lon(exif)
             if lat and lon:
                 c_data['lat'] = Decimal(str(lat))
                 c_data['lon'] = Decimal(str(lon))
             else:
+# There isn't! Uncheck the box (set False) (doesn't work.. hm.)
                 msg = "No GPS info in EXIF data. Please add manually! :-(" 
                 self._errors["get_coords_from_photo"] = self.error_class(
                     [msg])
-                del c_data["get_coords_from_photo"]
+                c_data["get_coords_from_photo"] = False
         elif c_data.get('get_coords_from_photo') and not exif:
+# User thinks there is EXIF but there isnt any
             msg = "No EXIF data available to get GPS info :-(" 
             self._errors["get_coords_from_photo"] = self.error_class(
                 [msg])
-            del c_data["get_coords_from_photo"]
+            c_data["get_coords_from_photo"] = False
         elif not c_data['lon'] or not c_data['lat']:
+# User put in one of lat/lon but not both
             msg = "Must set Lat/Long coordinates!" 
             self._errors["lat"] = self.error_class(
                 [msg])
@@ -89,6 +105,7 @@ class SightingForm(forms.ModelForm):
                 [msg])
             del c_data["lon"]
         else:
+# Didn't expect EXIF, all ok.
             c_data['lat'] = Decimal(c_data['lat'])
             c_data['lon'] = Decimal(c_data['lon'])
 
@@ -108,8 +125,6 @@ class SightingForm(forms.ModelForm):
                 [msg])
             del c_data["get_datetime_from_photo"]
 
-        import logging
-        logging.debug(c_data)
         return c_data
 
 

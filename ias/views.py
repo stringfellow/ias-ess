@@ -86,8 +86,6 @@ def sighting_add(request):
             sighting = form.save(commit=False)
             photo_obj = _save_photo(request.FILES['image'])
             sighting.photo = photo_obj
-            from set_trace import set_trace
-            set_trace()
             sighting.datetime = form.cleaned_data['date_time']
             sighting.save()
             return HttpResponseRedirect(reverse(

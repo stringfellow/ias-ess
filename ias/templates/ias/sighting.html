@@ -1,7 +1,23 @@
 {% extends "base.html" %}
+{% load setting_tag %}
+
 {% block css %}
 <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
-<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/google_form.css" />
+<link rel="stylesheet" type="text/css" href="{% setting ADMIN_MEDIA_PREFIX %}css/widgets.css"/>
+{% endblock %}
+
+{% block preload-js %}
+{{ block.super }}
+{% load adminmedia %}
+<script type="text/javascript">
+window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+</script>
+{% endblock %}
+
+{% block extra-head %}
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="{% setting ADMIN_MEDIA_PREFIX %}js/core.js"></script>
+{{ form.media }}
 {% endblock %}
 
 {% block navclass %}sightings-nav{% endblock %}
@@ -24,11 +40,25 @@
     $('#id_email').val('{{ user.email }}');
     {% endif %}
 
-    $('#id_lat').parent().toggle();
-    $('#id_lon').parent().toggle();
+    if ($('#id_get_coords_from_photo').attr('checked')) {
+        if ($('#id_get_coords_from_photo').next().hasClass('errorlist')) {
+            $('#id_get_coords_from_photo').prop('checked', false);
+        } else {
+            $('#id_lat').parent().toggle();
+            $('#id_lon').parent().toggle();
+            $('#id_map_picker').parent().toggle();
+        }
+    }
     $('#id_get_coords_from_photo').bind('change', function() {
         $('#id_lat').parent().toggle();
         $('#id_lon').parent().toggle();
+        $('#id_map_picker').parent().toggle();
+    });
+    if ($('#id_get_datetime_from_photo').attr('checked')) {
+        $('#id_date_time_0').parent().parent().toggle();
+    }
+    $('#id_get_datetime_from_photo').bind('change', function() {
+        $('#id_date_time_0').parent().parent().toggle();
     });
 </script>
 {% endblock %}
