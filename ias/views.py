@@ -57,6 +57,7 @@ def home(request):
 
 def _save_photo(image):
     photo_file = image
+    photo_file.seek(0)
     photo_size = photo_file.size
     photo_type = photo_file.content_type
     photo_store = files.blobstore.create(
