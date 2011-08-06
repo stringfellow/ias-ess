@@ -1,6 +1,6 @@
 .ss-item.ss-radio {
-display: block;
-float: none;
+    display: block;
+    float: none;
 }
 
 .ss-item ul {
@@ -8,26 +8,26 @@ float: none;
 }
 
 .ss-q-title {
-width: 100%;
-font-weight: bolder;
+    width: 100%;
+    font-weight: bolder;
 }
 
 .ss-q-help {
-width: 100%;
-font-size: 75%;
+    width: 100%;
+    font-size: 75%;
 }
 
 .ss-choice-item {
-float: none;
-width: 100%;
-clear: both;
+    float: none;
+    width: 100%;
+    clear: both;
 }
 
 .ss-choice-label {
-width: 100%;
+    width: 100%;
 }
 
 .ss-q-radio {
-float: left;
+    float: left;
 }
 

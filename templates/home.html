@@ -72,7 +72,7 @@
      <ul id="slider" class="innerfade">    
     {% for sighting in latest_sightings %}   
       
-         <li><a href="#"><img src="{{ sighting.photo }}" alt="{{ sighting }}" /><span>{{ sighting }} - {{ sighting.datetime }}</span></a></li>
+         <li><a href="{{ sighting.get_absolute_url }}"><img src="{{ sighting.photo }}" alt="{{ sighting }}" /><span>{{ sighting }} - {{ sighting.datetime }}</span></a></li>
      
     {% endfor %}
     </ul>   

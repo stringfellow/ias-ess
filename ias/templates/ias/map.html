@@ -136,6 +136,18 @@ function toggle(cluster) {
     cluster.resetViewport();
     cluster.redraw();
 }
+
+//Class hook for changing colour
+$(function() {
+		   	   
+		   $('.checkbox-row input:checked').click(function() {
+			
+			  $(this).closest('.checkbox-row').toggleClass('checkbox-row-unchecked');	
+									
+		   });		   
+		   
+		   
+});
 </script>
 {% endblock %}
 
@@ -153,7 +165,9 @@ function toggle(cluster) {
     <div id="map_hidden_canvas" style="display: none"></div>
 
     {% for taxon in taxa %}
+    <div class="form-row checkbox-row">
     <input type="checkbox" id="chk{{ taxon.pk }}" onclick="toggle(taxaClusters[{{ taxon.pk }}]);" checked />{{ taxon }}
+    </div>
     {% endfor %}
   </section>
 {% endblock %}
