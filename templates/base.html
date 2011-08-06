@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!doctype html>
 <html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
     <head>
@@ -67,10 +66,12 @@
             </div>
             
         </header>
-
-        <div id="content">          
+        
+        <div id="content-wrapper"> 
+        <div id="content">                     
             {% block content %}
             {% endblock %}
+        </div>
         </div>
 
         <footer id="site-footer">

@@ -10,14 +10,13 @@ body{
  	background: #e8e8e8 url(../img/main-bg.jpg) repeat-x left 24px;   
 }
 
-#content {
+#content{
     position: relative;
     width: 896px;
     margin: 0 auto;
     text-align: left;
     padding: 0px 48px; 
     padding-top: 24px;
-    background: url(../img/home-banner.jpg) no-repeat center top;  
     overflow: hidden;
 }
 

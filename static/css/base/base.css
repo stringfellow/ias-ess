@@ -241,6 +241,10 @@ footer {
     text-indent: -9999px;
 }
 
+#content-wrapper {
+   background: url(../../img/banner-map.jpg) repeat-x center top;    
+}
+
 #login-status {
     position: absolute; 
     right: 48px;
