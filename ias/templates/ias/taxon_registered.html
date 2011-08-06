@@ -97,7 +97,7 @@ $(document).ready(function(){
             <li>
             <a href="{{ sighting.get_absolute_url }}">
                 <img src="{{ sighting.photo|size:200 }}" alt="{{ sighting }}" />
-                <span>{{ sighting }} - {{ sighting.datetime.date }}</span>
+                <span>{{ sighting }}</span>
             </a>
             </li>
         {% endfor %}
