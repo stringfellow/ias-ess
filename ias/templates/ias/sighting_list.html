@@ -29,7 +29,9 @@
             {% for sighting in object_list %}
                 <tr>
                     <td class="image-cell">
+                         <a href="{{ sighting.get_absolute_url }}">
                         <img src="{{ sighting.photo|size:150 }}" alt="" />
+                        </a>
                     </td>
                     
                     <td class="time-cell">
