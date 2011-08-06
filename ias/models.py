@@ -22,6 +22,11 @@ TAXA_CHOICES = (
 )
 
 
+class TaxonManager(models.Manager):
+    def get_query_set(self):
+        return super(TaxonManager, self).get_query_set().filter(active=True)
+
+
 class Taxon(models.Model):
     """A thing to sight, could be a group or a single species."""
     scientific_name = models.CharField(max_length=200)
@@ -38,11 +43,19 @@ class Taxon(models.Model):
     style_name = models.CharField(max_length=30, null=True, blank=True)
     style_json = models.TextField(null=True, blank=True)
 
+    objects = models.Manager()
+    actives = TaxonManager()
+
     def __unicode__(self):
-        return u'%s: %s' % (self.get_rank_display(), self.scientific_name)
+        return  self.common_name or u'%s: %s' % (
+            self.get_rank_display(), self.scientific_name)
 
     def get_absolute_url(self):
         return reverse('ias-taxon-detail', args=[self.pk])
+
+    class Meta:
+        verbose_name_plural = 'Taxa'
+
 tagging.register(Taxon)
 
 
@@ -88,13 +101,17 @@ class Photo(models.Model):
 
 class Sighting(models.Model):
     """An instance of some user seeing some thing."""
-    taxon = models.ForeignKey(Taxon, related_name="sightings")
+    taxon = models.ForeignKey(
+        Taxon,
+        related_name="sightings",
+        limit_choices_to={'active': True}
+    )
     email = models.EmailField(null=True, blank=True, help_text="You may add an "
         "email address if you wish...")
     contactable = models.BooleanField(default=True)
-    datetime = models.DateTimeField(auto_now_add=True, default="06/07/2011 10:00:00")
-    lat = models.DecimalField(decimal_places=8, max_digits=11)
-    lon = models.DecimalField(decimal_places=8, max_digits=11)
+    datetime = models.DateTimeField()
+    lat = models.DecimalField(decimal_places=16, max_digits=20)
+    lon = models.DecimalField(decimal_places=16, max_digits=20)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
     has_completed_questionnaire = models.BooleanField(default=False)
 
