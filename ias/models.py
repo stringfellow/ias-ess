@@ -92,9 +92,9 @@ class Sighting(models.Model):
     email = models.EmailField(null=True, blank=True, help_text="You may add an "
         "email address if you wish...")
     contactable = models.BooleanField(default=True)
-    datetime = models.DateTimeField(auto_now_add=True, default="06/07/2011 10:00:00")
-    lat = models.DecimalField(decimal_places=8, max_digits=11)
-    lon = models.DecimalField(decimal_places=8, max_digits=11)
+    datetime = models.DateTimeField()
+    lat = models.DecimalField(decimal_places=16, max_digits=20)
+    lon = models.DecimalField(decimal_places=16, max_digits=20)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
     has_completed_questionnaire = models.BooleanField(default=False)
 
