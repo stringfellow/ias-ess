@@ -28,16 +28,16 @@ indexes:
 
 - kind: ias_taxon
   properties:
-  - name: __key__
-    direction: desc
-
-- kind: ias_taxon
-  properties:
   - name: active
   - name: __key__
     direction: desc
 
 - kind: ias_taxonexpert
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: registration_registrationprofile
   properties:
   - name: __key__
     direction: desc

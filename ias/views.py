@@ -19,7 +19,6 @@ from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm, AuthenticationRegisterForm
 from ias.utils import tweak_google_form
 
-
 def home(request):
     latest_sightings = []
     latest_taxa = []
@@ -35,20 +34,10 @@ def home(request):
     else:
         form = AuthenticationRegisterForm()
         
-        latest_sightings = Sighting.objects.all()
-        if Sighting.objects.count() > 5:
-            latest_sightings = latest_sightings[:5]
-        
-        latest_taxa = Taxon.actives.all()
-        if Taxon.actives.count() > 5:
-            latest_taxa = latest_taxa[:5]
-
     return render_to_response(
         'home.html',
         {
             'form': form,
-            'latest_sightings': latest_sightings,
-            'latest_taxa': latest_taxa,
             'action': reverse('home')
         },
         context_instance=RequestContext(request)

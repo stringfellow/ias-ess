@@ -9,8 +9,6 @@ from ias.models import Sighting, Taxon
 from ias.exif_utils import get_lat_lon, get_datetime
 from ias import widgets as ias_widgets
 
-from EXIF import process_file
-
 class SightingForm(forms.ModelForm):
     image = forms.FileField()
 
@@ -136,15 +134,6 @@ class RegisterTaxonForm(forms.ModelForm):
         exclude = ('active', 'style_name', 'style_json')
 
 
-class AuthenticationRegisterForm(AuthenticationForm):
+class AuthenticationRegisterForm(forms.Form):
     username = forms.CharField(label=("Email"), max_length=30)
     password = forms.CharField(label=("Password"), widget=forms.PasswordInput)
-    
-    def clean(self):
-        register = self.cleaned_data.get('register', None)
-        login = self.cleaned_data.get('login', None)
-
-        if login:
-            return super(AuthenticationRegisterForm, self).clean()
-        return self.cleaned_data
-
