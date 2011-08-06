@@ -3,7 +3,6 @@ from django.contrib.auth.forms import AuthenticationForm
 
 from ias.models import Sighting, Taxon
 
-
 class SightingForm(forms.ModelForm):
     image = forms.FileField()
     get_coords_from_photo = forms.BooleanField(
@@ -30,15 +29,6 @@ class RegisterTaxonForm(forms.ModelForm):
         exclude = ('active', 'style_name', 'style_json')
 
 
-class AuthenticationRegisterForm(AuthenticationForm):
+class AuthenticationRegisterForm(forms.Form):
     username = forms.CharField(label=("Email"), max_length=30)
     password = forms.CharField(label=("Password"), widget=forms.PasswordInput)
-    
-    def clean(self):
-        register = self.cleaned_data.get('register', None)
-        login = self.cleaned_data.get('login', None)
-
-        if login:
-            return super(AuthenticationRegisterForm, self).clean()
-        return self.cleaned_data
-
