@@ -36,7 +36,7 @@ class TaxaListNode(template.Node):
         self.var_name = var_name
 
     def render(self, context):
-        taxa = Taxon.objects.all()
+        taxa = Taxon.actives.all()
         if Taxon.objects.count() > int(self.number):
             taxa = taxa[:self.number]
         context[self.var_name] = taxa
@@ -66,8 +66,8 @@ class SightingListNode(template.Node):
         self.var_name = var_name
 
     def render(self, context):
-        sightings = Sighting.objects.all()
-        if Sighting.objects.count() > int(self.number):
+        sightings = Sighting.objects.filter(verified=True)
+        if sightings.count() > int(self.number):
             sightings = sightings[:self.number]
         context[self.var_name] = sightings
         return ''

@@ -50,8 +50,11 @@ class Taxon(models.Model):
         return self.sightings.filter(verified=True)
 
     def __unicode__(self):
-        return  self.common_name or u'%s: %s' % (
-            self.get_rank_display(), self.scientific_name)
+        if self.common_name:
+            return self.common_name
+        else:
+            return u'%s: %s' % (
+                self.get_rank_display(), self.scientific_name)
 
     def get_absolute_url(self):
         return reverse('ias-taxon-detail', args=[self.pk])
@@ -98,6 +101,8 @@ class Photo(models.Model):
             return self.url
 
     def __unicode__(self):
+        if not self.url:
+            return "I have no url!, why?!"
         return self.get_absolute_url()
 
 
@@ -122,4 +127,4 @@ class Sighting(models.Model):
         return reverse('ias-sighting-detail', args=[self.pk])
 
     def __unicode__(self):
-        return self.taxon.__unicode__()
+        return u"%s on %s" % (self.taxon, self.datetime.date())

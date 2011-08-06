@@ -9,6 +9,9 @@ from ias.models import Sighting, Taxon
 from ias.exif_utils import get_lat_lon, get_datetime
 from ias import widgets as ias_widgets
 
+from EXIF import process_file
+
+
 class SightingForm(forms.ModelForm):
     image = forms.FileField()
 
@@ -74,6 +77,8 @@ class SightingForm(forms.ModelForm):
             f.seek(0)
             exif = process_file(f)
         except Exception, e:
+            import logging
+            logging.error(e)
             exif = None
 
         if c_data.get('get_coords_from_photo') and exif:
