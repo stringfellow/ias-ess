@@ -9,24 +9,19 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.innerfade.js"></script>
 
 <script type="text/javascript">
-	   $(document).ready(function(){
-									
-					$('ul#slider').innerfade({
-						speed: 1000,
-						timeout: 5000,
-						type: 'sequence',
-						containerheight: '295px'
-					});
-					
-					
-			});
-  	</script>
- 
+$(document).ready(function(){
+    $('ul#slider').innerfade({
+        speed: 1000,
+        timeout: 5000,
+        type: 'sequence',
+        containerheight: '295px'
+    });
+});
+</script>
 {% endblock %}
 
 {% block page %}home-page{% endblock %}
 {% block navclass %}home-nav{% endblock %}
-
 
 {% block content %}
 <div id="intro-wrapper">
@@ -38,11 +33,11 @@
     
     <div id="call-to-action">
         <a class="action-btn action-add-sighting" href="{% url ias-sighting-add %}">
-           <span class="btn-intro">Seen a plant or animal you think is an IAS?</span> <span class="btn-action">Add a sighting now</span>
+           <span class="btn-intro">Spotted a plant or animal you think is an IAS?</span> <span class="btn-action">Add a sighting now</span>
         </a>
         
         <a class="action-btn action-view-map" href="{% url ias-map %}">
-           <span class="btn-intro">IAS map enables you to visualize the database</span> <span class="btn-action">Explore the map now</span>
+           <span class="btn-intro">See the distribution of IAS on a map.</span> <span class="btn-action">Explore the map now</span>
         </a>
     </div>   <!--/call to action-->  
 </div> <!--/intro-wrapper-->

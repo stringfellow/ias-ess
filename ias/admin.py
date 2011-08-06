@@ -8,4 +8,15 @@ admin.site.register(
 #    search_fields=('scientific_name', 'common_name'),
 )
 admin.site.register(TaxonExpert)
-admin.site.register(Sighting)
+
+
+def verify(modeladmin, request, queryset):
+    queryset.update(verified=True)
+verify.short_description = "Mark as verified"
+
+
+admin.site.register(
+    Sighting,
+    list_display=('taxon', 'datetime', 'lat', 'lon', 'verified'),
+    actions=[verify],
+)

@@ -46,6 +46,9 @@ class Taxon(models.Model):
     objects = models.Manager()
     actives = TaxonManager()
 
+    def verified_sightings(self):
+        return self.sightings.filter(verified=True)
+
     def __unicode__(self):
         return  self.common_name or u'%s: %s' % (
             self.get_rank_display(), self.scientific_name)
@@ -74,7 +77,6 @@ class Photo(models.Model):
     photo = models.FileField(upload_to="photo", null=True)
     blob_key = models.CharField(max_length=256, null=True)
     url = models.CharField(max_length=256, null=True)
-    verified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.blob_key:
@@ -114,6 +116,7 @@ class Sighting(models.Model):
     lon = models.DecimalField(decimal_places=16, max_digits=20)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
     has_completed_questionnaire = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('ias-sighting-detail', args=[self.pk])

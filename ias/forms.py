@@ -49,7 +49,8 @@ class SightingForm(forms.ModelForm):
 
     class Meta:
         model = Sighting
-        exclude = ('photo', 'has_completed_questionnaire', 'datetime')
+        exclude = ('photo', 'has_completed_questionnaire',
+                   'datetime', 'verified')
         fields = (
             'taxon', 'email', 'contactable', 'image',
             'get_coords_from_photo', 'lat', 'lon', 'map_picker',
