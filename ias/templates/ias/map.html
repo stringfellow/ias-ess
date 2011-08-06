@@ -125,6 +125,18 @@ function initialize() {
     });
     taxaClusters[{{ taxon.pk }}] = markerCluster{{ taxon.pk }};
     {% endfor %}
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var current = new google.maps.LatLng(
+                position.coords.latitude,
+                position.coords.longitude
+            );
+            console.log(current);
+            map.setCenter(current);
+            map.setZoom(15);
+        });
+    }
 }
 
 function toggle(cluster) {
