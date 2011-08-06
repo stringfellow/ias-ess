@@ -39,8 +39,8 @@ def home(request):
         if Sighting.objects.count() > 5:
             latest_sightings = latest_sightings[:5]
         
-        latest_taxa = Taxon.objects.all()
-        if Taxon.objects.count() > 5:
+        latest_taxa = Taxon.actives.all()
+        if Taxon.actives.count() > 5:
             latest_taxa = latest_taxa[:5]
 
     return render_to_response(
