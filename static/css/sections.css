@@ -116,6 +116,7 @@ h2.step span {
    float: right;
    width: 348px;
    padding: 0px;
+   margin-bottom: 24px;
 }
 
 .taxa-desc h2 {
@@ -184,6 +185,7 @@ h2.step span {
     width: 834px;
     height: 500px;
     margin-bottom: 24px;
+    clear: both;
 }
 
 #map_canvas {
