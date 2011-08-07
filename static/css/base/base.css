@@ -431,7 +431,6 @@ px      68    160    252    344    436    528    620    712    */
          width: 664px; 
     }
 
-
 }
 
 
@@ -512,7 +511,14 @@ px      68    160    252    */
     ul.errorlist {
         margin-left: 0;    
     }
+    
+    .taxon-cell a {
+       width: 60px;    
+    }
 	
+    input.search-field {
+       width: 206px;    
+    }
 }
 
 
@@ -569,6 +575,10 @@ px      68    160    252    344    436    */
     
     input[type=text], input[type=file], input[type=password], select{
             width:  198px;    
+    }
+    
+     input.search-field {
+       width: 206px;    
     }
     
 
