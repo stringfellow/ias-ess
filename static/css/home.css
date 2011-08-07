@@ -204,9 +204,7 @@ a.action-view-map  .btn-intro {
 }
 
 #slider li img {
-    width: 456px;
-    height: auto;
-    
+    height: auto;    
 }
 
 #slider li span {
@@ -216,9 +214,10 @@ a.action-view-map  .btn-intro {
     background-color:#fff;
     display: block;
     width: 100%;
-    padding: 6px 12px;
+    height: 24px;
+    padding-top: 6px;
     left: 0;
-    top: 262px; 
+    top: 270px; 
     line-height: 1.5;
     text-align: center;
 }
@@ -249,18 +248,16 @@ a.action-view-map  .btn-intro {
 }
 
 #taxa-list li a {
-    display: inline;
+    display: inline-block;
     padding: 4px 6px;
     color: #fff;
     font-size: 14px;
     text-decoration: none;
-    white-space: nowrap;
     background-color: #d36165;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;  
 }
-
 
 #taxa-list li a:hover {
     background-color: #0f3b5f;   
@@ -383,6 +380,12 @@ px      68    160    252    */
         height: auto;
     }
     
+    #slider {
+        height:auto;
+        max-height: 220px;
+        overflow: hidden;  
+    }
+    
     #slider li img {
        width: 178px; 
        height: 178px;
@@ -401,6 +404,9 @@ px      68    160    252    */
         height: auto;
         margin-bottom: 24px;
     }
+    
+
+    
 	
 }
 

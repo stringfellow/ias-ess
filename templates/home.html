@@ -63,13 +63,14 @@ $(document).ready(function(){
     <h2>Latest sightings</h2>   
     
     <div class="slider-wrapper">
-     <ul id="slider" class="innerfade">    
+     <ul id="slider" class="innerfade"> 
+  
     {% sightings_list '5' as latest_sightings %}
     {% for sighting in latest_sightings %}   
       
     <li>
         <a href="{{ sighting.get_absolute_url }}">
-            <img src="{{ sighting.photo }}" alt="{{ sighting }}" />
+            <img src="{{ sighting.photo|size:456 }}" alt="{{ sighting }}" />
             <span>{{ sighting }}</span>
         </a>
     </li>

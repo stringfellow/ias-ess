@@ -35,9 +35,15 @@ body{
     padding: 12px 4px;    
 }
 
-#sightings td.time-cell   {
-    padding: 12px 2px;   
+
+td.time-cell   {
+    padding: 12px 4px;
 }
+
+td.taxon-cell {
+   max-width: 220px;    
+}
+
 
 .image-cell  img {
     border: 1px solid #ccc; 
