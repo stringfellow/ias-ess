@@ -17,6 +17,11 @@ urlpatterns = patterns('',
         'ias.views.sighting_detail',
         name='ias-sighting-detail'
     ),
+    # URL for mobile redirect
+    url('^sighting/(\d+)/(inApp)$',
+        'ias.views.sighting_detail',
+        name='ias-sighting-detail'
+    ),
     url('^taxon/$',
         ListView.as_view(model=Taxon),
         name="ias-taxon-list"

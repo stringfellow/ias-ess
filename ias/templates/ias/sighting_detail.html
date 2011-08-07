@@ -8,6 +8,7 @@
 
 {% block extra-head %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+{% if not in_app %}
 <script type="text/javascript"
     src="http://maps.google.com/maps/api/js?sensor=true">
 </script>
@@ -41,14 +42,14 @@ function initialize() {
 
     {% for sight in others %}
     make_marker(
-        '{{ sight.photo }}',
+        '{{ sight.photo|size:400 }}',
         {{ sight.lat }},
         {{ sight.lon }},
         map);
     {% endfor %}
 
     make_marker(
-        '{{ sighting.photo }}',
+        '{{ sighting.photo|size:400 }}',
         {{ sighting.lat }},
         {{ sighting.lon }},
         map);
@@ -56,41 +57,47 @@ function initialize() {
 
 
 </script>
+{% endif %}
 {% endblock %}
 
-{% block body-onload %}initialize();{% endblock %}
+{% block body-onload %}{% if not in_app %}initialize();{% endif %}{% endblock %}
 
 {% block content %}
 <section class="generic-inner">
     <h1>Sighting details</h1>
-    
     <div class="detail-wrapper">
-    <div class="pic-holder"><img src='{{ sighting.photo }}' alt='photo' /></div>  
+        {% if not in_app %}
+        <div class="pic-holder"><img src='{{ sighting.photo }}' alt='photo' /></div>  
 
-    <ul class="detail-list">
-        <li><strong>Taxon:</strong><br /> {{ sighting.taxon }}</li>
-        {% if sighting.contactable %}
-            <li><strong>Reported by: <br /></strong> {{ sighting.email }}</li>
+        <ul class="detail-list">
+            <li><strong>Taxon:</strong><br /> {{ sighting.taxon }}</li>
+            {% if sighting.contactable %}
+                <li><strong>Reported by: <br /></strong> {{ sighting.email }}</li>
+            {% endif %}
+            <li><strong>On:</strong> <br/ > {{ sighting.datetime }}</li>
+            
+        </ul>
         {% endif %}
-        <li><strong>Spotted at around: <br /></strong>{{ sighting.lat }}, {{ sighting.lon }}</li>
-        
-    </ul>
-    
-    </div>
-    {% if google_form %}
-    {# This little JS/iframe hack allows us to redirect here #}
-    <script type="text/javascript">var submitted=false;</script>
-    <iframe
-    name="hidden_iframe"
-    id="hidden_iframe"
-    style="display:none;"
-    onload="if (submitted)
-            {window.location='{% url ias-sighting-detail sighting.pk %}';}">
-    </iframe>
-    {{ google_form|safe }}
-    {% endif %}
-    <div id="map_container" >
-        <div id="map_canvas" ></div>
-    </div>
+        </div>
+
+        {% if google_form %}
+        <a name="Questionnaire" ><h2>A few more details...</h2></a>
+        {# This little JS/iframe hack allows us to redirect here #}
+        <script type="text/javascript">var submitted=false;</script>
+        <iframe
+        name="hidden_iframe"
+        id="hidden_iframe"
+        style="display:none;"
+        onload="if (submitted)
+                {window.location='{% url ias-sighting-detail sighting.pk %}';}">
+        </iframe>
+        {{ google_form|safe }}
+        {% endif %}
+
+        {% if not in_app %}
+        <div id="map_container" >
+            <div id="map_canvas" ></div>
+        </div>
+        {% endif %}
 {% endblock %}
 
