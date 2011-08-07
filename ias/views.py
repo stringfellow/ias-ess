@@ -1,4 +1,5 @@
 from __future__ import with_statement
+import time
 
 from decimal import Decimal
 from StringIO import StringIO
@@ -62,7 +63,16 @@ def _save_photo(image):
     files.finalize(photo_store)
     photo_obj = Photo()
     photo_obj.photo = None
-    photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
+
+    # seems like sometimes the finalization is not fast enough or 
+    # perhaps doesn't block until it is finished. This is a horrid
+    # but effective way to make sure we get the blob key
+    # I'm sure there is a better way, expect finalize emits something?
+    timeout = 0
+    while photo_obj.blob_key == None and timeout < 30:
+        timeout += 1
+        time.sleep(0.5)
+        photo_obj.blob_key = files.blobstore.get_blob_key(photo_store)
     photo_obj.verified = False
     photo_obj.save()
     return photo_obj
