@@ -35,7 +35,6 @@ body{
     padding: 12px 4px;    
 }
 
-
 td.time-cell   {
     padding: 12px 4px;
 }
@@ -43,7 +42,6 @@ td.time-cell   {
 td.taxon-cell {
    max-width: 220px;    
 }
-
 
 .image-cell  img {
     border: 1px solid #ccc; 
@@ -106,6 +104,35 @@ h2.step span {
    color: #d36165;     
    display: inline-block;
    padding-right: 4px;
+}
+
+/* Taxa details page - contains slider*/
+.taxa-slider {
+   position: relative; 
+   height: 336px;
+}
+
+.taxa-desc {
+   float: right;
+   width: 348px;
+   padding: 0px;
+}
+
+.taxa-desc h2 {
+   font-size: 16px;
+   margin-bottom: 0px;
+   color: #D36165;
+}
+
+#slides {
+   top:0;
+   left:0;
+}
+
+.pagination {
+ margin-left: 0;   
+ margin-right: auto;
+ 
 }
 
 /* Sighting details*/
@@ -282,6 +309,11 @@ px      68    160    252    344    436    528    620    712    */
             width: 652px; 
         }
         
+        .taxa-desc {
+           float: none;
+           width: auto;
+        }
+        
     
     
     
@@ -327,9 +359,46 @@ px      68    160    252    */
              margin-bottom: 12px;    
          }
          
-         .pic-holder img {
+        .pic-holder img {
             width: 214px;    
         }
+        
+        
+        .taxa-desc {
+           float: none;
+           width: auto;
+        }
+        
+        .taxa-slider {
+            margin-top: 24px; 
+            width: 204px;
+            height: 360px;
+        }
+        
+        #slides {
+            width: 202px;
+            height: 302px;
+        }    
+        
+        .slides_container div.slide {
+            width:178px;
+         }    
+            
+        .slides_container image {
+           width: 362px; 
+           height: 260px;
+        }   
+        
+        .caption {
+           width: 192px;
+           padding:5px 5px 0 5px;
+        }        
+        
+        .caption p {
+            font-size: 12px;   
+            line-height: 1.2;
+        }
+          
          
           
 	
@@ -358,6 +427,41 @@ px      68    160    252    344    436    */
         
         .pic-holder img {
             width: 402px;    
+        }
+        
+        .taxa-desc {
+           float: none;
+           width: auto;
+        }
+        
+        .taxa-slider {
+        margin-top: 24px; 
+        width: 388px;
+        height: 364px;
+        }
+         
+        #slides {
+            width: 386px;
+            height: 302px;
+        }
+        
+        .slides_container div.slide {
+            width: 362px;
+        }  
+            
+        .slides_container image {
+           width: 362px; 
+           height: 260px;
+        }
+        
+        .caption {
+           width: 376px;
+           padding:5px 5px 0 5px;
+        }
+        
+        .caption p {
+           font-size: 12px;   
+           line-height: 1.2;
         }
 	
    

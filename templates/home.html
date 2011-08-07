@@ -6,16 +6,41 @@
 {% endblock %}
 
 {% block extra-head %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.innerfade.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/slides.min.jquery.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('ul#slider').innerfade({
-        speed: 1000,
-        timeout: 5000,
-        type: 'sequence',
-        containerheight: '295px'
-    });
+
+   $('#slides').slides({
+				preload: true,
+				preloadImage: '{{ STATIC_URL }}img/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true,
+				animationStart: function(current){
+					$('.caption').animate({
+						bottom:-35
+					},100);
+					if (window.console && console.log) {
+						// example return of current slide number
+						console.log('animationStart on slide: ', current);
+					};
+				},
+				animationComplete: function(current){
+					$('.caption').animate({
+						bottom:0
+					},200);
+					if (window.console && console.log) {
+						// example return of current slide number
+						console.log('animationComplete on slide: ', current);
+					};
+				},
+				slidesLoaded: function() {
+					$('.caption').animate({
+						bottom:0
+					},200);
+				}
+			});
 });
 </script>
 {% endblock %}
@@ -62,22 +87,25 @@ $(document).ready(function(){
 <div id="sighting-box">
     <h2>Latest sightings</h2>   
     
-    <div class="slider-wrapper">
-     <ul id="slider" class="innerfade"> 
+    <div id="slides">
+    <div class="slides_container">
   
     {% sightings_list '5' as latest_sightings %}
     {% for sighting in latest_sightings %}   
-      
-    <li>
-        <a href="{{ sighting.get_absolute_url }}">
-            <img src="{{ sighting.photo|size:600 }}" alt="{{ sighting }}" />
-            <span>{{ sighting }}</span>
-        </a>
-    </li>
+
+    	<div class="slide">
+			<a href="{{ sighting.get_absolute_url }}">
+            <img src="{{ sighting.photo|size:600 }}" alt="{{ sighting }}" />        
+             </a>
+            <div class="caption" style="bottom:0">
+                <p>{{ sighting }}</p>
+            </div>
+	    </div>
      
     {% endfor %}
-    </ul>   
+    </div> 
     </div>
+    
 </div>
 
 

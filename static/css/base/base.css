@@ -360,11 +360,6 @@ input.search-btn {
     margin-bottom: 12px;    
 }
 
-.generic-inner h2 {
-   font-size: 20px;  
-   margin-bottom: 10px;  
-}
-
 .generic-inner p {
     margin-bottom: 10px;    
 }
@@ -375,6 +370,110 @@ input.search-btn {
 
 .generic-inner p a:hover {
     color: #0f3b5f;    
+}
+
+
+/*
+	Slideshow - generic styling
+*/
+
+#slides {
+    position:absolute;
+    top: 48px;
+    left:24px;
+    z-index:100;    
+    border: 1px solid #ccc;
+    padding: 12px;
+    padding-bottom: 0;
+    width: 456px;
+    height: 302px;
+    -moz-box-shadow: 0px 0px 8px #c0c0c0;
+    -webkit-box-shadow: 0px 0px 8px #c0c0c0;
+    box-shadow: 0px 0px 8px #c0c0c0;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+    width: auto;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width:456px;
+	height:272px;
+	display:block;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+    margin: 0 auto;
+    margin-top: 8px;
+	width: 72px;
+    z-index:2000;
+    overflow: hidden;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+/*
+	Caption
+*/
+
+.caption {
+	z-index:500;
+	position:absolute;
+	bottom:-35px;
+	left:0;
+	height:30px;
+	padding:5px 20px 0 20px;
+	background:#000;
+	background:rgba(0,0,0,.5);
+	width:416px;
+	color:#fff;
+	text-shadow:none;
+}
+
+.caption p {
+    font-size: 14px; 
+    line-height: 1.5;
 }
 
 
