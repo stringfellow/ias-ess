@@ -137,7 +137,7 @@ def taxon_detail(request, pk):
 
 
 def map(request):
-    taxa = Taxon.objects.all()
+    taxa = Taxon.actives.all()
     return render_to_response(
         'ias/map.html',
         {
