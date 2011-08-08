@@ -505,7 +505,7 @@ px      68    160    252    344    436    528    620    712    */
 	}
     
     #masthead h1 a {
-    background: url(../../img/ias-logo-iphone.jpg) no-repeat left bottom;    
+    background: url(../../img/ias-logo-iphone.png) no-repeat left bottom;    
     }
     
     #masthead p {
@@ -574,7 +574,7 @@ px      68    160    252    */
     }
     
     #masthead h1 a {
-    background: url(../../img/ias-logo-iphone.jpg) no-repeat left bottom;    
+    background: url(../../img/ias-logo-iphone.png) no-repeat left bottom;    
     }
     
     #masthead p {
@@ -668,7 +668,7 @@ px      68    160    252    344    436    */
 	}
     
     #masthead h1 a {
-        background-image: url(../../img/ias-logo-iphone.jpg);    
+        background-image: url(../../img/ias-logo-iphone.png);    
     }
     
     #masthead nav {
@@ -715,7 +715,7 @@ px      68    160    252    344    436    */
 	only screen and (-webkit-min-device-pixel-ratio: 2),
 	only screen and (min-device-pixel-ratio: 2) {	
 	#masthead h1 a {
-        background-image: url(../../img/ias-logo-iphone-retina.jpg);    
+        background-image: url(../../img/ias-logo-iphone-retina.png);    
     }
 	
 }
