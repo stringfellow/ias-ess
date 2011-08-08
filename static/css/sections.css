@@ -310,9 +310,17 @@ article h2 {
    top: 12px;
 }
 
-.datetime input{
+#sighting-form .datetime input{
     float: none; 
     margin-bottom: 12px;
+}
+
+#sighting-form .datetime span {
+    font-size: 14px;   
+}
+
+#sighting-form .datetime span img {
+    vertical-align: baseline;
 }
 
 /*		Tablet Layout: 768px.
