@@ -14,6 +14,10 @@ $(document).ready(function(){
    $('#slides').slides({
 				preload: true,
 				preloadImage: '{{ STATIC_URL }}img/loading.gif',
+				effect: 'fade',
+				slideSpeed: 500,
+				crossfade: true,
+				fadeSpeed: 500,
 				play: 8000,
 				pause: 8000,
 				hoverPause: true,
