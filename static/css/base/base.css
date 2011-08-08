@@ -679,7 +679,31 @@ px      68    160    252    344    436    */
      input.search-field {
        width: 206px;    
     }
-    
 
 	
+}
+
+/* IE 6 and 7 - upgrade message*/
+.ie-box p{
+   margin-bottom: 12px;    
+}
+
+.browser-links {
+   overflow: hidden;
+   margin-top: 24px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.browser-link {
+   display: inline-block;
+   float: left;
+   position: relative;
+   color: #666;
+   font-size: 14px;
+   font-weight: bold;
+}
+
+.browser-link:hover {
+   color: #0F3B5F;   
 }
