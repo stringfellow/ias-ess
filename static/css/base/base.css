@@ -486,6 +486,10 @@ cols    1     2      3      4      5      6      7      8
 px      68    160    252    344    436    528    620    712    */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    html {
+       overflow-x: hidden;    
+    }
    
     body {
         background-position: left 32px;
@@ -631,7 +635,9 @@ cols    1     2      3      4      5
 px      68    160    252    344    436    */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-
+    html {
+       overflow-x: hidden;    
+    }
     
     body {
         background-position: left 132px; 
