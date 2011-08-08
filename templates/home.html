@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
- {% load ias_tags %}
+{% load ias_tags %}
 
 {% block css %}
 <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/home.css" />
@@ -41,6 +41,7 @@ $(document).ready(function(){
 					},200);
 				}
 			});
+   
 });
 </script>
 {% endblock %}
@@ -73,7 +74,7 @@ $(document).ready(function(){
     <p>You're registered as an <strong>expert</strong>, so you can <a class="reg-taxa" href="{% url ias-taxon-add %}">register taxa </a> to track, and view results.</p>
     </div>
     {% else %}
-    <div class="login-box logged-out"> 
+    <div id="login-box" class="login-box logged-out"> 
     <h2><span class="reg-desc"> To track a taxa that is not listed</span> <br />
         Register as an expert</h2>
     <form method="post" action="{{ action }}">{% csrf_token %}

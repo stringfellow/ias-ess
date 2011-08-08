@@ -150,6 +150,10 @@ a.action-view-map  .btn-intro {
    margin-left: 90px;
 }
 
+.login-box ul.errorlist{
+   display: none;
+}
+
 /* Logged in - login-box */
 
 .logged-in a {
