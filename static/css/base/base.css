@@ -195,6 +195,7 @@ body {
     border-top: 30px solid #3c3c3c;
 	color: #555;
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+    
 }
 
 footer {
@@ -493,6 +494,7 @@ px      68    160    252    344    436    528    620    712    */
    
     body {
         background-position: left 32px;
+        overflow-x:hidden;
     }
 	
 	#masthead {
@@ -501,6 +503,10 @@ px      68    160    252    344    436    528    620    712    */
         padding-top: 12px;
         height: 148px;
 	}
+    
+    #masthead h1 a {
+    background: url(../../img/ias-logo-iphone.jpg) no-repeat left bottom;    
+    }
     
     #masthead p {
         height: 12px;   
@@ -552,6 +558,7 @@ px      68    160    252    */
 
     body {
         background-position: left 132px; 
+        overflow-x:hidden;
     }
     
     #login-status {
@@ -564,6 +571,10 @@ px      68    160    252    */
         height: 236px;
         padding: 0 34px;
         padding-top: 12px;
+    }
+    
+    #masthead h1 a {
+    background: url(../../img/ias-logo-iphone.jpg) no-repeat left bottom;    
     }
     
     #masthead p {
@@ -641,6 +652,7 @@ px      68    160    252    344    436    */
     
     body {
         background-position: left 132px; 
+        overflow-x:hidden;
     }
     
     #login-status {
@@ -654,6 +666,10 @@ px      68    160    252    344    436    */
         padding: 0 22px;
         padding-top: 12px;
 	}
+    
+    #masthead h1 a {
+        background-image: url(../../img/ias-logo-iphone.jpg);    
+    }
     
     #masthead nav {
         position: static;
@@ -679,13 +695,29 @@ px      68    160    252    344    436    */
     }
     
     input[type=text], input[type=file], input[type=password], select{
-            width:  198px;    
+         width:  198px;    
     }
     
      input.search-field {
        width: 206px;    
     }
 
+	
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {
+	
+	#masthead h1 a {
+        background-image: url(../../img/ias-logo-iphone-retina.jpg);    
+    }
 	
 }
 
