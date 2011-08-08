@@ -713,8 +713,7 @@ px      68    160    252    344    436    */
 
 @media 
 	only screen and (-webkit-min-device-pixel-ratio: 2),
-	only screen and (min-device-pixel-ratio: 2) {
-	
+	only screen and (min-device-pixel-ratio: 2) {	
 	#masthead h1 a {
         background-image: url(../../img/ias-logo-iphone-retina.jpg);    
     }
