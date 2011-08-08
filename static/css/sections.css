@@ -160,7 +160,7 @@ h2.step span {
 .detail-list {
    list-style: none;
    float: left;
-   width: 200px;
+   width: 378px;
    margin-left: 12px;   
 }
 
@@ -292,6 +292,29 @@ article h2 {
 }
 
 
+/* Add sighting page  */
+#sighting-form label {
+    width: 200px;  
+}
+
+#sighting-form .errorlist {
+    margin-left: 200px;   
+}
+
+#sighting-form p.datetime {
+   font-size: 16px; 
+   color: #666;
+   clear: both;
+   font-weight: normal;
+   position: relative;
+   top: 12px;
+}
+
+.datetime input{
+    float: none; 
+    margin-bottom: 12px;
+}
+
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
 		Outer margins: 28px.
@@ -312,11 +335,8 @@ px      68    160    252    344    436    528    620    712    */
         .taxa-desc {
            float: none;
            width: auto;
-        }
-        
-    
-    
-    
+        }       
+   
 }
 
 /*		Mobile Layout: 320px.
@@ -360,9 +380,14 @@ px      68    160    252    */
          }
          
         .pic-holder img {
-            width: 214px;    
+            width: 218px;    
         }
         
+        .detail-list  {
+            float: none;
+            width: auto;
+            margin-top: 12px;
+        }        
         
         .taxa-desc {
            float: none;
@@ -398,6 +423,10 @@ px      68    160    252    */
             font-size: 12px;   
             line-height: 1.2;
         }
+        
+        #sighting-form .errorlist {
+            margin-left: 0;   
+        }
           
          
           
@@ -428,6 +457,12 @@ px      68    160    252    344    436    */
         .pic-holder img {
             width: 402px;    
         }
+        
+        .detail-list  {
+            float: none;
+            width: auto;
+            margin-top: 12px;
+        }    
         
         .taxa-desc {
            float: none;
@@ -463,7 +498,7 @@ px      68    160    252    344    436    */
            font-size: 12px;   
            line-height: 1.2;
         }
-	
+        
    
 }
 
