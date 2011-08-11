@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ias.models import Sighting, Taxon, TaxonExpert
+from ias.models import Sighting, Taxon, TaxonExpert, Photo
 
 admin.site.register(
     Taxon,
@@ -20,3 +20,4 @@ admin.site.register(
     list_display=('taxon', 'datetime', 'lat', 'lon', 'verified'),
     actions=[verify],
 )
+admin.site.register(Photo)
