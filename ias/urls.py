@@ -33,4 +33,5 @@ urlpatterns = patterns('',
         'ias.views.map',
         name="ias-map"
     ),
+    url(r'^search/', 'ias.views.search_db', name='search-db')
 )
