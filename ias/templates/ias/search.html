@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for taxon in taxa %}
+{{ taxon }}<br />
+{% endfor %}
+
+{% for sighting in sightings %}
+{{ sighting }}<br />
+{% endfor %}
+{% endblock %}
