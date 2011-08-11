@@ -107,7 +107,10 @@ class Photo(models.Model):
 
 
 class Sighting(models.Model):
+    
     """An instance of some user seeing some thing."""
+    class Meta:
+        ordering = ['-datetime']
     taxon = models.ForeignKey(
         Taxon,
         related_name="sightings",
@@ -122,9 +125,17 @@ class Sighting(models.Model):
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
     has_completed_questionnaire = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
+    # wee bit of denormalisation
+    taxon_name = models.CharField(max_length=200)
 
     def get_absolute_url(self):
         return reverse('ias-sighting-detail', args=[self.pk])
+
+    def save(self, *args, **kwargs):
+        if self.taxon:
+            self.taxon_name = self.taxon.common_name \
+                or self.taxon.scientific_name
+        super(Sighting, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u"%s on %s" % (self.taxon, self.datetime.date())
