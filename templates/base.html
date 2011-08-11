@@ -59,8 +59,8 @@
             </nav>
             
             <div id="search-box">
-            <form class="site-search">
-                <input class="search-field" type="text" value="Search the database..." onFocus="if (this.value == 'Search the database...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Search the database...';}">
+            <form class="site-search" method="GET" action="{% url search-db %}">
+                <input name='q' class="search-field" type="text" value="Search the database..." onFocus="if (this.value == 'Search the database...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Search the database...';}">
                 <input class="input-button search-btn" type="button" value="Go">
             </form>
             </div>
