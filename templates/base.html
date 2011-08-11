@@ -8,24 +8,21 @@
         
         <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
         <link rel="apple-touch-icon" href="{{ STATIC_URL }}img/apple-touch-icon.png">
-        <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />
-        <!--[if lte IE 8]>
-        <link rel="stylesheet" type="text/css" href="ie.css" />
-        <![endif]-->
+        <link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/base/base.css" />  
         <!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         
         <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
         {% block css %}
         {% endblock %}
 
         {% block preload-js %}
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ieblocker.js"></script>
         {% endblock %}
 
         {% block extra-head %}{% endblock %}

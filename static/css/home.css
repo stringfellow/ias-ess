@@ -150,6 +150,10 @@ a.action-view-map  .btn-intro {
    margin-left: 90px;
 }
 
+.login-box ul.errorlist{
+   display: none;
+}
+
 /* Logged in - login-box */
 
 .logged-in a {
@@ -161,6 +165,7 @@ a.action-view-map  .btn-intro {
 }
 
 #sighting-box {
+    position: relative;
     width:  480px;
     height: 360px;
     margin-top: 48px;
@@ -175,52 +180,6 @@ a.action-view-map  .btn-intro {
 #sighting-box  h2 {
     font-size: 18px;
     margin-bottom: 12px;
-}
-
-.slider-wrapper {
-   border: 1px solid #ccc;
-   padding: 12px;
-   padding-bottom: 0;
-   width: 456px;
-   -moz-box-shadow: 0px 0px 8px #c0c0c0;
-   -webkit-box-shadow: 0px 0px 8px #c0c0c0;
-   box-shadow: 0px 0px 8px #c0c0c0;
-   
-}
-
-#slider {
-    height: 288px;
-    overflow: hidden;  
-}
-
-#slider li{
-    list-style: none;    
-}
-
-#slider li a {
-    display: block;
-    position: relative;
-    text-decoration: none;
-}
-
-#slider li img {
-    width: 456px;
-    height: auto;
-    
-}
-
-#slider li span {
-    position: absolute;  
-    color: #333;
-    font-size: 14px;
-    background-color:#fff;
-    display: block;
-    width: 100%;
-    padding: 6px 12px;
-    left: 0;
-    top: 262px; 
-    line-height: 1.5;
-    text-align: center;
 }
 
 #taxa-box {
@@ -249,22 +208,23 @@ a.action-view-map  .btn-intro {
 }
 
 #taxa-list li a {
-    display: inline;
+    display: inline-block;
     padding: 4px 6px;
     color: #fff;
     font-size: 14px;
     text-decoration: none;
-    white-space: nowrap;
     background-color: #d36165;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;  
 }
 
-
 #taxa-list li a:hover {
     background-color: #0f3b5f;   
 }
+
+
+
 
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
@@ -275,7 +235,7 @@ cols    1     2      3      4      5      6      7      8
 px      68    160    252    344    436    528    620    712    */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	
+    	
 	#content {
 		width: 712px;
         padding: 0 28px;
@@ -358,8 +318,7 @@ px      68    160    252    */
         height: auto;
         margin-top: 12px;
         margin-bottom: 12px;
-    }    
-     
+    }         
     
     .login-box .register-btn,  .login-box .login-btn{
         float: none;  
@@ -375,32 +334,42 @@ px      68    160    252    */
     #sighting-box {
         margin-top: 24px; 
         width: 204px;
-        height: auto;
+        height: 360px;
     }
     
-    .slider-wrapper {
+    #slides {
         width: 178px;
-        height: auto;
+        height: 302px;
+    }    
+    
+    .slides_container div.slide {
+        width:178px;
+     }    
+        
+   .slides_container image {
+       width: 362px; 
+       height: 260px;
+    }   
+    
+    .caption {
+       width: 168px;
+       padding:5px 5px 0 5px;
     }
     
-    #slider li img {
-       width: 178px; 
-       height: 178px;
-    }
     
-    #slider li span {
-        width: 178px;   
-        top: auto;
-        bottom: 0;
-        text-align: left;
+    .caption p {
+        font-size: 12px;   
+        line-height: 1.2;
     }
-	    
+
+       
     #taxa-box {
         position: static;
         width: 204px;
         height: auto;
         margin-bottom: 24px;
     }
+       
 	
 }
 
@@ -445,8 +414,7 @@ px      68    160    252    344    436    */
         margin-top: 12px;
         margin-bottom: 12px;
     }    
-     
-    
+         
     .login-box .register-btn,  .login-box .login-btn{
         float: none;  
         margin: 0 ;
@@ -460,26 +428,34 @@ px      68    160    252    344    436    */
     #sighting-box {
         margin-top: 24px; 
         width: 388px;
-        height: auto;
+        height: 364px;
      }
-    
-    .slider-wrapper {
+         
+    #slides {
         width: 362px;
-        height: auto;
+        height: 302px;
     }
     
-    #slider li img {
+    .slides_container div.slide {
+        width: 362px;
+    }  
+        
+   .slides_container image {
        width: 362px; 
        height: 260px;
     }
     
-    #slider li span {
-        width: 362px; 
-        top: auto;
-        bottom: 0;
-        text-align: left;
+    .caption {
+       width: 352px;
+       padding:5px 5px 0 5px;
     }
     
+    .caption p {
+       font-size: 12px;   
+       line-height: 1.2;
+    }
+       
+     
     #taxa-box {
         position: static;
         width: 388px;
@@ -488,4 +464,6 @@ px      68    160    252    344    436    */
     }
    
 }
+
+
 

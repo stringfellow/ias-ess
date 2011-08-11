@@ -195,6 +195,7 @@ body {
     border-top: 30px solid #3c3c3c;
 	color: #555;
 	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+    
 }
 
 footer {
@@ -360,11 +361,6 @@ input.search-btn {
     margin-bottom: 12px;    
 }
 
-.generic-inner h2 {
-   font-size: 20px;  
-   margin-bottom: 10px;  
-}
-
 .generic-inner p {
     margin-bottom: 10px;    
 }
@@ -378,6 +374,110 @@ input.search-btn {
 }
 
 
+/*
+	Slideshow - generic styling
+*/
+
+#slides {
+    position:absolute;
+    top: 48px;
+    left:24px;
+    z-index:100;    
+    border: 1px solid #ccc;
+    padding: 12px;
+    padding-bottom: 0;
+    width: 456px;
+    height: 302px;
+    -moz-box-shadow: 0px 0px 8px #c0c0c0;
+    -webkit-box-shadow: 0px 0px 8px #c0c0c0;
+    box-shadow: 0px 0px 8px #c0c0c0;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+    width: auto;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container div.slide {
+	width:456px;
+	height:272px;
+	display:block;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+    margin: 0 auto;
+    margin-top: 8px;
+	width: 72px;
+    z-index:2000;
+    overflow: hidden;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+/*
+	Caption
+*/
+
+.caption {
+	z-index:500;
+	position:absolute;
+	bottom:-35px;
+	left:0;
+	height:30px;
+	padding:5px 20px 0 20px;
+	background:#000;
+	background:rgba(0,0,0,.5);
+	width:416px;
+	color:#fff;
+	text-shadow:none;
+}
+
+.caption p {
+    font-size: 14px; 
+    line-height: 1.5;
+}
+
+
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
 		Outer margins: 28px.
@@ -387,9 +487,14 @@ cols    1     2      3      4      5      6      7      8
 px      68    160    252    344    436    528    620    712    */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    html {
+       overflow-x: hidden;    
+    }
    
     body {
         background-position: left 32px;
+        overflow-x:hidden;
     }
 	
 	#masthead {
@@ -398,6 +503,10 @@ px      68    160    252    344    436    528    620    712    */
         padding-top: 12px;
         height: 148px;
 	}
+    
+    #masthead h1 a {
+    background: url(../../img/ias-logo-iphone.png) no-repeat left bottom;    
+    }
     
     #masthead p {
         height: 12px;   
@@ -431,7 +540,6 @@ px      68    160    252    344    436    528    620    712    */
          width: 664px; 
     }
 
-
 }
 
 
@@ -450,6 +558,7 @@ px      68    160    252    */
 
     body {
         background-position: left 132px; 
+        overflow-x:hidden;
     }
     
     #login-status {
@@ -462,6 +571,10 @@ px      68    160    252    */
         height: 236px;
         padding: 0 34px;
         padding-top: 12px;
+    }
+    
+    #masthead h1 a {
+    background: url(../../img/ias-logo-iphone.png) no-repeat left bottom;    
     }
     
     #masthead p {
@@ -512,7 +625,14 @@ px      68    160    252    */
     ul.errorlist {
         margin-left: 0;    
     }
+    
+    .taxon-cell a {
+       width: 60px;    
+    }
 	
+    input.search-field {
+       width: 206px;    
+    }
 }
 
 
@@ -526,10 +646,13 @@ cols    1     2      3      4      5
 px      68    160    252    344    436    */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-
+    html {
+       overflow-x: hidden;    
+    }
     
     body {
         background-position: left 132px; 
+        overflow-x:hidden;
     }
     
     #login-status {
@@ -543,6 +666,10 @@ px      68    160    252    344    436    */
         padding: 0 22px;
         padding-top: 12px;
 	}
+    
+    #masthead h1 a {
+        background-image: url(../../img/ias-logo-iphone.png);    
+    }
     
     #masthead nav {
         position: static;
@@ -568,9 +695,51 @@ px      68    160    252    344    436    */
     }
     
     input[type=text], input[type=file], input[type=password], select{
-            width:  198px;    
+         width:  198px;    
     }
     
+     input.search-field {
+       width: 206px;    
+    }
 
 	
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {	
+	#masthead h1 a {
+        background-image: url(../../img/ias-logo-iphone-retina.png);    
+    }
+	
+}
+
+/* IE 6 and 7 - upgrade message*/
+
+.ie-box p{
+   margin-bottom: 12px;    
+}
+
+.browser-links {
+   overflow: hidden;
+   margin-top: 24px;
+}
+
+.browser-link {
+   display: inline-block;
+   float: left;
+   position: relative;
+   color: #666;
+   font-size: 14px;
+   font-weight: bold;
+}
+
+.browser-link:hover {
+   color: #0F3B5F;   
 }

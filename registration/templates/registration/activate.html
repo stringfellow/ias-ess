@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
+
 {% block content %}
 
+<section class="generic-inner">
 {% if account %}
+
 
 <p>{% trans "Account successfully activated" %}</p>
 
@@ -14,5 +20,5 @@
 <p>{% trans "Account activation failed" %}</p>
 
 {% endif %}
-
+</section>
 {% endblock %}
