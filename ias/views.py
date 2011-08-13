@@ -15,10 +15,9 @@ from django.template import RequestContext
 from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm, AuthenticationRegisterForm
 from ias.utils import tweak_google_form, save_photo
+from search.core import search
 
 def home(request):
-    latest_sightings = []
-    latest_taxa = []
     if request.method == 'POST':
         form = AuthenticationRegisterForm(request.POST)
         if form.is_valid():
@@ -41,8 +40,14 @@ def home(request):
     )
 
 
+def resave(request):
+    for obj in Taxon.objects.all():
+        obj.save()
+    for obj in Sighting.objects.all():
+        obj.save()
+
+
 def sighting_add(request):
-    """A user sees a thing, record it."""
     if request.method == 'POST':
         form = SightingForm(request.POST, request.FILES)
         if form.is_valid():
@@ -95,6 +100,7 @@ def sighting_detail(request, pk, in_app=False):
         context_instance=RequestContext(request)
         )
 
+
 @login_required
 def taxon_add(request):
     """The start of flow for registering a new taxon."""
@@ -118,6 +124,7 @@ def taxon_add(request):
             'my_taxa': TaxonExpert.objects.filter(expert=request.user),
         },
         context_instance=RequestContext(request))
+
 
 def taxon_detail(request, pk):
     """Show taxa..."""
@@ -145,3 +152,20 @@ def map(request):
         },
         context_instance=RequestContext(request)
     )
+
+
+def search_db(request):
+    search_str = request.GET.get('q', '')
+    search_str.replace('+', ' ')
+    
+    taxa_sw = set(search(Taxon, search_str, search_index='startswith_index'))
+    taxa_ps = set(search(Taxon, search_str, search_index='porterstemmer_index'))
+    sightings_sw = set(search(Sighting, search_str, search_index='startswith_index'))
+    sightings_ps = set(search(Sighting, search_str, search_index='porterstemmer_index'))
+
+    return render_to_response('ias/search.html',
+        {
+            'taxa': taxa_sw | taxa_ps,
+            'sightings': sightings_sw | sightings_ps
+        },
+        context_instance=RequestContext(request))
