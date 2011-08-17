@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet"  media="all" type="text/css" href="{{ STATIC_URL }}css/sections.css" />
+{% endblock %}
+
+{% block page %}search-results-page{% endblock %}
+
+
 {% block content %}
 
+<article class="generic-inner">
+
+
+<h1>Search Results</h1>
 {% for taxon in taxa %}
-{{ taxon }}<br />
+ <ul class="search-list search-taxon">
+        <li><a href="{{ taxon.get_absolute_url }}">{{ taxon }}</a></li>
+ </ul>
 {% endfor %}
 
 {% for sighting in sightings %}
-{{ sighting }}<br />
+ <ul class="search-list search-sighting">
+        <li><a href="{{ sighting.get_absolute_url }}">{{ sighting }}</a></li>
+ </ul>
 {% endfor %}
+
+
+
+
+
+</article>
 {% endblock %}

@@ -324,6 +324,16 @@ article h2 {
    top: 3px;
 }
 
+/* Search results page */
+.search-list  {
+  list-style: none;    
+}
+
+.search-list li {
+   padding-left: 20px;
+   background: url( ../img/arrow.png) no-repeat left center; 
+}
+
 /*		Tablet Layout: 768px.
 		Gutters: 24px.
 		Outer margins: 28px.
