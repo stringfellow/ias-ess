@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url('^taxa/list$',
         JSONListView.as_view(
             model=Taxon,
+            queryset=Taxon.actives.all(),
             template_name="api/taxon_list.html"),
         name='api-taxa-list'
     ),
