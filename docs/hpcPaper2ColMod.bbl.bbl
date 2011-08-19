@@ -1,0 +1,67 @@
+\begin{thebibliography}{10}
+
+\bibitem{SHBP}
+{\sc Batterywala, S.~H., and Narayanan, H.}
+\newblock Efficient dc analysis of rvj circuits for moment and derivative
+  commutations of interconnect networks.
+\newblock {\em 12th International Conference on VLSI Design\/} (1999),
+  169--174.
+
+\bibitem{NJB}
+{\sc Bhattad, N.~J.}
+\newblock Parallelization of circuit simulator.
+\newblock Master's thesis, Department of Electrical Engineering, Indian
+  Institute of Technology, Bombay, January 2001.
+
+\bibitem{DON}
+{\sc Dongara, J., Duff, L., Sorensen, D., and der Vorst, H.~V.}
+\newblock {\em Numerical Linear Algebra for High-Performance Computers}.
+\newblock Society of Industrial and Applied Mathematics, Philadelphia, 1998.
+
+\bibitem{SIE}
+{\sc Frohlich, N., Riess, B.~M., wever, U.~A., and Zheng, Q.}
+\newblock A new approach for parallel simulation of vlsi circuits on a
+  transistor level.
+\newblock {\em IEEE Transaction on Circuits and system -1:Fundamental Theory
+  and Applications 45}, 6 (1998), 601--613.
+
+\bibitem{PVM}
+{\sc Gist, A., Beguelin, A., Dongara, J., Jiang, W., Manchek, R., and Sunderam,
+  V.}
+\newblock {\em PVM 3 User Guide and Reference Manual}.
+\newblock Oak Ridge National Laboratory, Engineering Physics and Mathematics
+  Division, Mathematical Science Section, Oak Ridge, Tennessee, 378331, USA,
+  September 1991.
+\newblock operated by Martin Marietta Energy Systems.
+
+\bibitem{Golub}
+{\sc Golub, G., and Loan, C.~V.}
+\newblock {\em Matrix Computations - 2nd Edition}.
+\newblock Johns Hopkins University Press, Baltimore, Maryland, 1989.
+
+\vspace*{6.5in}
+\pagebreak
+
+\bibitem{GAK}
+{\sc Kumar, G.~A.}
+\newblock Parallelization of circuit simulator.
+\newblock Master's thesis, Department of Electrical Engineering, Indian
+  Institute of Technology, Bombay, January 2002.
+
+\bibitem{HN}
+{\sc Narayanan, H.}
+\newblock {\em Submodular Function and Electrical Networks, Annals of Discrete
+  Mathematics}, vol.~54.
+\newblock North Holland, Amsterdam, The Netherlands, 1997.
+\vspace*{0.125in}
+\bibitem{PVMS}
+Pvm http site.
+\newblock http://www.epm.ornl.gov/pvm/.
+\vspace*{0.140in}
+\bibitem{GT}
+{\sc Trivedi, G.}
+\newblock Parallelization of circuit simulator.
+\newblock Master's thesis, Department of Electrical Engineering, Indian
+  Institute of Technology, Bombay, January 2000.
+
+\end{thebibliography}
