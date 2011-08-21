@@ -53,6 +53,7 @@ window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{%
         $('#id_lat').parent().toggle();
         $('#id_lon').parent().toggle();
         $('#id_map_picker').parent().toggle();
+        initialize(); // the map
     });
     if ($('#id_get_datetime_from_photo').attr('checked')) {
         $('#id_date_time_0').parent().parent().toggle();

@@ -13,7 +13,7 @@ from EXIF import process_file
 
 
 class SightingForm(forms.ModelForm):
-    image = forms.FileField()
+    image = forms.FileField(help_text="Must be less than 1MB.")
 
     get_coords_from_photo = forms.BooleanField(
         required=False,

@@ -123,8 +123,12 @@ class Sighting(models.Model):
     lat = models.DecimalField(decimal_places=16, max_digits=20)
     lon = models.DecimalField(decimal_places=16, max_digits=20)
     photo = models.ForeignKey(Photo, related_name="sightings", null=True, blank=True)
+    
     has_completed_questionnaire = models.BooleanField(default=False)
+    
     verified = models.BooleanField(default=False)
+    examplary = models.BooleanField(default=False)
+
     # wee bit of denormalisation
     taxon_name = models.CharField(max_length=200)
 
