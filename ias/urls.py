@@ -6,7 +6,10 @@ from ias.models import Sighting, Taxon
 
 urlpatterns = patterns('',
     url('^sighting/$',
-        ListView.as_view(model=Sighting),
+        ListView.as_view(
+            model=Sighting,
+            queryset=Sighting.objects.filter(verified=True)
+        ),
         name='ias-sighting-list'
     ),
     url('^sighting/add/$',

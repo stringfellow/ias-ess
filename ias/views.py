@@ -86,7 +86,7 @@ def sighting_detail(request, pk, in_app=False):
     else:
         google_form = None
 
-    others = Sighting.objects.filter(taxon=sighting.taxon).exclude(
+    others = Sighting.objects.filter(verified=True, taxon=sighting.taxon).exclude(
         pk=sighting.pk)
 
     return render_to_response(
