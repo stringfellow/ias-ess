@@ -20,7 +20,7 @@ class SightingAdmin(admin.ModelAdmin):
     verify.short_description = "Mark as verified"
 
     def get_photo(self, obj):
-        return "<img src='%s' width='100px' height='100px' />" % (obj.photo.url)
+        return "<img src='%s=s100' />" % (obj.photo.url)
     get_photo.short_description = 'Photo'
     get_photo.allow_tags = True
 
