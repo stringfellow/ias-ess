@@ -10,14 +10,20 @@ admin.site.register(
 admin.site.register(TaxonExpert)
 
 
-def verify(modeladmin, request, queryset):
-    queryset.update(verified=True)
-verify.short_description = "Mark as verified"
+class SightingAdmin(admin.ModelAdmin):
+    
+    list_display=('taxon', 'datetime', 'lat', 'lon', 'get_photo', 'verified')
+    actions=['verify']
+
+    def verify(self, request, queryset):
+        queryset.update(verified=True)
+    verify.short_description = "Mark as verified"
+
+    def get_photo(self, obj):
+        return "<img src='%s' width='100px' height='100px' />" % (obj.photo.url)
+    get_photo.short_description = 'Photo'
+    get_photo.allow_tags = True
 
 
-admin.site.register(
-    Sighting,
-    list_display=('taxon', 'datetime', 'lat', 'lon', 'verified'),
-    actions=[verify],
-)
+admin.site.register(Sighting, SightingAdmin)
 admin.site.register(Photo)
