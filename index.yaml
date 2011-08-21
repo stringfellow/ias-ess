@@ -27,6 +27,11 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: ias_photo
+  properties:
+  - name: __key__
+    direction: desc
+
 - kind: ias_sighting
   properties:
   - name: __key__
