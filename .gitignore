@@ -1,6 +1,6 @@
 *pyc
-*.log
-*.aux
+*log
+*aux
 hpcPaper2Col.pdf
 *~
 .*
