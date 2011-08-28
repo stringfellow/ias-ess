@@ -1,4 +1,7 @@
 *pyc
+*.log
+*.aux
+hpcPaper2Col.pdf
 *~
 .*
 .gaedata
