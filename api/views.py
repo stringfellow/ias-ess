@@ -33,7 +33,7 @@ def sighting(request):
             ]
             return HttpResponse("".join(url))
         else:
-            logging.error(form.errors)
+            logging.error("POST: %s, ERROR: %s" % (request.POST, form.errors))
     else:
         logging.debug(request)
     return HttpResponse("OK")
