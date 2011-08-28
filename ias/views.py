@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import login as login_view
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.utils import simplejson
 
 from ias.models import Photo, Sighting, Taxon, TaxonExpert
 from ias.forms import SightingForm, RegisterTaxonForm, AuthenticationRegisterForm
@@ -145,10 +146,30 @@ def taxon_detail(request, pk):
 
 def map(request):
     taxa = Taxon.actives.all()
+    map_data = []
+    for taxon in taxa:
+        taxon_cluster_features = {}
+        for sight in taxon.sightings.all():
+            taxon_cluster_features[sight.pk] = [float(sight.lat), float(sight.lon)]
+        cluster = {
+            'name': 'cluster%i' % taxon.pk,
+            'style': taxon.style_name,
+            'features': taxon_cluster_features
+        }
+        map_data.append(cluster)
+    map_data = simplejson.dumps(map_data)
+
+#    import sys
+#    for attr in ('stdin', 'stdout', 'stderr'):
+#        setattr(sys, attr, getattr(sys, '__%s__' % attr))
+#    import pdb
+#    pdb.set_trace()
+    
     return render_to_response(
         'ias/map.html',
         {
             'taxa': taxa,
+            'map_data': map_data
         },
         context_instance=RequestContext(request)
     )
