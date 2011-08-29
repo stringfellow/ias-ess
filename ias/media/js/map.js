@@ -62,6 +62,30 @@ function initialize_map (data) {
        });
     });
 
+
+    $('#get_marker_data').click(function (e) {
+        e.preventDefault();
+        var bounds = map.getBounds();
+        var markers = get_visible_markers(bounds);
+    });
+
+
+    function get_visible_markers (bounds) {
+        var markers = [];
+        var visible_markers = [];
+        for (var cluster in cluster_obj) {
+            var cluster_markers = cluster_obj[cluster].markers_;
+            markers = markers.concat(cluster_markers);
+        }
+        for (i = 0; i < markers.length; i++) {
+            if (bounds.contains(markers[i].position)) {
+                visible_markers.push(markers[i]);
+            }
+        }
+        return visible_markers;
+    };
+
+
 };
 
 
