@@ -41,6 +41,10 @@ urlpatterns = patterns('',
         'ias.views.map',
         name="ias-map"
     ),
+    url('^map/get_data/$',
+        'ias.views.map_data',
+        name="ias-map-data"
+    ),
     url(r'^search/', 'ias.views.search_db', name='search-db'),
     url(r'^resave/', 'ias.views.resave', name='resave'),
 )
