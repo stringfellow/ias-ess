@@ -12,7 +12,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var data = $.parseJSON('{{ map_data|safe }}');
-        initialize_map(data);
+        var get_data_url = "{% url ias-map-data %}";
+        var config = {"data": data, "get_data_url": get_data_url};
+        initialize_map(config);
     });
 </script>
 {% endblock %}
@@ -34,7 +36,11 @@
     </div>
     {% endfor %}
 
-    <a id="get_marker_data">Download visible data in viewport</a>
+    <form action="{% url ias-map-data %}" method="POST" id="download_map_data_form">
+        {% csrf_token %}
+        <input id="download_map_data_input" type="hidden" name="" value="">
+    </form>
+    <a href="" id="get_marker_data">Download visible data in viewport</a>
 
   </section>
 {% endblock %}

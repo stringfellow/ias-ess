@@ -1,5 +1,6 @@
 from __future__ import with_statement
 import time
+import csv
 
 from decimal import Decimal
 from StringIO import StringIO
@@ -9,7 +10,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login as login_view
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.utils import simplejson
 
@@ -150,7 +151,8 @@ def map(request):
     for taxon in taxa:
         taxon_cluster_features = {}
         for sight in taxon.sightings.all():
-            taxon_cluster_features[sight.pk] = [float(sight.lat), float(sight.lon)]
+            taxon_cluster_features[sight.pk] = [
+                float(sight.lat), float(sight.lon)]
         cluster = {
             'name': 'cluster%i' % taxon.pk,
             'style': taxon.style_name,
@@ -173,6 +175,23 @@ def map(request):
         },
         context_instance=RequestContext(request)
     )
+
+
+def map_data(request):
+
+    ids = request.POST.get(u'ids').split(',')
+
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=ias.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['taxon name', 'date', 'lat', 'lon'])
+
+    for id in ids:
+        s = Sighting.objects.get(pk=id)
+        writer.writerow([s.taxon_name, s.datetime, s.lat, s.lon])
+
+    return response
 
 
 def search_db(request):

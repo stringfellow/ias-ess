@@ -1,12 +1,12 @@
-function initialize_map (data) {
-    // data
-    // [ { features:{...}, { name:...}, { style:...} }, {...} ]
+function initialize_map (config) {
+    var data = config.data; // [ { features:{pk,lat,lon}, { name:...}, { style:...} }, {...} ]
+    var get_data_url = config.get_data_url;
 
     var latlng = new google.maps.LatLng(54, -1);
     var myOptions = {
-      zoom: 5,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 5,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
@@ -21,14 +21,18 @@ function initialize_map (data) {
             var lat = data[i].features[id][0];
             var lng = data[i].features[id][1];
             var g_coord = new google.maps.LatLng(lat, lng);
-            var g_marker = new google.maps.Marker({'position': g_coord});
+            var g_marker = new google.maps.Marker({
+                'position': g_coord
+            });
             g_marker.set('id', id);
             g_clusters.push(g_marker);
         }
         marker_obj[data[i].name] = g_clusters;
         style_obj[data[i].name] = data[i].style || defaultStyle;
         var marker_cluster = new MarkerClusterer(map, g_clusters,
-            {styles: data[i].style || defaultStyle});
+        {
+            styles: data[i].style || defaultStyle
+            });
         marker_cluster.set('name', data[i].name);
         handle_cluster_display(data[i].name);
         cluster_obj[data[i].name] = marker_cluster;
@@ -45,7 +49,9 @@ function initialize_map (data) {
                 test = false;
             } else {
                 var marker_cluster = new MarkerClusterer(map, 
-                    marker_obj[cluster_name], {styles: style_obj[cluster_name]});
+                    marker_obj[cluster_name], {
+                        styles: style_obj[cluster_name]
+                        });
                 marker_cluster.set('name', cluster_name);
                 // updating the cluster_obj with the new MarkerClusterer
                 cluster_obj[cluster_name] = marker_cluster;
@@ -57,20 +63,24 @@ function initialize_map (data) {
 
     //Class hook for changing colour
     $(function() {
-       $('.checkbox-row input:checked').click(function() {
-          $(this).closest('.checkbox-row').toggleClass('checkbox-row-unchecked');
-       });
+        $('.checkbox-row input:checked').click(function() {
+            $(this).closest('.checkbox-row').toggleClass('checkbox-row-unchecked');
+        });
     });
 
 
     $('#get_marker_data').click(function (e) {
         e.preventDefault();
         var bounds = map.getBounds();
-        var markers = get_visible_markers(bounds);
+        var form = $('#download_map_data_form');
+        var input = $('#download_map_data_input');
+        input.attr('name', 'ids');
+        input.attr('value', get_visible_marker_ids(bounds));
+        form.submit();
     });
 
 
-    function get_visible_markers (bounds) {
+    function get_visible_marker_ids (bounds) {
         var markers = [];
         var visible_markers = [];
         for (var cluster in cluster_obj) {
@@ -79,7 +89,7 @@ function initialize_map (data) {
         }
         for (i = 0; i < markers.length; i++) {
             if (bounds.contains(markers[i].position)) {
-                visible_markers.push(markers[i]);
+                visible_markers.push(markers[i].id);
             }
         }
         return visible_markers;
