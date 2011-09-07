@@ -43,10 +43,43 @@ $(document).ready(function(){
 					$('.caption').animate({
 						bottom:0
 					},500);
+					
+										
+					
 				}
-			});
+			});   
+    
+      
+
+                    //Centre slider image
+                    $('#slides .slide img').each(function(index, domEle){                    
+                    
+                           $(domEle).load(function(){  
+                        
+                                    if($(domEle).width()>$('.slides_container').width()){
+                                        var xoffset=$('.slides_container').width()/2-$(domEle).width()/2;                    
+                                        $(domEle).css({'position' : 'relative', 'left': xoffset+'px' });
+                                    }; 
+                                    
+                                    if($(domEle).height()>$('.slides_container').height()){
+                                       var yoffset=$('.slides_container').height()/2-$(domEle).height()/2;
+                                       $(domEle).css({'position' : 'relative', 'top': yoffset+'px'});                                   
+                                    };
+                            
+                            
+                            });//load end               
+                
+                    }); //end
+                    
+                
    
+     
+     
+     
 });
+
+
+
 </script>
 {% endblock %}
 
@@ -100,7 +133,7 @@ $(document).ready(function(){
 
     	<div class="slide">
 			<a href="{{ sighting.get_absolute_url }}">
-            <img src="{{ sighting.photo|size:800 }}" alt="{{ sighting }}" />        
+            <img src="{{ sighting.photo|size:600 }}" alt="{{ sighting }}" />        
              </a>
             <div class="caption" style="bottom:0">
                 <p>{{ sighting }}</p>

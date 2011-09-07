@@ -182,6 +182,8 @@ a.action-view-map  .btn-intro {
     margin-bottom: 12px;
 }
 
+img{display:block}
+
 #taxa-box {
     position: absolute;
     overflow: hidden;
@@ -346,10 +348,10 @@ px      68    160    252    */
         width:178px;
      }    
         
-   .slides_container image {
+    .slides_container img {
        width: 362px; 
        height: 260px;
-    }   
+    }  
     
     .caption {
        width: 168px;
@@ -440,7 +442,7 @@ px      68    160    252    344    436    */
         width: 362px;
     }  
         
-   .slides_container image {
+   .slides_container img {
        width: 362px; 
        height: 260px;
     }
