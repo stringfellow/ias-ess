@@ -206,7 +206,8 @@ h2.step span {
 .checkbox-row-unchecked {
    background-color: #999;    
 }
-
+#get_marker_data{color:#D36165;padding-left:22px;padding-bottom:5px;padding-top:5px; background:url(../img/map-data.png) no-repeat left top;}
+#get_marker_data:hover{color:#0F3B5F;background:url(../img/map-data-hover.png) no-repeat left top;}
 /* About page */
 
 article a {
