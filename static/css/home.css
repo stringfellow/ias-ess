@@ -347,7 +347,6 @@ px      68    160    252    */
     
     #slides {
         width: 178px;
-        height: 302px;
     }    
     
     .slides_container div.slide {
@@ -440,7 +439,7 @@ px      68    160    252    344    436    */
          
     #slides {
         width: 362px;
-        height: 302px;
+ 
     }
     
     .slides_container div.slide {
