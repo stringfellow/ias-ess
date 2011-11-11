@@ -228,6 +228,7 @@ img{display:block}
 .slides_container div.slide{overflow:hidden;}
 
 .slides_container img {
+       width:100%;
        max-width: 100%; 
        height: auto;
 } 
@@ -352,10 +353,7 @@ px      68    160    252    */
     .slides_container div.slide {
         width:178px;
      }    
-        
-    .slides_container img {
 
-    }  
     
     .caption {
        width: 168px;
@@ -446,10 +444,7 @@ px      68    160    252    344    436    */
         width: 362px;
        
     }  
-        
-   .slides_container img {
 
-    }
     
     .caption {
        width: 352px;

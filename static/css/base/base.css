@@ -422,7 +422,10 @@ input.search-btn {
 	overflow:hidden;
 }
 
-.slides_container div.slide img{max-width:100%;}
+.slides_container div.slide img{
+    width:100%;
+    max-width:100%;
+}
 
 /*
 	Pagination
