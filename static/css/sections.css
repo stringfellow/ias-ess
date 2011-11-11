@@ -430,7 +430,7 @@ px      68    160    252    */
         .taxa-slider {
             margin-top: 24px; 
             width: 204px;
-             height: 364px;
+            height: 364px;
            
         }
         
@@ -440,7 +440,7 @@ px      68    160    252    */
         }    
         
         .slides_container div.slide {
-            width:178px;
+            width:202px;
          }    
             
         .slides_container image {
@@ -515,7 +515,7 @@ px      68    160    252    344    436    */
         }
         
         .slides_container div.slide {
-            width: 362px;
+            width: 386px;
         }  
             
         .slides_container image {
