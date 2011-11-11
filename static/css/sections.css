@@ -430,7 +430,8 @@ px      68    160    252    */
         .taxa-slider {
             margin-top: 24px; 
             width: 204px;
-            height: auto;
+             height: 364px;
+           
         }
         
         #slides {
