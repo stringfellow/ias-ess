@@ -419,7 +419,10 @@ input.search-btn {
 	width:456px;
 	height:272px;
 	display:block;
+	overflow:hidden;
 }
+
+.slides_container div.slide img{max-width:100%;}
 
 /*
 	Pagination
