@@ -281,6 +281,7 @@ px      68    160    252    344    436    528    620    712    */
     #taxa-box {
         position: static;
         width: 480px;
+        height:auto;
         margin-bottom: 24px;
     }
     
